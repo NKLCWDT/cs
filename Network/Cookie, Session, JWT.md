@@ -32,7 +32,7 @@
 
 
 
->  과거엔 클라이언트 측에 정보를 저장할 때 쿠키를 주로 사용했다. 쿠키를 사용하는 게 데이터를 클라이언트 축에 저장할 수 있는 유일한 방법이었을 때는 이 방법이 타당했지만, 지금은 웹 스토리지 API (localStorage와 sessionStorage) 를 사용하면 된다.
+>  과거엔 클라이언트 측에 정보를 저장할 때 쿠키를 주로 사용했다. 쿠키를 사용하는 게 데이터를 클라이언트 측에 저장할 수 있는 유일한 방법이었을 때는 이 방법이 타당했지만, 지금은 웹 스토리지 API (localStorage와 sessionStorage) 를 사용하면 된다.
 
 
 
@@ -60,25 +60,25 @@ Cookie: yummy_cookie=choco; tasty_cookie=strawberry
 
 ![img](https://postfiles.pstatic.net/MjAxODA3MzBfMzAw/MDAxNTMyOTM4MTk3ODkx.rSB1zUbmvPVKghA5J50pf4zy5IL7pWABmV7YMxY3l6Ig.RuoKDsVXHpa-SWvvwjLeaMI4KGvyE6V_FkMQmTh8ivcg.PNG.rudwls008/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2018-07-30_%EC%98%A4%ED%9B%84_5.09.42.png?type=w773)
 
-크롬 개발자 도구에서 쿠키를 볼 수 있고 쿠키는 Name = Value 쌍으로 이루어져있고 여러가지 속성에 대해서 살펴 보겠다.
+크롬 개발자 도구에서 쿠키를 볼 수 있으며 쿠키는 Name = Value 쌍으로 이루어져있고 여러가지 속성에 대해서 살펴 보겠다.
 
 
 
-- 쿠키의 스코프
+- Domain과 Path
 
 `Domain` 그리고 `Path`는 어떤 URL을 쿠키가 보내야 하는지 정의한다.
 
-`Domain`은 쿠키가 전송되게 될 호스트들을 명시한다. 만약 명시되지 않는다면, 현재 문서 위치의 호스트 일부를 기본값으로 한다.
+`Domain`은 쿠키가 전송되게 될 호스트들을 명시한다. 만약 명시되지 않는다면, 현재 문서 위치의 호스트를 기본값으로 한다.
 
-`Path`는 Cookie 헤더를 전송하기 위하여 요청되는 URL 내에 반드시 존재하야 하는 URL 경로이다.
+`Path`는 Cookie 헤더를 전송하기 위하여 요청되는 URL 내에 반드시 존재해야 하는 URL 경로이다.
 
 
 
-- Secure과 HttpOnly 쿠키
+- Secure과 HttpOnly
 
-`Secure` 쿠키는 HTTPS 프로토콜 상에서 암호화된 요청일 경우에만 전송된다.
+`Secure`는 HTTPS 프로토콜 상에서 암호화된 요청일 경우에만 전송된다.
 
-`HttpOnly` 쿠키는 XSS 공격을 방지하기 위해 JavaScript의 Document.cookie API에 접근할 수 없다.
+`HttpOnly`는 XSS 공격을 방지하기 위해 JavaScript의 Document.cookie API에 접근할 수 없다.
 
 예를 들어, 서버쪽에서 지속되고 있는 세션의 쿠키는 JavaScript를 사용할 필요성이 없기 때문에 `HttpOnly` 플래그가 설정될 것이다.
 
@@ -90,9 +90,9 @@ Cookie: yummy_cookie=choco; tasty_cookie=strawberry
 
 
 
-- SameSite 쿠키
+- SameSite
 
-`SameSite` 쿠키는 쿠키가 cross-site 요청과 함께 전송되지 않았음을 요구하게 만들어, CSRF 위조 공격에 대해 어떤 보호 방법을 제공한다.
+`SameSite`를 선언했을 경우 쿠키가 cross-site 요청시에 전송하지 않아 CSRF에 대해 방어할 수 있다.
 
 
 
@@ -110,12 +110,12 @@ Cookie: yummy_cookie=choco; tasty_cookie=strawberry
 
 | 쿠키이름           | 특징                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| Session Cookie     | 보통 만료시간(Expire date) 설정하고 메모리에만 저장되며 브라우저 종료시 쿠키를 삭제. |
+| Session Cookie     | 메모리에만 저장되며 브라우저 종료시 쿠키를 삭제. |
 | Persistent Cookie  | 장기간 유지되는 쿠키(예를 들어 Max-Age 1년), 파일로 저장되어 브라우저 종료와 관계없이 사용. |
 | Secure Cookie      | HTTPS에서만 사용, 쿠키 정보가 암호화 되어 전송.              |
 | Third-Party Cookie | 방문한 도메인과 다른 도메인의 쿠키, 보통 광고 베너 등을 관리할 때 유입 경로를 추적하기 위해 사용. |
 
-Set-Cookie를 할때 Expires 속성이 존재하지 않으면 Session cookie 간주하고 Expires 속성이 존재한다면 기간동안은 브라우저를 닫아도 사라지지 않는 persistent cookie로 간주한다.
+Set-Cookie를 할때 Expires 속성이 존재하지 않으면 Session cookie로 간주하고 Expires 속성이 존재한다면 기간동안은 브라우저를 닫아도 사라지지 않는 persistent cookie로 간주한다.
 
 
 
@@ -270,7 +270,7 @@ Access Token이 만료되었을 때 Refresh Token을 사용하여 Access Token�
 
 해당 전략을 사용하면 AccessToken의 만료 기한을 짧게 설정할 수 있으며, 사용자가 자주 로그인 할 필요도 없고 서버가 강제로 RefreshToken을 만료시킬 수 있다.
 
-그러나 검증을 위해 서버는 RefreshToken을 별도로 저장하고 있어야 하므로 이는 JWT에 장점을 완벽하게 누릴 수는 없다.
+그러나 검증을 위해 서버는 RefreshToken을 별도로 저장하고 있어야 하므로 이는 JWT에 장점을 완벽하게 누릴 수 없다는 단점이 존재한다.
 
 ---
 
