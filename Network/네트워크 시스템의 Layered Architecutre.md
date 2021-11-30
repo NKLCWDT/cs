@@ -75,7 +75,10 @@
 
 ### 데이터 캡슐화
 
-![IMAGES](../images/datacapsulation.JPG)
+![IMAGES](../images/capsulation.JPG)
+
+- __동작 방식__
+    - 송신자 쪽에서 상위 계층에서 하위 계층으로 데이터를 보낼 때, 각 계층의 encoder 를 통해 데이터를 캡슐화 하며, 1-2 계층을 통과하면 아날로그 신호로 바뀌어 전선을 타고 수신자 측의 하위 계층 디코더로 진입한다. 송신자 쪽에서 데이터를 보내면서 헤더가 추가되는 과정을 캡슐화라고하며, 수신자 쪽에서 캡슐화된 헤더를 벗겨내는 과정이 역캡슐화라고 한다.
 
 - __PDU(Protocol Data Unit)__
     - SDU(Service Data Unit)
@@ -353,7 +356,7 @@ A : TCP/IP 가 산업계의 표준이 될 수 있던 결정적인 이유는 TCP/
 
 > [TCP-Updated-Model](https://velog.io/@osk3856/TCP-Updated-Model)
 
-### Q : IPv4 랑 IPv6의 차이점에 대해서 말해주세요.
+### Q : IPv4 랑 IPv6 의 차이점에 대해서 말해주세요.
 
 A : 둘다 IP 계층에서 동작합니다. IPv6 가 IPv4 에 비해 갖는 이점은 패킷을 단편화하지 않으면서 보다 효율적인 라우팅이 가능하다는 점입니다. 또한 IPv6 는 보안을 염두에 두고 구축이 되어서 기밀성, 인증 및 데이터 무결성을 제공합니다.
 
