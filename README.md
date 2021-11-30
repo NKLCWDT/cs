@@ -13,6 +13,9 @@
 ## Network
 
 - [쿠키, 세션, JWT 토큰](https://github.com/NKLCWDT/cs/blob/main/Network/Cookie%2C%20Session%2C%20JWT.md)
+  - Cookie / Session
+  - 세션 기반 인증 / 토큰 기반 인증
+  - JWT
 - [네트워크 시스템의 Layered Architecture](https://github.com/NKLCWDT/cs/blob/main/Network/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98%20Layered%20Architecutre.md)
   - 웹의 동작 방식
   - TCP/IP 5 Layer
