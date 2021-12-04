@@ -274,6 +274,25 @@ Access Token이 만료되었을 때 Refresh Token을 사용하여 Access Token�
 
 ---
 
+## Q&A
+### Q : Expires 속성을 지정하지 않는다면 Session Cookie인지?
+A : Set-Cookie를 선언할 때 Expires(만료기한)을 정해주지 않는다면 브라우저 종료 시 사라지는 Session Cookie라고 판단하고 Expires를 정해준다면
+persistent(지속가능한) cookie로 판단하여 만료기한 까지 사라지지 않습니다.
+
+### Q : JWT 이전에는 토큰기반인증 방식이 어떻게 진행되었는지?
+A : 토큰에 인증 타입에는 여러가지가 존재합니다. 그중 가장 유명한 인증타입이 Bearer 타입입니다.
+
+| 인증타입           | 설명                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| Basic    | 사용자 아이디와 암호를 Base64로 인코딩한 값을 토근으로 사용한다.(RFC 7617) |
+| Bearer  | JWT 혹은 OAuth에 대한 토큰을 사용한다. (RFC 6750) |
+| Digest     | 서버에서 난수 데이터 문자열을 클라이언트에 보낸다. 클라이언트는 사용자 정보와 nonce를 포함하는 해시값을 사용하여 응답한다 (RFC 7616) |
+| HOBA | 전자 서명 기반 인증 (RFC 7486) |
+| Mutual | 암호를 이용한 클라이언트-서버 상호 인증 (draft-ietf-httpauth-mutual) |
+| AWS4-HMAC-SHA256 | AWS 전자 서명 기반 인증 |
+
+---
+
 ### Reference
 
 https://tecoble.techcourse.co.kr/post/2021-05-22-cookie-session-jwt/
