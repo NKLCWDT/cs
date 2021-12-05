@@ -1,6 +1,3 @@
-# OAuth
-
-
 ## OAuth(Open Authorization)란?
 인터넷 사용자들이 비밀번호를 제공하지 않고 다른 웹사이트 상의 자신들의 정보에 대해 웹사이트나 애플리케이션의
 접근 권한을 부여할 수 있는 공통적인 수단으로서 사용되는, 접근 위임을 위한 개방형 표준이다.
@@ -51,25 +48,74 @@ OAuth는 타사 서비스 (Google, facebook)의 이메일 정보에 우리가 �
 | Access Token | 자원 서버에 자원을 요청할 수 있는 토큰 |
 | Refresh Token | 권한 서버에 접근 토큰을 요청할 수 있는 토큰 |
 
+> 인증 프로세스를 이해할 때 쉽게 이해하기 위해 예를 들면 <br>
+Resource Server : 카카오 서버로 정보를 담고있는 자원 서버 <br>
+Authorization Server : 카카오 서버로 권한을 부여하는 서버 <br>
+Resource Owner : 사용자(나) <br>
+Client : 어떤 취준생이 만든 사이트
+
 ## 인증절차 종류
 
 | 종류 | 설명 |
 | ---- | ---- |
-| Authorization Code Grant | Client가 다른 사용자 대신 특정 리소스에 접근을 요청할 때 사용 <br> 리소스 접근을 위해, Authorization Server에서 받은 권한 코드로 리소스에 대한 액세스 토큰을 받는 방식 <br> 다른 인증 절차에 비해 보안성이 높기에 주로 사용한다. |
-| Implicit Grant | Authorization Code Grant와 다르게 권한 코드 교환 단계가 있다. <br> 액세스 토큰을 즉시 반환받아 이를 인증에 이용하는 방식 |
-| Resource Owner Password Credentials Grant | Client가 암호를 사용하여 엑세스 토큰에 대한 사용자의 자격 증명을 교환하는 방식 <br> Resource Owner에서 ID, Password를 전달 받아 Resource Server에 인증하는 방식으로 신뢰할 수 있는 Client일 때 사용가능 |
+| Authorization Code Grant | 리소스 접근을 위해, Authorization Server에서 받은 권한 코드로 리소스에 대한 액세스 토큰을 받는 방식 <br> 다른 인증 절차에 비해 보안성이 높기에 주로 사용한다. |
+| Implicit Grant | 액세스 토큰을 즉시 반환받아 이를 인증에 이용하는 방식 |
+| Resource Owner Password Credentials Grant | Resource Owner에서 ID, Password를 전달 받아 Resource Server에 인증하는 방식으로 신뢰할 수 있는 Client일 때 사용가능 |
 | Client Credentials Grant | Client가 컨텍스트 외부에서 엑세스 토큰을 얻어 특정 리소스에 접근을 요청할 때 사용하는 방식 |
 
+> Client는 Resource Server의 API를 사용한다고 Resource Server에 등록하고 Client ID와 Client Secret을 발급받는다. <br>
+> Client ID : 우리가 만든 서비스의 식별자 (노출되도 됨) <br>
+> Client Secret : Client ID에 대한 비밀번호 (노출되면 안됨)
 
-## OAuth2 프로세스
-![IMAGES](../images/oauthProcess.png)
+### Authorization Code
+권한 부여 승인을 위해 자체 생성한 Authorization Code를 전달하는 방식으로 많이 쓰이고 기본이 되는 방식이다.
+![IMAGES](../images/AuthorizationCode.png)
+1. Client에서 Authrization Server로 권한 부여 요청을 보낸다.
+2. 로그인 정보가 맞다면 권한 부여 승인 코드를 Client에 전달한다.
+3. Client는 Authorization code를 통해 access token 발급을 요청한다.
+4. Authorization Server는 자기가 가지고 있는 Client ID, Client Secret, Authorization Code를 전달받은 정보와 비교하여 동일할 때 Access token 전달한다.
+5. Client는 Resource Server에게 인증을 위한 Access token을 전달하면서 필요한 자원을 요청한다.
+6. Resource Server는 Access token이 유효하면 해당 자원을 제공한다.
 
 
+- redirect_uri : 인증 승인 이후 리다이렉트 될 URL
+- response_type : 사용을 원하는 grant type을 지정
+  - code : Authorization Code
+  - token : Implicit
+
+### Implicit
+브라우저 기반의 JS 애플리케이션(SPA)에 가장 적합하도록 설계되었다.
+암시적 승인 방식에서는 권한 부여 승인 코드 없이 바로 access token이 발급된다. <br>
+Access Token을 획득하기 위한 절차가 간소화되기에 응답성과 효율성은 높아지지만 Access Token이 URL로 전달된다는 단점이 있다. <br>
+그러므로 Refresh Token 사용이 불가능한 방식이며, 이 방식에서 권한 서버는 client_secret을 사용해 클라이언트를 인증하지 않는다.
+
+> ex) {Redirect_URL}#token={ACCESS_TOKEN}
+
+![IMAGES](../images/Implicit.png)
+
+1. Client가 인증서버에게 사용자 로그인 및 권한 동의 웹 페이지를 요청한다.
+2. 권한 동의 이후 Redirect URL로 Authorization Code가 아니라 Access token을 전달한다.
+3. 획득한 Access token으로 Resource Server에 API 요청을 보낸다.
+
+### Resource Owner Password Credentials
+간단하게 username, password로 access token을 받는 방식이다.
+refresh Token의 사용도 가능하다.
+
+![IMAGES](../images/ResourceOwnerPasswordCredentials.png)
+
+1. Resource Owner는 인증정보(아이디, 패스워드)를 Client에게 직접 전달한다.
+2. Client 앞서 받은 인증 정보를 Authorization Server로 전송하여 Access token을 발급받는다.
+3. 획득한 Access token으로 Resource Server에 API 요청을 보낸다.
+이 방식은 Resource Owner의 아이디, 패스워드가 Client에게 그대로 노출되므로 Client와 Oauth Provider가 같은 도메인/솔루션 내에 존재하여 서로 신뢰할 수 있는 경우 사용한다.
 
 
+### Client Credentials
+클라이언트의 자격증면만으로 Access token을 획득하는 방식이다.
 
+![IMAGES](../images/ClientCredentials.png)
 
-
+이 방식은 Client 자신이 애플리케이션을 사용할 목적으로 사용하는 것이 일반적이다.
+OAuth2의 권한 부여 방식 중 가장 간단하고 자격증명을 안전하게 보관할 수 있는 Client에서만 사용되며, Refresh token은 사용할 수 없다.
 
 ---
 
@@ -81,5 +127,8 @@ https://doqtqu.tistory.com/295
 
 https://baked-corn.tistory.com/29
 
+https://velog.io/@mu1616/OAuth2.0-%EC%9D%B8%EC%A6%9D-%EA%B3%BC%EC%A0%95
+
+https://blog.naver.com/mds_datasecurity/222182943542
 
 
