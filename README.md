@@ -10,7 +10,7 @@
   - [WestSea](https://github.com/westssun)
   - [MyungJin](https://github.com/ann-mj)
 
-## Network
+## ✔️ Network
 
 - [쿠키, 세션, JWT 토큰](https://github.com/NKLCWDT/cs/blob/main/Network/Cookie%2C%20Session%2C%20JWT.md)
   - Cookie / Session
@@ -50,7 +50,7 @@
     - 일반로그인과 OAuth로그인 차이
     - 인증 절차 종류
 
-## OS(Operating System)
+## ✔️ OS(Operating System)
 
 - 교착상태와 기아상태
 - 메모리 구성
