@@ -59,3 +59,8 @@
         - 내부 버스 : CPU 및 메모리 내에 구성된 버스
         - 외부 버스 : 주변 I/O 장치에 구성된 버스
 
+
+## Reference
+- https://coding-factory.tistory.com/351
+- https://mindstation.tistory.com/151
+- https://cozy-dandelion.tistory.com/7
