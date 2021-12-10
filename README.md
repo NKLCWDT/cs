@@ -66,6 +66,7 @@
   - Interrupt, Context Switching
   - WAS, ThreadPool
   - 스프링에서 동시성 이슈를 피하는 방법
+  - Thread Safe 하게 설계하는 방법
 - [프로세스 동기화](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EB%8F%99%EA%B8%B0%ED%99%94.md)
   - 경쟁 상태(race condition)
   - 임계 구역(ciritical section)
