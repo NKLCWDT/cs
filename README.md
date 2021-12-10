@@ -53,8 +53,10 @@
 ## ✔️ OS(Operating System)
 
 - [운영체제와 컴퓨터 시스템 구조](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EC%99%80%20%EC%BB%B4%ED%93%A8%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EA%B5%AC%EC%A1%B0.md)
+- [CPU](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/CPU.md)
 - 교착상태와 기아상태
-- 메모리 구성
+- [메모리 구성](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/Stack_Heap.md)
+  - Stack 과 Heap
 - CPU 스케줄링 기법
 - 캐시의 지역성
 - 프로세스와 스레드
