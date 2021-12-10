@@ -108,6 +108,17 @@ void func2() {
 
 스택 영역과 힙 영역은 같은 공간을 공유하기 때문에, 각 영역에 따라서 사이즈가 조절된다. 스택 영역이 클수록 힙 영역이 작아지고, 힙 영역이 클수록 스택 영역이 작아진다. 각 영역이 상대 공간을 침범하는 것을 각각 힙 오버플로우, 스택 오버플로우라고 한다.
 
+## 프로세스/스레드에서의 스택
+
+프로세스는 메모리에 올라갈때 운영체제로부터 시스템 자원을 할당받는다. 이때 중요한것은, 운영체제는 프로세스마다 각각 독립된 메모리 영역을 할당한다. 우리가 위에서 공부한 Code/Data/Stack/Heap의 형식을 할당해주는 것이다. 각각 독립된 메모리 영역을 할당해주므로 프로세스끼리는 서로 변수나 자료에 접근할 수 없다.
+
+![IMAGES](../images/process1.png)
+
+위 프로세스의 모습과 다르게 스레드는 메모리를 서로 공유할 수 있다. 프로세스가 할당받은 메모리 영역 내에서 Stack 형식으로 할당된 메모리 영역은 따로 할당받고, 나머지 Code/Data/Heap 형식으로 할당된 메모리 영역을 공유한다. 따라서 각각의 스레드는 별도의 스택을 가지고있지만 힙 메모리는 서로 읽고 쓸 수 있게된다.
+
+![IMAGES](../images/thrad1.png)
+
+스레드는 Code/Data/Heap 영역을 공유하기 때문에 어떤 스레드 하나에서 오류가 발생하면 같은 프로세스 내의 다른 스레드에도 영향을 준다.
 
 
 #### Reference.
@@ -117,3 +128,5 @@ void func2() {
 [https://mentum.tistory.com/475](https://mentum.tistory.com/475)
 
 [https://popcorntree.tistory.com/61](https://popcorntree.tistory.com/61)
+
+[https://velog.io/@raejoonee/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EC%8A%A4%EB%A0%88%EB%93%9C%EC%9D%98-%EC%B0%A8%EC%9D%B4](https://velog.io/@raejoonee/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EC%8A%A4%EB%A0%88%EB%93%9C%EC%9D%98-%EC%B0%A8%EC%9D%B4)
