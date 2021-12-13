@@ -54,7 +54,10 @@
 
 - [운영체제와 컴퓨터 시스템 구조](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EC%99%80%20%EC%BB%B4%ED%93%A8%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EA%B5%AC%EC%A1%B0.md)
 - [CPU](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/CPU.md)
-- 캐시의 지역성
+- [캐시의 지역성](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%BA%90%EC%8B%9C%EC%9D%98%20%EC%A7%80%EC%97%AD%EC%84%B1.md)
+  - 캐시의 종류와 쓰기
+  - 캐시의 지역성, 캐시 친화적인 코드
+  - Mapping Function
 - [메모리 구성](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/Stack_Heap.md)
   - 스택 동작 과정
   - Stack 과 Heap
@@ -70,10 +73,20 @@
   - 임계 구역(ciritical section)
   - 뮤텍스 락(Mutex Locks)
   - 세마포(semaphore)
-- 교착상태와 기아상태
+- [교착상태와 기아상태](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C%EC%99%80%20%EA%B8%B0%EC%95%84%EC%83%81%ED%83%9C.md)
+  - 교착상태
+  - 교착상태 해결 방법
+  - 기아상태, Livelock
 - [CPU 스케줄링 기법](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/CPU%20%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81.md)
   - FIFO, SJF, STCF
   - Round Robin
   - Busy Waiting
   - Multi-Level Feedback Queue
   - Priority Boost
+- 블락킹과 논블락킹, 동기식과 비동기식
+- System Call 과 파일 시스템
+- 페이지 교체 알고리즘
+- 페이징과 세그멘테이션
+- 메모리 할당과 단편화
+
+## ✔️ Database
