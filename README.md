@@ -34,7 +34,7 @@
 <p align="center">
   <a href="https://techvu.dev/"><img src="https://img.shields.io/badge/Blog%20:%20techvu-blue?style=for-the-badge&logo=aurelia&logoColor=#00005F&link=https://techvu.dev/"/></a>&nbsp
     <a href="https://devfunny.tistory.com/"><img src="https://img.shields.io/badge/Blog%20:%20devfunny-black?style=for-the-badge&logo=aurelia&logoColor=fff&link=https://devfunny.tistory.com/"/></a>&nbsp
-      <a href="https://wookcode.tistory.com/"><img src="https://img.shields.io/badge/Blog%20:%20wookcode-green?style=for-the-badge&logo=aurelia&logoColor=2322F0&link=https://wookcode.tistory.com/"/></a>&nbsp
+      <a href="https://wookcode.tistory.com/"><img src="https://img.shields.io/badge/Blog%20:%20wookcode-green?style=for-the-badge&logo=aurelia&logoColor=0B2C4A&link=https://wookcode.tistory.com/"/></a>&nbsp
         <a href="https://velog.io/@annmj/"><img src="https://img.shields.io/badge/Blog%20:%20annmj-purple?style=for-the-badge&logo=aurelia&logoColor=FFB71B&link=https://velog.io/@annmj/"/></a>&nbsp
 </p>
 
