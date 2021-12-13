@@ -1,4 +1,17 @@
-# CS 및 기술면접준비 스터디
+# CS 및 기술 면접 준비 스터디
+
+[![Since](https://img.shields.io/badge/since-2021.11.29-333333.svg?style=flat-square)](https://github.com/NKLCWDT)
+[![author](https://img.shields.io/badge/author-nklcwdt-0066FF.svg?style=flat-square)](https://github.com/NKLCWDT)
+
+📝 CS 및 기술 면접 예상 질문에 대한 답변을 위한 스터디 입니다.
+
+💡 단순한 QNA 형식 보다, 깊이 있는 내용들이 많이 있습니다. 기술 면접, 지식 함양 등에 도움 되실 겁니다.
+
+✔️ 오타 및 상한 기술은 Issue 를 통해 알려주세요.
+
+⭐ Star나 Watching를 통한 많은 관심 부탁드립니다. :)
+
+## 📢 Info
 
 - [스터디 RULE](https://baekjh.notion.site/NKLCWDT-f29b0d5c5194408dabf4532ce556d1fe)
 - [스터디 모집 공고](https://okky.kr/article/1104939?note=2590724)
@@ -9,6 +22,21 @@
   - [JiHye](https://github.com/jola7373)
   - [WestSea](https://github.com/westssun)
   - [MyungJin](https://github.com/ann-mj)
+
+## 🗣 Contributors
+
+<a href="https://github.com/NKLCWDT/cs/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NKLCWDT/cs" />
+</a>
+
+-------------
+
+<p align="center">
+  <a href="https://techvu.dev/"><img src="https://img.shields.io/badge/Blog%20:%20techvu-blue?style=for-the-badge&logo=aurelia&logoColor=#00005F&link=https://techvu.dev/"/></a>&nbsp
+    <a href="https://devfunny.tistory.com/"><img src="https://img.shields.io/badge/Blog%20:%20devfunny-black?style=for-the-badge&logo=aurelia&logoColor=fff&link=https://devfunny.tistory.com/"/></a>&nbsp
+      <a href="https://wookcode.tistory.com/"><img src="https://img.shields.io/badge/Blog%20:%20wookcode-green?style=for-the-badge&logo=aurelia&logoColor=2322F0&link=https://wookcode.tistory.com/"/></a>&nbsp
+        <a href="https://velog.io/@annmj/"><img src="https://img.shields.io/badge/Blog%20:%20annmj-purple?style=for-the-badge&logo=aurelia&logoColor=FFB71B&link=https://velog.io/@annmj/"/></a>&nbsp
+</p>
 
 ## ✔️ Network
 
