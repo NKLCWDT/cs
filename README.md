@@ -118,7 +118,7 @@
   - 컴파일 타임 바인딩, 적재 타임 바인딩, 실행 타임 바인딩
   - 스와핑
 - 메모리 할당과 단편화
-- [페이징과 세그멘테이션]
+- [페이징과 세그멘테이션](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%84%B8%EA%B7%B8%EB%A9%98%ED%85%8C%EC%9D%B4%EC%85%98%EA%B3%BC%20%ED%8E%98%EC%9D%B4%EC%A7%95.md)
 - 페이지 교체 알고리즘
 
 ## ✔️ Database
