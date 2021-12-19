@@ -61,9 +61,21 @@ Http2는 stream으로 순서에 구애받지 않고 분리할 수 있었지만 t
 - 전송 속도 향상
 - connection uuid라는 고유 식별자로 연결해 커넥션 재수립할 필요 없어짐
 ![images](/images/quic.png)
-- stream을 독립시켜서 tcp head of line blocking
-  - 하나의 tcp chain에 데이터들이 엮인 상태로 전송됨
-  - 하나의 커넥션 안에서 stream이 다른 chain을 가져서 문제가 생기더라도 다른 stream에 영향을 안줌
+- stream을 독립시켜서 tcp head of line blocking을 막는다.
+  - HTTP2는 하나의 tcp chain에 데이터들이 엮인 상태로 전송됨
+  - Quic은 하나의 커넥션 안에서 stream이 다른 chain을 가져서 문제가 생기더라도 다른 stream에 영향을 안줌
+
+
+__Q.Quic에서 Stream은 어떤 단위로 독립하나요?__  
+모든 스트림이 개별적인 chain을 가져서 다른 stream으로 부터 독립되어있습니다.  
+- https://http3-explained.haxx.se/en/why-quic/why-tcphol
+
+__Q. Quic에서 UDP를 사용한다고 했는데 신뢰성은 어떻게 구현됬나요?__  
+Quic은 전송계층에서 암호화를 적용합니다. UDP 페이로드 전체가 인증된니다. 중개자의 투명한 수정을 전송하고 거의 모든 정보가 암호화됩니다.  
+- https://www.f5.com/company/blog/quic-will-eat-the-internet
+
+
+
 
 >참고자료
 
