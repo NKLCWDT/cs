@@ -112,13 +112,37 @@
   - Busy Waiting
   - Multi-Level Feedback Queue
   - Priority Boost
-- 블락킹과 논블락킹, 동기식과 비동기식
-- System Call 과 파일 시스템
+- [블락킹과 논블락킹, 동기식과 비동기식](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EB%8F%99%EA%B8%B0_%EB%B9%84%EB%8F%99%EA%B8%B0_%EB%B8%94%EB%A1%9C%ED%82%B9_%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9.md)
+  - 동기식과 비동기식
+  - 블락킹과 논블락킹
+- [System Call](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/System%20Call.md)
+  - 커널 모드와 유저 모드
+  - System Call Interrupt 동작 과정
+- [파일 시스템](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C.md)
+  - 파일의 기본 구성
+  - 파일 시스템이 필요한 이유
+  - 트리 구조 디렉토리
+  - 파일 시스템 대신 데이터베이스를 사용하는 이유
 - [주소 바인딩과 스와핑](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%A3%BC%EC%86%8C%20%EB%B0%94%EC%9D%B8%EB%94%A9%EA%B3%BC%20%EC%8A%A4%EC%99%80%ED%95%91.md)
+  - 논리 주소 vs 물리 주소
   - 컴파일 타임 바인딩, 적재 타임 바인딩, 실행 타임 바인딩
   - 스와핑
-- 메모리 할당과 단편화
+- [메모리 할당과 단편화](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EB%A9%94%EB%AA%A8%EB%A6%AC.md)
+  - 고정 분할, 가변 분할
+  - 메모리 할당 알고리즘(최초 적합, 최적 적합, 최악 적합)
+  - 외부 단편화, 내부 단편화
 - [페이징과 세그멘테이션](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%84%B8%EA%B7%B8%EB%A9%98%ED%85%8C%EC%9D%B4%EC%85%98%EA%B3%BC%20%ED%8E%98%EC%9D%B4%EC%A7%95.md)
-- 페이지 교체 알고리즘
+  - 페이징, 세그멘테이션
+  - 페이징 스와핑
+- [페이지 교체 알고리즘](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%ED%8E%98%EC%9D%B4%EC%A7%80%20%EA%B5%90%EC%B2%B4%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.md)
+  - OPT, FIFO
+  - LRU, NUR
+  - LFU, MFU, SCR
 
 ## ✔️ Database
+
+- RDBMS vs NO SQL
+- ElasticSearch
+- Transaction
+- Redis
+- DB Lock
