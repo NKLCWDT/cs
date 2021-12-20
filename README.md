@@ -1,4 +1,17 @@
-# CS 및 기술면접준비 스터디
+# CS 및 기술 면접 준비 스터디
+
+[![Since](https://img.shields.io/badge/since-2021.11.29-333333.svg?style=flat-square)](https://github.com/NKLCWDT)
+[![author](https://img.shields.io/badge/author-nklcwdt-0066FF.svg?style=flat-square)](https://github.com/NKLCWDT)
+
+📝 CS 및 기술 면접 예상 질문에 대한 답변을 위한 스터디 입니다.
+
+💡 단순한 QNA 형식 보다, 깊이 있는 내용들이 많이 있습니다. 기술 면접, 지식 함양 등에 도움 되실 겁니다.
+
+✔️ 오타 및 상한 기술은 Issue 를 통해 알려주세요.
+
+⭐ Star나 Watching를 통한 많은 관심 부탁드립니다. :)
+
+## 📢 Info
 
 - [스터디 RULE](https://baekjh.notion.site/NKLCWDT-f29b0d5c5194408dabf4532ce556d1fe)
 - [스터디 모집 공고](https://okky.kr/article/1104939?note=2590724)
@@ -9,6 +22,21 @@
   - [JiHye](https://github.com/jola7373)
   - [WestSea](https://github.com/westssun)
   - [MyungJin](https://github.com/ann-mj)
+
+## 🗣 Contributors
+
+<a href="https://github.com/NKLCWDT/cs/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NKLCWDT/cs" />
+</a>
+
+-------------
+
+<p align="center">
+  <a href="https://techvu.dev/"><img src="https://img.shields.io/badge/Blog%20:%20techvu-blue?style=for-the-badge&logo=aurelia&logoColor=#00005F&link=https://techvu.dev/"/></a>&nbsp
+    <a href="https://devfunny.tistory.com/"><img src="https://img.shields.io/badge/Blog%20:%20devfunny-black?style=for-the-badge&logo=aurelia&logoColor=fff&link=https://devfunny.tistory.com/"/></a>&nbsp
+      <a href="https://wookcode.tistory.com/"><img src="https://img.shields.io/badge/Blog%20:%20wookcode-green?style=for-the-badge&logo=aurelia&logoColor=0B2C4A&link=https://wookcode.tistory.com/"/></a>&nbsp
+        <a href="https://velog.io/@annmj/"><img src="https://img.shields.io/badge/Blog%20:%20annmj-purple?style=for-the-badge&logo=aurelia&logoColor=FFB71B&link=https://velog.io/@annmj/"/></a>&nbsp
+</p>
 
 ## ✔️ Network
 
@@ -54,7 +82,11 @@
 
 - [운영체제와 컴퓨터 시스템 구조](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EC%99%80%20%EC%BB%B4%ED%93%A8%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EA%B5%AC%EC%A1%B0.md)
 - [CPU](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/CPU.md)
-- 캐시의 지역성
+  - [CPU Clock](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/CPU%20Clock.md)
+- [캐시의 지역성](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%BA%90%EC%8B%9C%EC%9D%98%20%EC%A7%80%EC%97%AD%EC%84%B1.md)
+  - 캐시의 종류와 쓰기
+  - 캐시의 지역성, 캐시 친화적인 코드
+  - Mapping Function
 - [메모리 구성](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/Stack_Heap.md)
   - 스택 동작 과정
   - Stack 과 Heap
@@ -70,10 +102,23 @@
   - 임계 구역(ciritical section)
   - 뮤텍스 락(Mutex Locks)
   - 세마포(semaphore)
-- 교착상태와 기아상태
+- [교착상태와 기아상태](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C%EC%99%80%20%EA%B8%B0%EC%95%84%EC%83%81%ED%83%9C.md)
+  - 교착상태
+  - 교착상태 해결 방법
+  - 기아상태, Livelock
 - [CPU 스케줄링 기법](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/CPU%20%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81.md)
   - FIFO, SJF, STCF
   - Round Robin
   - Busy Waiting
   - Multi-Level Feedback Queue
   - Priority Boost
+- 블락킹과 논블락킹, 동기식과 비동기식
+- System Call 과 파일 시스템
+- [주소 바인딩과 스와핑](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%A3%BC%EC%86%8C%20%EB%B0%94%EC%9D%B8%EB%94%A9%EA%B3%BC%20%EC%8A%A4%EC%99%80%ED%95%91.md)
+  - 컴파일 타임 바인딩, 적재 타임 바인딩, 실행 타임 바인딩
+  - 스와핑
+- 메모리 할당과 단편화
+- [페이징과 세그멘테이션](https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%EC%84%B8%EA%B7%B8%EB%A9%98%ED%85%8C%EC%9D%B4%EC%85%98%EA%B3%BC%20%ED%8E%98%EC%9D%B4%EC%A7%95.md)
+- 페이지 교체 알고리즘
+
+## ✔️ Database

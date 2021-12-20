@@ -84,7 +84,8 @@ C는 0초에 도착해서 110초에 시작했고 120초에 완료되었습니다
 
 
 ### 2. SJF ( Shortest Job First) : non-preemptive 스케줄러
-FIFO에서 발생한 convoy effect를 해결하는 방법으로 수행시간이 짧은 애들부터 수행하려고 합니다
+의미 : 수행시간이 짧게 걸리는 프로세스부터 순서대로 실행하는 스케줄러  
+  FIFO에서 발생한 convoy effect를 해결하는 방법으로 수행시간이 짧은 애들부터 수행하려고 합니다
 
 ![IMAGES](../images/cpu스케줄링-3.png)
 
@@ -140,7 +141,7 @@ C는 10초에 도착해서 110초에 시작했고 120초에 완료되었습니�
 
 
 ### 3. STCF (Shortest Time-to-Completion First) : preemptive 스케줄러
-
+- 의미 : 특정 시점에서 가장 빨리 수행될 수 있는 프로세스를 먼저 실행하는 스케줄러
 - preemptive(선점) 스케줄러라는 것은 어떤 작업을 수행하는 도중에 다른 작업을 수행할 수 있도록 스케줄링할 수 있는 스케줄러를 말합니다.
 
 ![IMAGES](../images/cpu스케줄링-5.png)
@@ -198,7 +199,7 @@ C는 0초에 도착해서 10초에 시작했기 때문에 Response Time은 10초
 
 
 ### 5. Round Robin : preemptive 스케줄러
-RR은 어떤 작업이 수행될 때 끝날 때까지 수행하는 것이 아닌 정해진 시간(time slice, scheduling quantum)만큼만 수행합니다.   
+RR은 어떤 작업이 수행될 때 끝날 때까지 수행하는 것이 아닌 정해진 시간(time slice, scheduling quantum)만큼만 수행하는 스케줄러    
 **정해진 시간을 수행한 뒤에는 다른 작업을 수행하게 됩니다.**
 
 ![IMAGES](../images/cpu스케줄링-6.png)
@@ -296,6 +297,8 @@ A 작업과 B 작업은 모두 50초의 수행 시간을 가지고 있습니다.
 위에서 본 예와 동일한 작업에서 I/O를 수행하는 동안 A 작업이 CPU를 포기하고,
 B에게 CPU를 할당해주는 방식을 택한 경우입니다. 
 이런 방법을 **Blocked** 방법이라고 하며 이렇게 하면 아까 Busy Waiting 방법보다 훨씬 빠르고 효율적으로 작업을 수행할 수 있게 됩니다.
+
+
 ---
 #### 정리
 
