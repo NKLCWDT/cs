@@ -141,8 +141,29 @@
 
 ## ✔️ Database
 
-- RDBMS vs NO SQL
-- ElasticSearch
-- Transaction
+- [RDBMS vs NoSQL](https://github.com/NKLCWDT/cs/blob/main/Database/RDBMSAndNoSQL.md)
+  - RDBMS 와 NoSQL 차이
+  - RDBMS 에서 서버 확장하는 방법(Master and Slave)
+- [ElasticSearch](https://github.com/NKLCWDT/cs/blob/main/Database/Elasticsearch.md)
+  - 검색엔진, 검색시스템, 검색서비스
+  - 검색시스템 구성요소
+  - 색인과 역색인
+  - 검색기 품질
+  - 관계형 데이터베이스와의 차이점
+  - 엘라스틱서치 주요 API
+- [Transaction](https://github.com/NKLCWDT/cs/blob/main/Database/Transaction.md)
+  - 트랜잭션을 사용하는 이유
+  - ACID
+  - 트랜잭션 격리 수준
+  - 트랜잭션 격리 수준을 설정할 때 발생 하는 문제점들
 - Redis
-- DB Lock
+- [DB Lock](https://github.com/NKLCWDT/cs/blob/main/Database/Lock.md)
+  - Lock 의 종류와 단위
+  - 블로킹(Blocking)
+  - 데드락(Deadlock)
+- 정규화, 반정규화
+- Index, Hint
+- 동시성 제어
+- Oracle Sequence
+- Join
+- MySQL Architecture
