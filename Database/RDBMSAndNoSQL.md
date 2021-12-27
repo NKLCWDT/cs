@@ -150,7 +150,7 @@
         ```
 <br>
 
-![IMAGES](../images/RDBMSAndNoSQL-2.png)
+![IMAGES](../images/RdbmsAndNoSQL-2.png)
 
 
 <br>
