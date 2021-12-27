@@ -41,7 +41,7 @@ __즉, 트랜잭션 격리 수준에 따라 데이터 조회 결과가 달라질
 
 - `Dirty Read 방지` : 트랜잭션이 커밋되어 확정된 데이터를 읽는 것을 허용
 - 대부분의 DBMS 가 기본 모드로 채택하고 있는 격리수준
-    - Ex. Oracle 
+    - Ex. Oracle, H2 등
     - 커밋된 정보만 읽는다.
 - Non-Repeatable Read, Phantom Read 현상은 여전히 발생
 - PostgreSQL, SQL Server 의 경우 `읽기 공유 Lock` 을 사용해서 구현한다. 하나의 레코드를 읽을 때 Lock 을 설정하고 해당 레코드를 빠져 나가는 순간 Lock 을 해제
@@ -59,6 +59,8 @@ __즉, 트랜잭션 격리 수준에 따라 데이터 조회 결과가 달라질
 - Phantom Read 현상은 여전히 발생
 - PostgreSQL, SQL Server 의 경우 트랜잭션 격리 수준을 Repeatable Read 로 변경하면 읽은 데이터에 걸린 공유 Lock 을 커밋할 때까지 유지하는 방식으로 구현
 - Oracle은 이 레벨을 명시적으로 지원하지 않지만 [for update](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=tyboss&logNo=70101836923) 절을 이용해 구현가능.
+
+> [JPA 는 1차 캐시를 통해서 Repeatable Read 를 애플리케이션 레벨에서 지원한다.](JPA 는 과연 1차 캐시를 통해서 Repeatable Read 를 애플리케이션 레벨에서 지원할까?)
 
 ### 레벨 3 : Serializable Read
 
