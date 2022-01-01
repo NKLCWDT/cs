@@ -95,7 +95,7 @@ GO
 
 > (상황 예시)
 > 1) Shared Lock + Exclusive Lock  
-     > \= 트랜잭션 A가 Shared Lock을 설정하고 sleep 되었을때, 트랜잭션 B가 해당 데이터에 Exclusive Lock을 걸려고 하면 무기한 기다려야하는 교착상태에 빠지게된다. 
+     > \= 트랜잭션 A가 Shared Lock을 설정하고 sleep(함수 아닌 중지로 해석) 되었을때, 트랜잭션 B가 해당 데이터에 Exclusive Lock을 걸려고 하면 무기한 기다려야하는 교착상태에 빠지게된다. 
 >
 > 2) Exclusive Lock + Exclusive Lock  
      > \= 트랜잭션 A에서 Exclusive Lock을 걸었을때 트랜잭션 B에서도 다른 데이터에 Exclusive Lock을 걸었다. 이 경우 서로의 Lock된 데이터에 접근하려고할 때 기존의 Lock이 해제될 때까지 기다리게된다.
@@ -116,7 +116,8 @@ SET DEADLOCK_PRIORITY
 
 ## 블로킹 vs Dead Lock
 
-블로킹은 락이 걸린 상황에서 먼저 자원을 점유한 프로세스가 다른 프로세스의 접근을 막는 행위(Lock들 간의 경합)이고, Dead Lock은 트랜재 서로 점유하기 위한 두 프로세스간의 전쟁이라고 이해하자.
+블로킹한 트랜잭션이 끝나면 블로킹은 언젠가 반드시 사라진다. 하지만 데드락은 서로가 서로에게 블로킹을 걸었기 때문에
+상대 트랜잭션이 끝나기만을 서로 기다리다가 계속해서 끝나지 않는다.
 
 ## Reference
 
