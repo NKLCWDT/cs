@@ -27,7 +27,7 @@ WHERE 테이블1.칼럼명1 = 테이블2.칼럼명2;
 -- WHERE 절에 JOIN 조건을 넣는다.
 ```
 
-![IMAGES](../images/Join1.png)
+![IMAGES](../images/join1.png)
 
 #### 2) Non-equi Join
 
@@ -43,7 +43,7 @@ FROM 테이블1, 테이블2
 WHERE 테이블1.칼럼명1 BETWEEN 테이블2.칼럼명1 AND 테이블2.칼럼명2;
 ```
 
-![IMAGES](../images/Join2.png)
+![IMAGES](../images/join2.png)
 
 ## Natural Join (자연조인)
 
@@ -137,7 +137,7 @@ ON 테이블A.컬럼명 = 테이블B.컬럼명;
 
 _emp LEFT OUTER JOIN DEPT_ 와 동일하다고 이해하자.
 
-![IMAGES](../images/Join3.png)
+![IMAGES](../images/join3.png)
 
 > 2) 두개 이상의 컬럼을 사용하는 경우
 
@@ -145,7 +145,7 @@ _emp LEFT OUTER JOIN DEPT_ 와 동일하다고 이해하자.
 
 b.useryn(+) = 'Y' 또한 (+)를 사용해줘야한다. 만약 붙이지 않으면, LEFT OUTER JOIN으로 조회되지 않는다.
 
-![IMAGES](../images/Join4.png)
+![IMAGES](../images/join4.png)
 
 ## Semi Join (세미조인)
 
