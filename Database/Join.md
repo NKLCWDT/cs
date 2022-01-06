@@ -1,5 +1,7 @@
 ## 조인의 개념
 
+![IMAGES](../images/join.png)
+
 - 두 개 이상의 테이블 들을 연결 또는 결합하여 데이터를 출력하는것
 
 - JOIN은 관계형 데이터베이스의 가장 큰 장점이면서 대표적인 핵심 기능이라고 할 수 있다.
@@ -132,6 +134,7 @@ ON 테이블A.컬럼명 = 테이블B.컬럼명;
 | 6 | 6 |
 
 #### 오라클에서 (+)를 사용하여 Outer Join 수행
+LEFT OUTER JOIN, RIGHT OUTER JOIN 은 사용하지만, FULL OUTER JOIN 은 (+) 기호 사용이 불가능하다.
 
 > 1) 하나의 컬럼을 사용하는 경우
 
@@ -177,6 +180,21 @@ SELECT *
            FROM student s 
           WHERE d.dept_code = s.dept_code)
 ```
+
+
+### 참고
+https://github.com/NKLCWDT/cs/blob/main/Operating%20System/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EB%8F%99%EA%B8%B0%ED%99%94.md#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%97%90%EC%84%9C%EC%9D%98-%EA%B2%BD%EC%9F%81-%EC%83%81%ED%83%9C
+[데이터베이스에서의 경쟁 상태] 참고
+
+```oracle
+-- 현재 PK 의 최댓값에 1을 더해 새로운 PK 로 사용 
+SELECT MAX(PK) + 1 AS NEXT_PK FROM USER;
+```
+
+오라클의 시퀀스를 사용하지 않으면 위 MAX(PK) + 1을 사용해야한다. 이렇게 사용했을때의 단점은 위 글을 참고하자.
+
+
+
 
 #### Reference.
 
