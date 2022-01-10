@@ -2,6 +2,8 @@
 
 특정 테이블에서 INSERT, DELETE, UPDATE 같은 DML 문이 수행되었을때 데이터베이스에서 자동으로 동작하도록 작성된 프로그램이다. 트리거는 사용자가 직접 호출하는 것이 아닌 데이터베이스에서 자동적으로 호출한다. DM 문의 수행시, 묵시적으로 함께 수행되는 프로시저(PROCEDURE) 이다.
 
+<br/>
+
 > 특징
 
 1) 자동으로 실행되며 수동으로 실행할 수 없다.
@@ -10,8 +12,9 @@
 
 3) 작동이 일어난 트리거 대상 테이블에 대해서는 트리거 내용이 존재할 수 없다.
    
-    
-   
+<br/>   
+<br/> 
+
 ## 트리거 종류
 
 #### 행 트리거
@@ -21,6 +24,8 @@
 - 트리거 생성시, \[FOR EACH ROW WHEN 조건\] 을 명시
 
 - 변경 후의 행은 OLD, NEW 를 통해 가져올 수 있다.
+
+<br/>
 
 ```
 DELIMITER $$
@@ -39,11 +44,15 @@ DELIMITER ;
 
 여기서 OLD, NEW 키워드를 알아보자.
 
+<br/>
+
 > 1) OLD
 
 예전의 데이터를 말한다.
 
 DELETE로 삭제된 데이터 혹은 UPDATE로 바뀌기전 데이터
+
+<br/>
 
 > 2) NEW
 
@@ -52,6 +61,8 @@ DELETE로 삭제된 데이터 혹은 UPDATE로 바뀌기전 데이터
 INSERT로 삽입된 데이터 혹은 UPDATE로 바뀐 후 데이터
 
 
+<br/>
+<br/>
 
 #### 문장 트리거
 
@@ -61,14 +72,19 @@ INSERT로 삽입된 데이터 혹은 UPDATE로 바뀐 후 데이터
 
 - 컬럼값이 변화가 생길때마다 스스로 알아서 실행된다.
 
+<br/>
+
 ```
 UPDATE test SET grade = 50
 -- 여러 row를 변경될 경우 트리거는 한번만 실행
 ```
 
+<br/>
+
 - 트리거 생성시, \[FOR EACH ROW WHEN 조건\] 을 명시하지 않음
 
-
+<br/>
+<br/>
 
 ## 트리거 장점/단점
 
@@ -78,15 +94,24 @@ UPDATE test SET grade = 50
 
 - 참조 무결성이란? 참고 관계에 있는 두 테이블의 데이터가 항상 일관된 값을 갖도록 유지되는것
 
-1) 업무 처리 자동화 가능
+<br/>
+
+2) 업무 처리 자동화 가능
 
 - 사용자가 직접 개입하지 않고 구현된 규칙대로 알아서 실행된다.
 
-2) 여러 작업을 하나의 트랜잭션으로 처리할 수 있다.
+<br/>
+
+3) 여러 작업을 하나의 트랜잭션으로 처리할 수 있다.
+
+
+<br/>
 
 > 단점
 
 1) 트리거를 과도하게 사용하면 복잡한 상호의존성 야기
+
+<br/>
 
 2) 트리거의 연쇄 수행 가능성 존재
 
@@ -94,6 +119,8 @@ UPDATE test SET grade = 50
 > 하나의 트리거가 활성화되어 이 트리거 내의 SQL문이 수행되고, 그 결과로 인해 또 다른 트리거가 활성화되는 경우
 
 
+<br/>
+<br/>
 
 ## 트리거 문법
 
@@ -102,6 +129,8 @@ UPDATE test SET grade = 50
 1) After : 이벤트 발생 이후 트리거 실행
 
 2) Before : 이벤트 발생 이전 트리거 실행
+
+<br/>
 
 ```
 CREATE [ OR REPLACE ] TRIGGER trigger_name
@@ -117,7 +146,7 @@ EXCEPTION
 END;
 ```
 
-
+<br/>
 
 #### 생성 예시
 
@@ -137,7 +166,8 @@ SQL> create or replace trigger chk_emp_dml
        end;
 ```
 
-
+<br/>
+<br/>
 
 ## 트리거 트랜잭션
 
@@ -145,6 +175,8 @@ SQL> create or replace trigger chk_emp_dml
 
 트리거 수행중 에러 발생시, 수행된 이전의 DML문까지 모두 롤백된다.
 
+<br/>
+<br/>
 
 
 ## 트리거 수행 예제
@@ -171,6 +203,8 @@ INSERT INTO chat VALUE ('lemon', '날씨 좋아');
 -- [출처] [MySQL] 트리거(Trigger)의 활용|작성자 피끄
 ```
 
+<br/>
+
 > 위 데이터 결과
 
 - chat 테이블
@@ -182,9 +216,12 @@ INSERT INTO chat VALUE ('lemon', '날씨 좋아');
 | pigg | 오늘 날씨 어때? |
 | lemon | 날시 좋아- |
 
+<br/>
+
 > 트리거 생성
 
 - 트리거 발동 조건 : chat 테이블 데이터 DELETE (BEFORE DELETE ON chat)
+
 
 ```
 DELIMITER $$
@@ -206,6 +243,7 @@ DELIMITER ;
 -- [출처] [MySQL] 트리거(Trigger)의 활용|작성자 피끄
 ```
 
+<br/>
 
 > 트리거 생성 확인
 
@@ -213,17 +251,23 @@ DELIMITER ;
 SHOW TRIGGERS;
 ```
 
+<br/>
+
 트리거를 발동시켜보자.
 
 ```
 DELETE FROM chat WHERE id='pigg';
 ```
 
+<br/>
+
 트리거가 수행된 이후 결과를 조회해보자.
 
 ```
 SELECT * FROM chatbackup;
 ```
+
+<br/>
 
 > 결과
 
@@ -235,6 +279,8 @@ SELECT * FROM chatbackup;
 | pigg | 오늘 날시 어때? |
 
 
+<br/>
+<br/>
    
 Reference.
 
