@@ -74,7 +74,7 @@ Connection Pool을 관리해주는 라이브러리
 
 <br/>
 (3번)
-<br/>
+
 ![IMAGES](../images/connectionpool5.png)
 
 
@@ -90,7 +90,7 @@ Connection Pool을 관리해주는 라이브러리
 
 
 1) 커넥션 풀에 미리 Connection 들을 생성하여 저장하므로, 커넥션이 필요한 시점에 생성하는 시간을 소비하지 않는다.
-2) 생성된 Connection을 계속해서 재상용하여, 생성되는 커넥션의 수가 많지 않고 직접 설정이 가능하다.
+2) 생성된 Connection을 계속해서 재사용하여, 생성되는 커넥션의 수가 많지 않고 직접 설정이 가능하다.
 
 
 <br/>
