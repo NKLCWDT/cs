@@ -35,8 +35,8 @@
 
 <br/>
 
-(예시 상황)
-> maxActive = 10이고, maxIdel = 5인 경우
+( 2)번 예시 상황 )
+> maxActive = 10이고, maxIdle = 5인 경우
 
 동시에 사용할 수 있는 최대 커넥션 개수가 10개인데, 항상 커넥션을 동시에 5개를 사용하고 있다고 가정하자. 이때 1개의 커넥션이 추가로 요청된다면 10개까지 가능하므로 하나의 Connection을 생성하여 추가하고, 이 Connection은 요청이 끝난 후 다시 pool에 보관된다. 이때 maxIdel이 5이므로 해당 커넥션은 close 되어, 이런 상황이 반복되면 매번 Connection을 생성하고 닫는 비용이 발생할 수 있다.
 
@@ -58,27 +58,27 @@ Connection Pool을 관리해주는 라이브러리
 (1번)    
 
 ![IMAGES](../images/connectionpool3.png)
-1) 요청이 발생하여, Connection Pool의 Connection 을 반환한다. 이전에 사용했던 Connection의 존재 여부를 확인하여 이를 우선적으로 반환한다.
+<br/>
+- 요청이 발생하여, Connection Pool의 Connection 을 반환한다. 이전에 사용했던 Connection의 존재 여부를 확인하여 이를 우선적으로 반환한다.
 
 
 <br/>
 (2번)
 
 ![IMAGES](../images/connectionpool4.png)
-
-
-2) 가능한 Connection이 존재하지 않을 경우, HandOffQueue를 Polling 하면서 다른 Thread가 Connection을 반납하기를 기다린다. 만약 최대 대기시간 설정값 (maxWait)보다 지나게되면 예외가 발생한다.
+<br/>
+- 가능한 Connection이 존재하지 않을 경우, HandOffQueue를 Polling 하면서 다른 Thread가 Connection을 반납하기를 기다린다. 만약 최대 대기시간 설정값 (maxWait)보다 지나게되면 예외가 발생한다.
 
 > Polling
 > 주기적으로 Connection Pool의 상태를 검사하여 HandOffQueue에 동기화한다.
 
 <br/>
 (3번)
-
+<br/>
 ![IMAGES](../images/connectionpool5.png)
 
 
-3) 최종적으로 사용한 Connection을 반납하면 Connection Pool이 Connection 사용 내역을 기록하고 HandOffQueue에 반납된 Connection을 삽입한다.
+- 최종적으로 사용한 Connection을 반납하면 Connection Pool이 Connection 사용 내역을 기록하고 HandOffQueue에 반납된 Connection을 삽입한다.
 
 <br/>
 <br/>
@@ -96,7 +96,7 @@ Connection Pool을 관리해주는 라이브러리
 <br/>
 <br/>
 
-Reference.
+### Reference.
 
 [https://programmer93.tistory.com/74](https://programmer93.tistory.com/74)
 

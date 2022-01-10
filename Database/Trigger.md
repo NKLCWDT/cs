@@ -10,7 +10,12 @@
 
 2) 어떤 동작에서 실행되는지 지정해야한다.
 
-3) 작동이 일어난 트리거 대상 테이블에 대해서는 트리거 내용이 존재할 수 없다.
+3) 트리거를 실행할 때 트리거 내의 SQL 명령문은 잠정적으로 다른 트리거를 실행할 수 있다.
+
+4) 트리거의 동작 영역은 PL/SQL로 작성한다.
+- 참고 : https://kslee7746.tistory.com/entry/PLSQL-%EA%B8%B0%EC%B4%88%EA%B5%AC%EC%A1%B0-%EB%B3%80%EC%88%98-%EB%AC%B8%EB%B2%95
+
+5) 하나의 트리거가 종료되지 않은 상태에서 다른 트리거 호출 불가하다. 
    
 <br/>   
 <br/> 
@@ -23,7 +28,7 @@
 
 - 트리거 생성시, \[FOR EACH ROW WHEN 조건\] 을 명시
 
-- 변경 후의 행은 OLD, NEW 를 통해 가져올 수 있다.
+- 변경 후의 행은 OLD, NEW 를 통해 가져올 수 있다. (키워드는 바로 아래 참고)
 
 <br/>
 
@@ -93,6 +98,7 @@ UPDATE test SET grade = 50
 1) 데이터 참조 무결성의 강화
 
 - 참조 무결성이란? 참고 관계에 있는 두 테이블의 데이터가 항상 일관된 값을 갖도록 유지되는것
+- 트리거로 인해 데이터 변경이 발생했을 경우, 참조 무결성에 위반되면 에러가 발생하면서 롤백된다. 
 
 <br/>
 
@@ -110,9 +116,6 @@ UPDATE test SET grade = 50
 > 단점
 
 1) 트리거를 과도하게 사용하면 복잡한 상호의존성 야기
-
-<br/>
-
 2) 트리거의 연쇄 수행 가능성 존재
 
 > ** 트리거 연쇄  
@@ -153,6 +156,7 @@ END;
 ```
 --주말 오전10시에서 오후 6시 사이 EMP 테이블에 DML 사용못하게 하는 트리거
 --아래는 명령문 트리거, 여러건이 DML의 영향을 받더라도 한번만 실행
+--[FOR EACH ROW] 없으므로 문장 트리거라고 볼 수 있다.
 
 SQL> create or replace trigger chk_emp_dml
        before insert or update or delete on emp
@@ -253,7 +257,7 @@ SHOW TRIGGERS;
 
 <br/>
 
-트리거를 발동시켜보자.
+> 트리거를 발동시켜보자.
 
 ```
 DELETE FROM chat WHERE id='pigg';
@@ -261,7 +265,7 @@ DELETE FROM chat WHERE id='pigg';
 
 <br/>
 
-트리거가 수행된 이후 결과를 조회해보자.
+> 트리거가 수행된 이후 결과를 조회해보자.
 
 ```
 SELECT * FROM chatbackup;
@@ -281,8 +285,17 @@ SELECT * FROM chatbackup;
 
 <br/>
 <br/>
-   
-Reference.
+
+
+## 정리
+트리거의 특징, 장점/단점 위주로 준비하면 될 것 같다. 트리거의 사용 문법 등 보다는 트리거의 장점/단점/특징을 파악하여 어떤 상황에서 트리거를 사용해야할지를 준비하는걸 권장한다.
+
+
+
+<br/>
+<br/>
+
+### Reference.
 
 [https://blog.naver.com/PostView.nhn?blogId=alcmskfl17&logNo=221859839012](https://blog.naver.com/PostView.nhn?blogId=alcmskfl17&logNo=221859839012)
 
