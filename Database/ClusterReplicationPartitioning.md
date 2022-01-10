@@ -8,8 +8,7 @@
 <br>
 
 ### 클러스터 사용장점
-1. Data Redundancy<br>
-여기서 말하는 redundancy는 DB 서버가 여러대 있어 데이터들이 모든 서버에 
+1. 데이터베이스 서버 간의 동기화를 통해 항상 일관성 있는 데이터를 얻을 수 있다.<br>
 
 2. 로드밸런싱<br>
 일들을 각각의 서버에서 나눠서 처리해서 트래픽을 줄일 수 있다. 
@@ -18,14 +17,18 @@
 데이터베이스에 접근이 거의 항상 가능하다. 로드밸런싱과 Server가 많은 덕에 한 서버가 고장 나더라도 데이터베이스에 접근이 가능하다.  
 <br>
 
-### Fail Over Clustering 
+### 클러스터링 구현 방법
 <img src="/images/active-active.png" width="300" height="300"/><br>  
 위와 같이 두개의 active db server를 두게 되면 두개중 하나의 서버가 죽더라도 다른 하나의 서버가 있기에 정상적으로 서비스 가능해진다. 또 한개의 DB서버가 하던일을 두개의 DB서버가 나눠서 하므로 CPU, Memory자원의 부하도 적어지게 된다.
 
 <br>
-단점은, 두대의 DB서버가 한개의 DB스토리지를 공유하기에 병목이 생길 수 있다. 
-그래서 이점을 보완하기 위해 한대는 Active로 두고 한대는 Stand-by상태로 둔다.
-<img src="/images/active-standby.png" width="300" height="300"/><br>  
+단점은 두대의 DB서버가 한개의 DB스토리지를 공유하기에 DB스토리지에서 병목이 생길 수 있다.
+
+<img src="/images/active-standby.png" width="300" height="300"/><br> 
+그래서 이점을 보완하기 위해 한대는 Active로 두고 한대는 Stand-by상태로 둔다. 문제가 생겼을때 Stand-by서버를 Active서버로 바꿔준다. 
+
+단점은 Stand-by서버를 Active로 만드는데 시간이 걸린다.
+  
 
 <br>
 
@@ -50,8 +53,6 @@ Replication의 뜻 그대로 저 기본적인 데이터베이스 구조를 복�
 예를 들어 사용자가 요청한 곳에서 지역적을 먼곳에 있는 Data center에 해당 database가 있게 되면 느리게 되는데 database를 여러군데 두게 되면 어느곳에서 접속해도 빠르다.  
 <img src="/images/replicationLatency.png" width="300" height="300"/><br>   
 
-#### 4. 서버 성능 향상
-
 <br>
 
 ### 리플리케이션 래그(replication lag)
@@ -62,6 +63,7 @@ t1이 수행이 primary db를 변경 시키면 t2 또한 수행되는데 이때 
 이 replication lag이 길어지게 되면(특히, replica가 많을시) secondary db들에서 읽는 데이터와 primary db에서 읽는 데이터가 달라지게 되므로 데이터 일관성이 지켜지지 않게 된다. 
 <br>
 <br>
+
 ### Synchronous replication
 이 방법은 클라이언트가 쓰기를 했을 때 primary DB가 모든 replica에 바뀐 데이터를 적용한 후에 쓰기가 성공했다는 메시지를 보내주는것이다. 
 
@@ -72,6 +74,7 @@ __단점__<br>
 모든 replica가 쓰기가 완료되기까지 기다려야 하므로 시간이 오래걸린다. 만일, replica중에 하나가 쓰기 도중 문제가 생기면 해당 쓰기 자체가 실패하게 된다. 
 <br>
 <br>
+
 ### Asynchronous replication
 클라이언트가 쓰기 요청시 primary DB에 적용후 바로 클라이언트에서 쓰기 성공메시지를 보낸 후 변경 메시지를 보낸 후에 바로 쓰기 완료가 된다. 
 
