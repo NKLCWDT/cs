@@ -20,6 +20,8 @@
 
 ## 커넥션 풀 개수 설정
 
+![IMAGES](../images/connectionpool2.png)
+
 | 옵션 | 설명 |
 | --- | --- |
 | maxActive | 동시에 사용할 수 있는 최대 커넥션 개수 |
@@ -39,10 +41,6 @@
 > maxActive = 10이고, maxIdle = 5인 경우
 
 동시에 사용할 수 있는 최대 커넥션 개수가 10개인데, 항상 커넥션을 동시에 5개를 사용하고 있다고 가정하자. 이때 1개의 커넥션이 추가로 요청된다면 10개까지 가능하므로 하나의 Connection을 생성하여 추가하고, 이 Connection은 요청이 끝난 후 다시 pool에 보관된다. 이때 maxIdel이 5이므로 해당 커넥션은 close 되어, 이런 상황이 반복되면 매번 Connection을 생성하고 닫는 비용이 발생할 수 있다.
-
-<br/>
-
-![IMAGES](../images/connectionpool2.png)
 
 
 <br/>
