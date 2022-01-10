@@ -156,14 +156,53 @@
   - ACID
   - 트랜잭션 격리 수준
   - 트랜잭션 격리 수준을 설정할 때 발생 하는 문제점들
-- Redis
+- [Redis](https://github.com/NKLCWDT/cs/blob/main/Database/redis.md)
+  - Redis
+  - Look Aside Cache, Write Back
+  - CAP
 - [DB Lock](https://github.com/NKLCWDT/cs/blob/main/Database/Lock.md)
   - Lock 의 종류와 단위
   - 블로킹(Blocking)
   - 데드락(Deadlock)
-- 정규화, 반정규화
-- Index, Hint
-- 동시성 제어
-- Oracle Sequence
-- Join
-- MySQL Architecture
+- [정규화, 반정규화](https://github.com/NKLCWDT/cs/blob/main/Database/%EC%A0%95%EA%B7%9C%ED%99%94%2C%EB%B0%98%EC%A0%95%EA%B7%9C%ED%99%94.md)
+  - 이상 현상
+  - 정규화와 반정규화
+- [Index, Hint](https://github.com/NKLCWDT/cs/blob/main/Database/Index%2C%20Hint.md)
+  - 순차 I/O, 랜덤 I/O
+  - 쿼리 튜닝의 목적
+  - B-Tree Index, Hash Index, InnoDB Adaptive Hash Index
+  - MySQL 에서 B-tree 를 사용하는 이유
+  - 인덱스 레인지 스캔, 인덱스 풀 스캔
+  - 클러스터링 인덱스, 논 클러스터링 인덱스
+  - MySQL 에서 PK 를 인조키로 사용하고 Auto_Increment 를 사용하는 이유
+  - Hint
+- [동시성 제어](https://github.com/NKLCWDT/cs/blob/main/Database/concurrencyControl.md)
+  - 동시성 제어를 하지 않을 시 발생하는 문제점
+  - 동시성 제어 방법
+- [Oracle Sequence](https://github.com/NKLCWDT/cs/blob/main/Database/Sequence.md)
+  - 시퀀스 개념 및 사용법
+  - 시퀀스 사용의 장단점
+- [Join](https://github.com/NKLCWDT/cs/blob/main/Database/Join.md)
+  - Inner Join
+  - Natural Join
+  - Outer Join
+  - Semi Join 
+- [MySQL Architecture](https://github.com/NKLCWDT/cs/blob/main/Database/MySQLArchitecture.md)
+  - MySQL 엔진
+  - 스토리지 엔진
+  - 핸들러 API
+  - MySQL 스레딩 구조
+  - 메모리 할당 및 사용 구조
+  - 쿼리파서, 전처리기, 옵티마이저, 실행엔진
+  - 스레드풀, 트랜잭션 지원 메타데이터
+- [스키마(Schema)](https://github.com/NKLCWDT/cs/blob/main/Database/%EC%8A%A4%ED%82%A4%EB%A7%88(Schema).md)
+  - 스키마 3계층과 3계층으로 나누어 사용하는 이유
+  - 테이블 vs 스키마
+- [DB 클러스터링, 리플리케이션]()
+- [Trigger]()
+- [ConnectionPool]()
+- [RAID]()
+- [가상 머신, 가상 메모리](https://github.com/NKLCWDT/cs/blob/main/Computer%20Architecture/%EA%B0%80%EC%83%81%EB%A8%B8%EC%8B%A0%EA%B3%BC%20%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC.md)
+  - 가상 머신과 가상머신을 사용하는 이유
+  - 가상 메모리 이점, 원리
+  - 요구 페이징

@@ -1,6 +1,20 @@
 # Index 와 Hint
 
-## 순차 I/O vs 랜덤 I/O
+## 데이터베이스 I/O
+
+### 디스크가 느린 이유
+
+![IMAGES](../images/disk.jpg)
+
+데이터를 읽기 위해서는 `헤드`를 움직여 데이터가 저장된 위치(`트랙`)를 찾아야 한다. 이때 소요되는 시간을 `탐색 시간(seek time)`이라고 한다. 그 후 원하는 정보가 있는 `섹터`가 다가올 때까지 기다리는데 이때의 시간을 `회전 대기 시간(rotational latency time)`이라고 한다.
+
+- 헤드 : 상단 이미지에서 디스크 오른쪽에 있는 회색 꺾쇠의 디스크와 닿는 부분
+- 트랙 : 디스크(플래터)의 한 면에서 중심으로부터 같은 거리에 있는 섹터들의 집합
+- 섹터 : 데이터 저장/판독의 물리적 단위
+
+데이터베이스의 I/O 처리 작업은 이렇게 물리적인 작업을 거치기 때문에 시간이 많이 소모된다.
+
+### 순차 I/O vs 랜덤 I/O
 
 - __순차 I/O__
     - 물리적으로 인접한 페이지를 차례대로 읽는 순차 접근 방식
@@ -100,6 +114,21 @@ ID   | FISRT_NAME | LAST NAME | BIRTHDATE ...
 MySQL InnoDB 에서는 데이터 파일에 레코드들이 클러스터되어(Clustered) 디스크에 저장되므로 기본적으로 PK 순서대로 정렬되어 저장된다. DBMS 에서는 클러스터링 기능이 선택사항이지만 InnoDB 에서는 디폴트로 클러스터링 테이블이 생성된다.
 
 > 클러스터링 : 비슷한 값들 끼리 최대한 모아서 저장하는 방식
+
+### MySQL 에서 B-tree 를 사용하는 이유
+
+트리 종류에는 이진 트리(Binary-Tree), 레드 블랙 트리, B-tree 등 다양한 종류들이 존재하는데 MySQL 에서 B-tree 를 사용하는 이유는 B-tree 자체가 데이터가 디스크에 저장될때 사용하도록 
+설계 되어진 트리이다. 디스크에 삽입, 삭제, 읽는 시간은 RAM 보다 훨씬 느리다. 데이터베이스의 I/O 는 디스크를 통해 물리적인 작업을 거치기 때문에 대용량의 데이터를 조회할 때에도 성능이 너무 낮아지지 않도록 하는 것이 중요하다. 
+
+이진 트리는 최악의 경우 O(N) 을 가진다. 레드 블랙 트리 자체는 효율적이지만 대용량 데이터의 경우 트리의 높이를 제어할 수 없다. 데이터를 조회하기 위해서는 트리 노드 루트 -> 리프 -> 데이터 조회 방식으로 조회되기 때문에 트리의 높이가 높다면 그 만큼 데이터를 조회하는데 시간이 많이 소모된다는 의미가 될 수 있다.
+
+따라서, 데이터베이스 I/O 를 효과적으로 하기 위해서 B-tree 를 사용한다고 볼 수 있다.
+
+> [레드 블랙 트리는 매우 효율적임에도, MySQL 에서 사용하지 않는 이유](https://cdmana.com/2021/12/202112240514366766.html)
+>
+> [MySQL 데이터베이스 인덱스가 B + 트리를 사용하도록 선택하는 이유는 무엇입니까?](https://developpaper.com/why-does-mysql-database-index-choose-to-use-b-tree/)
+>
+> [B-tree 와 Binary Tree 의 차이점](https://ko.gadget-info.com/difference-between-b-tree)
 
 ### 체인지 버퍼링(Change Buffering)
 
@@ -352,3 +381,4 @@ Oracle 과 같은 다른 DBMS 들은 Hint 를 주석으로 해석하는데, MySQ
 - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=gglee0127&logNo=221336088285
 - https://tech.kakao.com/2016/04/07/innodb-adaptive-hash-index/
 - https://dev.mysql.com/doc/internals/en/innodb-mutex-rwlock-implementation.html
+- https://fierycoding.tistory.com/78
