@@ -198,10 +198,23 @@
 - [스키마(Schema)](https://github.com/NKLCWDT/cs/blob/main/Database/%EC%8A%A4%ED%82%A4%EB%A7%88(Schema).md)
   - 스키마 3계층과 3계층으로 나누어 사용하는 이유
   - 테이블 vs 스키마
-- [DB 클러스터링, 리플리케이션]()
-- [Trigger]()
-- [ConnectionPool]()
-- [RAID]()
+- [DB 클러스터링, 리플리케이션](https://github.com/NKLCWDT/cs/blob/main/Database/ClusterReplicationPartitioning.md)
+  - 클러스터 사용 장점과 구현 방법
+  - 리플리케이션, 리플리케이션 래그
+  - 파티셔닝
+  - 
+- [Trigger](https://github.com/NKLCWDT/cs/blob/main/Database/Trigger.md)
+  - 트리거 종류(행 트리거, 문장 트리거)
+  - 트리거 장점/단점
+  - 트리거 문법과 예시
+- [ConnectionPool](https://github.com/NKLCWDT/cs/blob/main/Database/ConnectionPool.md)
+  - 커넥션 풀 개수 설정 방법
+  - 커넥션 풀 동작원리(HikariCP)
+  - 커넥션 풀의 장점
+- [RAID](https://github.com/NKLCWDT/cs/blob/main/Computer%20Architecture/RAID.md)
+  - RAID 사용 이유
+  - RAID 에서 쓰이는 3가지 기술
+  - RAID 종류와 특징
 - [가상 머신, 가상 메모리](https://github.com/NKLCWDT/cs/blob/main/Computer%20Architecture/%EA%B0%80%EC%83%81%EB%A8%B8%EC%8B%A0%EA%B3%BC%20%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC.md)
   - 가상 머신과 가상머신을 사용하는 이유
   - 가상 메모리 이점, 원리
