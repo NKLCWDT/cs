@@ -202,7 +202,7 @@
   - 클러스터 사용 장점과 구현 방법
   - 리플리케이션, 리플리케이션 래그
   - 파티셔닝
-  - 
+  - 샤딩
 - [Trigger](https://github.com/NKLCWDT/cs/blob/main/Database/Trigger.md)
   - 트리거 종류(행 트리거, 문장 트리거)
   - 트리거 장점/단점
