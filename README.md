@@ -211,6 +211,9 @@
   - 커넥션 풀 개수 설정 방법
   - 커넥션 풀 동작원리(HikariCP)
   - 커넥션 풀의 장점
+
+## ✔️ Computer Architecture
+
 - [RAID](https://github.com/NKLCWDT/cs/blob/main/Computer%20Architecture/RAID.md)
   - RAID 사용 이유
   - RAID 에서 쓰이는 3가지 기술
