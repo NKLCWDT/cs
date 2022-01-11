@@ -32,19 +32,16 @@
 
 <br/>
 
-```
-DELIMITER $$
-	CREATE TRIGGER test
-	BEFORE  ... 
-    ON test
-	FOR EACH ROW 
-	BEGIN
-		...
-		SET idTemp = OLD.id;
-		SET answerTemp = OLD.answer;
-		...
-	END $$
-DELIMITER ;
+```SQL
+-- test 테이블에 insert 가 되면 BEGIN~END 로직을 수행한다. 
+-- for each row : 행 1개가 insert 될때마다 한번씩 실행된다.
+create or replace trigger test_insert_trigger
+after insert on test
+for each row
+BEGIN
+  insert into test_history(no, pname)
+  values(:NEW.no ,:NEW.pname);
+END;
 ```
 
 여기서 OLD, NEW 키워드를 알아보자.
@@ -79,10 +76,28 @@ INSERT로 삽입된 데이터 혹은 UPDATE로 바뀐 후 데이터
 
 <br/>
 
+```SQL
+-- 문장 트리거는 FOR EACH ROW 가 없다.
+-- 하나의 DML문이 수행되었을때 아래 트리거는 한번만 수행된다. 
+-- 아래 예제에서는 INSERT, UPDATE, DELETE 가 수행되고,
+-- INSERTING, UPDATING, DELETING 함수를 통해 수행된 DML문에 따라 문구를 출력한다. (한번만 출력)
+-- INSERTING, UPDATING, DELETING : 어떤 DML문이 수행되었는지에 대한 여부를 알수 있다.
+CREATE OR REPLACE TRIGGER TR_Message
+AFTER INSERT OR UPDATE OR DELETE ON tCity
+BEGIN
+    IF INSERTING THEN
+        DBMS_OUTPUT.PUT_LINE('새로운 도시를 삽입하였습니다.');
+END IF;
+    IF UPDATING THEN
+        DBMS_OUTPUT.PUT_LINE('도시 정보를 갱신하였습니다.');
+END IF;
+    IF DELETING THEN
+        DBMS_OUTPUT.PUT_LINE('도시를 삭제하였습니다.');
+END IF;
+END;
 ```
-UPDATE test SET grade = 50
--- 여러 row를 변경될 경우 트리거는 한번만 실행
-```
+
+
 
 <br/>
 
