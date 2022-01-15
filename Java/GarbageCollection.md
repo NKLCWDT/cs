@@ -148,6 +148,8 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 
 - 작은 크기의 메모리를 콜렉팅하는데 아주 효과적이다.
 
+<br/>
+
 #### Full GC
 
 - 대표적으로 Mark & Compact 알고리즘 사용
@@ -191,6 +193,7 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 
 ![IMAGES](../images/GC6.png)
 
+** 그림에서 Tenured 는 위에서 설명한 Old Generation 과 동일하다고 이해하자.
 
 <br/>
 <br/>
