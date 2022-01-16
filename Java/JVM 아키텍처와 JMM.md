@@ -136,21 +136,50 @@ Execution Engine이 실행하는 두 가지 방식이 존재한다.
 __Interpreter__
 - 인터프리터 방식은 바이트코드를 한줄씩 해석하고 실행한다. 속도가 느리다는 단점이 있다.
 
-__JIT(Just In Time)__
+__[JIT(Just In Time)](https://github.com/NKLCWDT/cs/blob/main/Java/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%8B%A4%ED%96%89%20%EA%B3%BC%EC%A0%95.md)__
 - 기존 인터프리터 방식의 느리다는 단점을 극복하기 위한 방법
 - 컴파일 방식과 인터프리터 방식을 혼합한 방식을 이용함
 
-그리고 더 이상 참조되지 않는 객체를 모아서 정리하는 GC(Garbage Collector)가 있다.
+그리고 더 이상 참조되지 않는 객체를 모아서 정리하는 [GC(Garbage Collector)](https://github.com/NKLCWDT/cs/blob/main/Java/GarbageCollection.md) 가 있다.
 
 ## JMM (Java Memory Model)
 
-자바 메모리 모델은 특정 스레드에서 메모리를 대상으로 취하는 작업이 다른 스레드에게 어떻게 보이는지의 여부를 명시하고 있다.
+JVM이 메모리에 어떻게 상주하는지, 다른 소프트웨어와 마찬가지로 JVM은 호스트 OS 메모리에서 사용 가능한 공간을 사용한다.
 
-> 메모리 모델  
-> 프로그램이 메모리 구조에서 어느정도의 기능을 사용할 수 있을지에 대한 정보를 제공하고, 
-> 메모리의 내용을 서로 공유하고자 할 때 프로세스 간의 작업을 조율하기 위한 특별한 명령어(memory barrier)로는 어떤 것들이 있으며 어떻게 사용해야 하는지에 대한 정보를 제공한다.
+그러나 JVM 내부에는 런타임 데이터와 컴파일된 코드를 저장하기 위해 별도의 메모리 공간(Heap, Non-Heap, Cache)이 존재한다.
 
+__1. Heap Memory__  
 
+기본적으로 Heap Memory는 JVM이 시작될 때 공간을 할당받고, 애플리케이션이 작동 중일 때 사이즈에 있어 자유롭다. 즉, new 연산자를 활용해서 객체를 생성할 때 할당된다.
+
+![IMAGES](../images/jvmHeap.png)
+
+1.1) Young Generation  
+Young Generation은 비교적 최근에 할당된 객체들을 가지고 있다.  
+
+새로 생성된 객체는 Eden 공간으로 가고 Eden 공간이 객체들로 가득 찼을 때는 minor GC가 수행되며, Survivor(살아남은) 객체들은 Survivor 공간으로 이동한다. 
+Minor GC는 survivor 객체들을 확인하고, 이들을 survivor 공간으로 이동시키는데 이 때 한개의 survivor 공간은 항상 비어있어야 한다.
+
+여기서 말하는 survivor 객체들이라고 한다면, 계속해서 참조가 되고 있는 객체이다.
+
+1.2) Old Generation (= Tenured space)  
+Old Generation은 Minor GC로 부터 살아남고, 오랫동안 사용될 예정의 객체들이다. 만약 Old Generation마저 가득 차게 된다면 Major GC가 작동해서, 최근에 사용되지 않은 객체들부터 가지고 간다.
+
+__2. Non - Heap Memory (힙이 아닌 영역)__
+
+![IMAGES](../images/jvmNonHeap.png)
+
+힙이 아닌 영역으로써, 이는 모든 스레드가 공유하는 메서드 영역이다.
+
+Non - Heap 영역은 Permanent Generation를 포함하고 있다. JRE에 포함되어 있지만, Heap 영역과 별도로 메모리에 존재한다.
+
+![IMAGES](../images/java8JVM.png)
+
+Java8 이전에는 Metaspace 영역이 아닌 Permanent 영역이 존재하였다. Permanent영역은 Class의 Meta정보나 Method의 Meta정보, Static 변수와 상수 정보들이 저장되는 공간으로 활용되었다. 하지만 Java8 버전부터는 기존의 Permanent 영역이 Native 영역으로 이동하여 Metaspace 영역으로 변경되었다.
+
+__3. Cache Memory__
+
+컴파일러에 의해 컴파일된 기계어가 저장된다.
 
 
 ---
@@ -167,3 +196,7 @@ https://catsbi.oopy.io/df0df290-9188-45c1-b056-b8fe032d88ca
 https://d2.naver.com/helloworld/1230
 
 https://getchan.github.io/til/java_memory_model/
+
+https://yeon-kr.tistory.com/114
+
+https://sharplee7.tistory.com/54
