@@ -46,7 +46,7 @@ JDK는 자바 기반의 소프트웨어를 개발하기 위한 도구이며, JRE
 > 바이트코드(bytecode)  
 > 특정 하드웨어가 아닌 가상 컴퓨터(Virtual Machine)에서 돌아가는 실행 프로그램을 위한 이진 표현법으로 하드웨어가 아닌 소프트웨어에 의해 처리되기에 기계어보다 추상적이다.
 
-### Class Loader
+### 1. Class Loader
 Java 바이트 코드(.class)를 Runtime Memory Area에 적재하는 역할을 함
 
 자바는 런타임에 클래스를 처음으로 참조할 때 해당 클래스를 로드하고 링크하는 특징이 있다.
@@ -61,16 +61,12 @@ Java 바이트 코드(.class)를 Runtime Memory Area에 적재하는 역할을 �
 - 링크 : 레퍼런스 연결과정
 - 초기화 : static 값 초기화 하고 변수 할당하는 과정
 
-__1. Loading__  
+__1) Loading__  
 
 - 클래스 로더가 .class 파일을 읽고, 내용에 맞는 binary 데이터를 생성한 뒤 메모리의 Method 영역에 저장한다.
   - FQCN (Fully Qualified Class Name) 클래스가 속한 패키지명을 모두 포함한 이름
   - 클래스, 인터페이스, Enum
   - 각 클래스/인터페이스의 메소드, 변수
-
-- 로딩이 끝나면, 해당 클래스 타입의 class 객체를 생성해서 Heap 영역에 저장한다.
-
-![image](https://user-images.githubusercontent.com/70622731/149753059-4f6edbaf-8178-4197-a455-a94851f8b000.png)
 
 클래스 로더의 종류는 세가지가 있다.
 
@@ -80,6 +76,8 @@ __1. Loading__
   - `JAVA_HOME\lib\ext` 폴더 또는 java.ext.dirs 시스템 변수에 해당하는 위치에 있는 클래스를 읽는다.
 - Application Class Loader (System Class Loader 라도고 부른다.)
   - 애플리케이션 클래스 패스 (애플리케이션 실행할 때 주는 `-classpath` 옵션 또는 `java.class.path` 환경 변수에 값에 해당하는 위치)에서 클래스를 읽는다.
+
+![image](https://user-images.githubusercontent.com/70622731/149753059-4f6edbaf-8178-4197-a455-a94851f8b000.png)
 
 ```java
 public class App {
@@ -95,7 +93,7 @@ public class App {
 가장 부모 클래스로더부터 필요한 클래스를 읽어들이는데, Application ClassLoader에서도 읽어들이지 못하면 ClassNotFoundException이 발생한다.
 
 
-__2. Linking__  
+__2) Linking__  
 - 검증(Verifying)
   - 읽어들인 클래스가 자바 언어 명세 및 JVM 명세에 명시된 대로 잘 구성되어 있는지 검사한다.
 - 준비(Preparing)
@@ -106,13 +104,14 @@ __2. Linking__
 `Book book = new Book()` 이라는 코드가 있을 때  
 book이라는 참조변수가 Heap에 저장된 실제 Book 클래스를 가리킬 수 있도록 연결하는게 Resolve 과정이다.
 
-__3. Initializing__  
+__3) Initializing__
+
 클래스 변수들을 적절한 값으로 초기화 한다. 즉, static initializer들을 수행하고, static 필드들을 설정된 값으로 초기화 한다.
 
-### Runtime Memory Area
+### 2. Runtime Memory Area
 JVM 메모리를 Runtime Memory Area라고 부른다.
 
-__Method Area__  
+__1) Method Area__  
 - Class Area, Code Area, Static Area 등으로 불리는 해당 영역은 코드에서 사용되는 클래스 파일을 클래스로더로 읽어 클래스별로 런타임 상수풀, 필드데이터, 메소드 데이터, 메소드 코드, 생성자 코드 등을 분류해서 저장한다.
 - 모든 스레드가 공유하는 공간  
 - JVM이 실행될 때 생성됨
@@ -120,23 +119,25 @@ __Method Area__
 > Runtime Constant Pool (런타임 상수 풀)  
 > 상수 풀은 말 그대로 상수를 저장하는 공간이다. 이외에도 필드나 메소드 등의 Reference 값들을 저장하고 있고 실행중에 중복되는 정보가 필요할 때에 기존의 정보를 사용하도록 도와준다.
 
-__Heap Area__  
+__2) Heap Area__  
 - new 연산자를 통해 동적으로 생성되는 객체가 저장되는 공간
 - Heap에 저장된 데이터는 메모리 관리가 필요한 GC 대상
 - 모든 스레드가 공유하는 공간
 - JVM이 실행될 때 생성됨
 
-__Stack__  
+__3) Stack__  
 - 프레임(Frame)이 저장되는 공간  
     - Frame : 메소드 데이터가 저장되는공간 (메소드 파라미터, 지역변수, 참조 주소값 등)
 - 다른 스레드와 공유하지 않고 각각의 스레드마다 가지는 공간
 - 프레임은 메소드(method)가 실행될 때, Stack에 push 하여 추가된다.
 - 반대로, 메소드가 종료되면 Stack에서 pop 되어 제거된다.
 
-__PC Register__  
+__4) PC Register__
+
 쓰레드가 생성될 때마다 생성되는 영역으로 현재 쓰레드가 실행되는 부분의 주소와 명령을 저장하고 있는 영역이다. 이것을 이용해 쓰레드를 돌아가며 수행할 수 있게한다.
 
-__Native Method Stack__  
+__5) Native Method Stack__
+
 자바 스레드와 네이티브 코드(C, C++)로 작성된 코드 사이를 매핑하는 역할을 한다.
 
 이 메소드는 네이티브 라이브러리(Native Library)와 연결된다. 이 때의 라이브러리는 자바로 쓰여진 것이 아니라 C와 같은 다른 언어로 작성된 것이다.
@@ -145,15 +146,15 @@ __Native Method Stack__
 
 이러한 네이티브 코드는 프로그래머가 JNI(Java Native Interface)를 통해서 호출할 수 있다.
 
-### Execution Engine
+### 3. Execution Engine
 클래스 로더에 의해 메모리에 적재된 클래스(Bytecodes)들을 기계어로 변경해 명령어 단위로 실행하는 역할을 한다.
 
 Execution Engine이 실행하는 두 가지 방식이 존재한다.
 
-__Interpreter__
+__1) Interpreter__
 - 인터프리터 방식은 바이트코드를 한줄씩 해석하고 실행한다. 속도가 느리다는 단점이 있다.
 
-__[JIT(Just In Time)](https://github.com/NKLCWDT/cs/blob/main/Java/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%8B%A4%ED%96%89%20%EA%B3%BC%EC%A0%95.md)__
+__2) [JIT(Just In Time)](https://github.com/NKLCWDT/cs/blob/main/Java/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%8B%A4%ED%96%89%20%EA%B3%BC%EC%A0%95.md)__
 - 기존 인터프리터 방식의 느리다는 단점을 극복하기 위한 방법
 - 컴파일 방식과 인터프리터 방식을 혼합한 방식을 이용함
 
@@ -173,7 +174,8 @@ __1. Heap Memory__
 
 ![IMAGES](../images/jvmHeap.png)
 
-1.1) Young Generation  
+__1) Young Generation__
+
 Young Generation은 비교적 최근에 할당된 객체들을 가지고 있다.  
 
 새로 생성된 객체는 Eden 공간으로 가고 Eden 공간이 객체들로 가득 찼을 때는 minor GC가 수행되며, Survivor(살아남은) 객체들은 Survivor 공간으로 이동한다. 
@@ -181,7 +183,8 @@ Minor GC는 survivor 객체들을 확인하고, 이들을 survivor 공간으로 
 
 여기서 말하는 survivor 객체들이라고 한다면, 계속해서 참조가 되고 있는 객체이다.
 
-1.2) Old Generation (= Tenured space)  
+__2) Old Generation (= Tenured space)__
+
 Old Generation은 Minor GC로 부터 살아남고, 오랫동안 사용될 예정의 객체들이다. 만약 Old Generation마저 가득 차게 된다면 Major GC가 작동해서, 최근에 사용되지 않은 객체들부터 가지고 간다.
 
 __2. Non - Heap Memory (힙이 아닌 영역)__
