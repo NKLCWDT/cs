@@ -3,6 +3,9 @@ Java 프로그램이 플랫폼에 의존하지 않고, 어디서든 동작 가�
 
 C/C++ 언어는 CPU 아키텍처, 운영체제 등 플랫폼 환경에 의존성을 가지기 때문에, 플랫폼이 바뀌면 제대로 동작하지 않는 문제가 있다. (크로스 컴파일을 통해, 타겟 플랫폼에 맞춰서 컴파일 해줘야함)
 
+> 크로스 컴파일  
+> 참고 : https://kkhipp.tistory.com/160
+
 Java의 경우 이러한 문제를 해결하기 위해 JVM을 만들었다.
 
 ![IMAGES](../images/JVM.png)
@@ -26,13 +29,17 @@ __기본 자료형을 명확하게 정의하여 플랫폼 독립성 보장__
 > 심볼릭 레퍼런스는 그 이름에 맞는 객체의 주소를 찾아서 연결하는 작업을 수행한다. 그러므로 실제 메모리 주소가 아니라 이름만을 가진다.
 
 ### JDK(Java Development Kit) vs JRE(Java Runtime Environment)
-JVM, JRE, JDK는 3대 자바 프로그래밍의 기술 패캐지로 불린다.  
-JDK는 자바 기반의 소프트웨어를 개발하기 위한 도구이며, JRE는 자바 코드를 실행하기 위한 환경이다. JDK는 JRE를 가지고 있고 컴파일러도 가지고 있다.
 
-![IMAGES](../images/jdkjre.png)
+![image](https://user-images.githubusercontent.com/70622731/149750883-787d64f6-84db-4bd0-aff6-620825089de3.png)
+
+JVM, JRE, JDK는 3대 자바 프로그래밍의 기술 패캐지로 불린다.  
+JDK는 자바 기반의 소프트웨어를 개발하기 위한 도구이며, JRE는 자바 코드를 실행하기 위한 환경으로 JVM을 포함하고 있다. JDK는 JRE를 가지고 있고 컴파일러도 가지고 있다.
+
+<br>
 
 ## JVM 아키텍처
-![IMAGES](../images/jvmArchitecture.png)
+
+![image](https://user-images.githubusercontent.com/70622731/149751223-bc8f19b7-c64b-4681-b8e0-af739582cbd0.png)
 
 클래스로더(Class Loader)가 컴파일된 자바 바이트 코드를 메모리영역에 로드하고, 실행엔진(Execution Engine)이 자바 바이트코드를 실행한다.
 
@@ -45,43 +52,50 @@ Java 바이트 코드(.class)를 Runtime Memory Area에 적재하는 역할을 �
 자바는 런타임에 클래스를 처음으로 참조할 때 해당 클래스를 로드하고 링크하는 특징이 있다.
 
 이 동적 로드를 담당하는 부분이 JVM의 클래스 로더이다.  
-클래스 로더의 특징은 다음과 같다.
-
-__계층 구조__  
-클래스 로더끼리 부모-자식 관계를 이뤄 계층 구조로 생성된다. 여기서 최상위 클래스 로더는 부트스트랩 클래스 로더(Bootstrap Class Loader)이다.
-
-__위임 모델__  
-계층 구조를 바탕으로 클래스 로더끼리 로드를 위임하는 구조로 동작한다. 클래스를 로드할 때 위임하는 구조로 동작한다. 클래스를 로드할 때 먼저 상위 클래스 로더를 확인하여 상위 클래스 로더에 있다면 해당 클래스를 사용하고 없다면 로드를 요청받은 클래스로더가 클래스를 로드한다.
-
-![IMAGES](../images/클래스위임모델.png)
-
-- Bootstrap Class Loader
-  - `JAVA_HOME\lib` 에 있는 코어 자바 API를 제공한다. 최상위 우선순위를 가진 클래스 로더
-- Extension Class Loader
-  - `JAVA_HOME\lib\ext` 폴더 또는 java.ext.dirs 시스템 변수에 해당하는 위치에 있는 클래스를 읽는다.
-- Application Class Loader
-  - 애플리케이션 클래스 패스 (애플리케이션 실행할 때 주는 `-classpath` 옵션 또는 `java.class.path` 환경 변수에 값에 해당하는 위치)에서 클래스를 읽는다.
-- User-Defined Class Loader
-  - 애플리케이션 사용자가 직접 코드 상에서 생성해서 사용하는 클래스 로더
-
-__가시성(visibility)제한__  
-하위 클래스 로더는 상위 클래스 로더를 찾을 수 있지만 상위 클래스 로더는 하위 클래스로더의 클래스를 찾을 수 없다.
-
-__언로드 불가__  
-클래스 로더는 클래스를 로드할 수 있지만 언로드 할 수는 없다. 언로드 대신, 현재 클래스로더를 새로 삭제하고 아예 새로운 클래스 로더를 생성하는 방법을 사용할 수 있다.
-
-### Class Loader 과정
 
 클래스 로더가 아직 로드되지 않은 클래스를 찾으면, 다음 그림과 같은 과정을 거쳐 클래스를 로드하고 링크하고 초기화한다.
 
-![IMAGES](../images/클래스로더단계.png)
+![image](https://user-images.githubusercontent.com/70622731/149752948-2df80575-4249-44d9-b635-e447a6c68384.png)
 
-__Loading__
-Bootstrap, Extension, Application 컴포넌트들에 의해 클래스들이 로드된다.
+- 로딩 : 클래스를 읽어오는 과정
+- 링크 : 레퍼런스 연결과정
+- 초기화 : static 값 초기화 하고 변수 할당하는 과정
 
-이 세가지 로더들은 모두 상속관계로 정의되어 있으며 delegate(위임) 방식으로 작업을 진행한다.
+__1. Loading__  
 
-__Linking__
+- 클래스 로더가 .class 파일을 읽고, 내용에 맞는 binary 데이터를 생성한 뒤 메모리의 Method 영역에 저장한다.
+  - FQCN (Fully Qualified Class Name) 클래스가 속한 패키지명을 모두 포함한 이름
+  - 클래스, 인터페이스, Enum
+  - 각 클래스/인터페이스의 메소드, 변수
+
+- 로딩이 끝나면, 해당 클래스 타입의 class 객체를 생성해서 Heap 영역에 저장한다.
+
+![image](https://user-images.githubusercontent.com/70622731/149753059-4f6edbaf-8178-4197-a455-a94851f8b000.png)
+
+클래스 로더의 종류는 세가지가 있다.
+
+- Bootstrap ClassLoader
+  - `JAVA_HOME\lib` 에 있는 코어 자바 API를 제공한다. 최상위 우선순위를 가진 클래스 로더
+- Extension Class Loader
+  - `JAVA_HOME\lib\ext` 폴더 또는 java.ext.dirs 시스템 변수에 해당하는 위치에 있는 클래스를 읽는다.
+- Application Class Loader (System Class Loader 라도고 부른다.)
+  - 애플리케이션 클래스 패스 (애플리케이션 실행할 때 주는 `-classpath` 옵션 또는 `java.class.path` 환경 변수에 값에 해당하는 위치)에서 클래스를 읽는다.
+
+```java
+public class App {
+  public static void main(String[] args) {
+    ClassLoader classLoader = App.class.getClassLoader();
+    classLoader // Application ClassLoader
+    classLoader.getParent() // Extension ClassLoader
+    classLoader.getParent().getParent() // null Bootstrap CLassLoader는 native로 구현되어 있어 자바에서 확인이 불가능하다.
+  }
+}
+```
+
+가장 부모 클래스로더부터 필요한 클래스를 읽어들이는데, Application ClassLoader에서도 읽어들이지 못하면 ClassNotFoundException이 발생한다.
+
+
+__2. Linking__  
 - 검증(Verifying)
   - 읽어들인 클래스가 자바 언어 명세 및 JVM 명세에 명시된 대로 잘 구성되어 있는지 검사한다.
 - 준비(Preparing)
@@ -89,7 +103,10 @@ __Linking__
 - 분석(Resolving)
   - 클래스의 상수 풀 내 모든 심볼릭 레퍼런스를 다이렉트 레퍼런스로 변경한다.
 
-__Initializing__
+`Book book = new Book()` 이라는 코드가 있을 때  
+book이라는 참조변수가 Heap에 저장된 실제 Book 클래스를 가리킬 수 있도록 연결하는게 Resolve 과정이다.
+
+__3. Initializing__  
 클래스 변수들을 적절한 값으로 초기화 한다. 즉, static initializer들을 수행하고, static 필드들을 설정된 값으로 초기화 한다.
 
 ### Runtime Memory Area
@@ -142,6 +159,8 @@ __[JIT(Just In Time)](https://github.com/NKLCWDT/cs/blob/main/Java/%ED%94%84%EB%
 
 그리고 더 이상 참조되지 않는 객체를 모아서 정리하는 [GC(Garbage Collector)](https://github.com/NKLCWDT/cs/blob/main/Java/GarbageCollection.md) 가 있다.
 
+<br>
+
 ## JMM (Java Memory Model)
 
 JVM이 메모리에 어떻게 상주하는지, 다른 소프트웨어와 마찬가지로 JVM은 호스트 OS 메모리에서 사용 가능한 공간을 사용한다.
@@ -181,6 +200,7 @@ __3. Cache Memory__
 
 컴파일러에 의해 컴파일된 기계어가 저장된다.
 
+<br>
 
 ---
 
@@ -200,3 +220,5 @@ https://getchan.github.io/til/java_memory_model/
 https://yeon-kr.tistory.com/114
 
 https://sharplee7.tistory.com/54
+
+https://inspirit941.tistory.com/296
