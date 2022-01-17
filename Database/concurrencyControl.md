@@ -12,7 +12,7 @@
 #### 갱신 손실(Lost Update)   
 - 두개 이상의 트랜잭션이 동시에 똑같은 한개의 데이터를 수정시에 발생하는 문제
 - 한 트랜잭션이 갱신한 내용을 다른 트랜잭션이 덮어씀으로써 갱신이 무효화 되는일이 발생  
-![image](/images/lostUpdate.png)  
+<img src="/images/lostUpdate.png"  width="300" height="300"><br>
 1. 트랜잭션1이 연산(X=X-100000)을 하고 있는중에 (변수 X에 저장되어 있고 데이터베이스에 적용이 안됨)  
 2. 트랜잭션2가 데이터를 읽으면 기존에 있던 X=300000을 읽어온다. 그리고 X의 값을 X = X+50000으로 계산을 한다.(변수 X에 저장되어 있고 데이터베이스에 적용이 안됨)  
 3. 그 후 write_item(X)를 트랜잭션1이 수행하면 X의 값이 1에서 계산한 값 X=200000으로 변한다.(데이터베이스에 적용)  
@@ -23,10 +23,10 @@
 #### 현황 파악 오류(dirty read)    
 - 한 트랜잭션이 수정을 하고 그 수정사항을 커밋하지 않았을때 다른 트랜잭션이 같은 데이터를 접근할때 발생하는 문제    
 
-![image](/images/dirtyread1.png)    
+<img src="/images/dirtyread1.png"  width="300" height="300"><br>
 사용자 A의 트랜잭션에서 X,Y값을 읽고 X값에 100을 더한다. 이과정 뒤에 사용자 B의 트랜잭션이 X를 읽은후 X의 값에 *2를 해준다.(그러면 X=2200이 됨). Y의 값을 사용자 A의 트랜잭션이 읽은 후 변경한다(Y+100).  
 
-![image](/images/dirtyread2.png)    
+<img src="/images/dirtyread2.png"  width="300" height="300"><br>
 A의 사용자가 트랜잭션에서 의도 한값은 X=1100, Y=1100인고  
 B의 사용자가 트랜잭션에서 의도 한값은 X=2200, Y=1000이다.
 하지만, 최종 결과는 X=2200, Y=1100이 된것.  
@@ -35,28 +35,29 @@ B의 사용자가 트랜잭션에서 의도 한값은 X=2200, Y=1000이다.
 
 3. Non Repeatable read  
 한 트랜잭션에 같은 데이터를 두번이상 읽는데 그 한 트랜잭션에서 같은 데이터가 다른 값을 읽을 때 발생하는 문제이다.
-
-![image](/images/notRepeatable.png)    
+ 
+<img src="/images/notRepeatable.png"  width="300" height="300"><br>
 트랜잭션2가 X를 읽은 후 트랜잭션1이 데이터를 바꾼다. 이후 또 트랜잭션2가 X를 읽으면 트랜잭션1이 바꾼데이터를 읽어 같은 트랜잭션임에도 다른 값을 읽게 된다. 
 
 4. Phantom Read  
-한 트랜잭션이 같은 데이터를 한번 읽고 이후 같은 데이터를 읽었을때 그 데이터가 존재하지 않는것
-![image](/images/phantomRead.png)  
+한 트랜잭션이 같은 데이터를 한번 읽고 이후 같은 데이터를 읽었을때 그 데이터가 존재하지 않는것  
+<img src="/images/phantomRead.png"  width="300" height="300"><br>
 
 
 5. Incorrect Summary      
 한 트랜잭션이 일부 레코드에 집계 함수를 적용하는 동안 다른 트랜잭션이 같은 데이터베이스를 업데이트하는 상황을 생각해 보자. 업데이트하는 트랜잭션의 몇개의 데이터는 변경을 했고 아직 다른 몇개의 데이터는 변경하지 못한상황에서 집계 함수는 값이 업데이트되기 전에 값을 계산하고 업데이트된 후에 값을 계산할 수 있습니다.
 
-![image](/images/incorrectSummary.png)  
+<img src="/images/incorrectSummary.png"  width="300" height="300"><br>
 
 트랜잭션2가 집계를 하고 있는 와중에 트랜잭션1이 X의 값을 바꾼다. 그 후 집계가 되고 트랜잭션1이 마저 Y를 바꾼다. 집계에 X와 Y의 값이 둘다 한번에 적용된값이여야 하지만 따로 적용이 되어버린다. 
 
 ### 동시성 제어 방법  
-### 1. [Locking(잠금)](https://github.com/NKLCWDT/cs/blob/main/Database/Lock.md)  
+### 1. [Locking(잠금)](https://github.com/NKLCWDT/cs/blob/main/Database/Lock.md)
 트랜잭션이 데이터에 잠금(lock)을 설정하면 다른 트랜잭션은 해당 데이터에 대해 잠금이 해제(unlock)될 때까지 접근/수정/삭제가 불가하다.
 
 __Two-phase locking__  
-![image](/images/twoPhase.png)<br>  
+
+<img src="/images/twoPhase.png"  width="300" height="300"><br>
 lock을 두단계로 구분해서 진행한다.
 
 이 방법은 한 트랜잭션을 3가지 부분으로 나눈다.
@@ -68,7 +69,8 @@ two phase locking은 각 트랜잭션이 두 단계로 잠금 또는 잠금 해�
 - growing phase: 잠금을 얻는 단계이다.(잠금을 해제할 수 없다.)
 - shrinking phase: 잠금은 해제하는 단계이다. (잠금을 얻을 수 없다.)
 
-![image](/images/twoPhaseExample.png)<br>  
+<img src="/images/twolockPhaseExample.png"  width="200" height="400"><br>
+                                                                   
 T1 트랜잭션은 1에서 3까지 lock을 걸기만 하고(growing phase) 이후 5에서 7까지는 잠금을 풀기만 한다(release phase).-> 3이 잠금을 다 모은 시점인 lock point   
 T2 트랜잭션은 2에서 6까지 lock을 걸기만 하고(growing phase) 이후에는 8부터는 잠금을 풀기만 한다(release phase).-> 6이 잠금을 다 모은 시점인 lock point
 
