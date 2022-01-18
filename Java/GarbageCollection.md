@@ -2,9 +2,13 @@
 
 유효하지 않은 메모리(Garbage)를 자동으로 제거해주는 작업이다. Java Appliation은 JVM(Java Virtual Machine)위에서 구동되는데, JVM의 기능 중 더이상 사용하지 않는 객체를 청소하여  메모리 공간을 확보하는 작업이다.
 
+<br/>
+
 > GC가 필요한 이유는?
 
 Heap 영역에 저장되는 객체들이 계속해서 쌓이게되면 OutOfMemoryException이 발생하여, 이를 방지하기 위해 주기적으로 사용하지 않는 객체를 수집하여 제거해줘야한다.
+
+<br/>
 
 > 예제 
 
@@ -21,14 +25,20 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 ```
 
 <br/>
+<br/>
 
 ## 가비지 컬렉터 (Garbage Collector)
 
 메모리가 부족할때 쓰레기를 정리해주는 작업(Garbage Collection)을 수행하는 프로그램이 Garbage Collector 라고 부른다. GC 작업을 하는 가비지 콜렉터는 다음과 같은 일을 한다.
 
+<br/>
+
 > 1\. 메모리 할당  
 > 2\. 사용중인 메모리 인식  
 > 3\. 사용하지 않는 메모리 인식
+
+<br/>
+<br/>
 
 ## 가비지 컬렉션 용어 정리
 
@@ -36,17 +46,25 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 
 ![IMAGES](../images/gc1.png)
 
+<br/>
+
 #### 1) Stop The World
 
 가비지 컬렉션을 수행하기 위해 JVM이 애플리케이션의 실행을 일시 정지하는 것을 말한다. 가비지 컬렉션이 실행되면 GC 작업을 맡은 스레드를 제외한 나머지 스레드는 모두 멈추게되고 GC 작업이 종료되면 재개된다.
+
+<br/>
 
 #### 2) Mark
 
 애플리케이션이 일시 중지되면 GC는 참조되고 있는 객체와 연결된 객체를 타고 이동하며 접근 가능한 객체를 식별하는 과정
 
+<br/>
+
 #### 3) Sweep
 
 모든 객체 탐색이 끝나면 식별(Mark)되지 않은 객체들을 메모리에서 해제시키는 과정
+
+<br/>
 
 #### 4) Young
 
@@ -59,6 +77,8 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 > \*\* Minor GC  
 > Young 영역 중 Eden 영역이 꽉 차게되면 발생한다. 
 
+<br/>
+
 #### 5) Old
 
 \- Young영역에서 Reachable 상태를 유지하여 살아남은 객체가 복사되는 영역
@@ -67,6 +87,8 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 
 \- 해당 영역이 가득 차면 Major GC가 발생한다.
 
+<br/>
+
 #### 6) Eden
 
 \- 새로 생성된 객체가 할당되는 영역이다.
@@ -74,6 +96,8 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 \- Eden 영역이 꽉차면 GC가 발생하면서 Mark(참조 여부 식별), Sweep(메모리 해제) 과정이 일어난다.
 
 \- 아직 사용중인 객체는 Survivor 영역으로 이동하며, Eden 영역은 비워진다.
+
+<br/>
 
 #### 7) Survivor
 
@@ -90,6 +114,8 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
      > 4) 그리고 다음번 Minor GC가 발생하면 같은 방식으로 Eden과  Survivor2영역에서 살아있는 객체를 Survivor1로 복사하고 클리어한다. 결과적으로 Survivor1에만 살아있는 객체가 남게된다.  
      > 4) 이렇게 반복적으로 Survivor1, Survivor2를 왔다갔다하다가, Survivor 영역에서 오래 살아남은 객체는 Old영역으로 옮겨진다. 
 
+<br/>
+
 \- promotion 과정이 발생한다.
 
 > \*\* promotion  
@@ -98,9 +124,13 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 > \*\* age  
 > 객체들이 살아날때마다 age가 증가한다.
 
+<br/>
+
 > Survivor 영역은 왜 2개일까?
 
 메모리의 외부 단편화 발생을 방지한다. 외부 단편화란, 메모리가 할당되고 해제되기를 반복하다보면 메모리 공간은 남지만 파편화되어있어 메모리를 할당할 수 없는 문제가 발생한다. 그래서 두개의 Survivor 끼리 번갈아가며 메모리를 할당하며 이를 방지한다.
+
+<br/>
 
 #### 8) Permanent
 
@@ -108,6 +138,7 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 
 \- 관련 정보 참고 : [https://johngrib.github.io/wiki/java8-why-permgen-removed/](https://johngrib.github.io/wiki/java8-why-permgen-removed/)
 
+<br/>
 <br/>
 
 ## GC 종류
@@ -127,6 +158,8 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 
 \- Stop The World 방식이며, Stop The World 시간이 짧다.
 
+<br/>
+
 #### Major GC
 
 \- Old 영역이 가득차면 발생한다.  
@@ -136,15 +169,21 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 
 ![IMAGES](../images/gc2.png)
 
+<br/>
+
 > 대표적으로 Mark & Sweep 알고리즘 사용
 
 > 1) GC Root로부터 모든 객체들의 참조를 확인하면서 참조가 연결되지 않은 객체를 Mark 한다.
 > 2) 1)번의 작업이 끝나면 사용되지 않는 객체를 모두 표시하고 이 표시된 객체를 Sweep 한다.
 
+<br/>
+
 > \*\* GC Root란?  
 > Runtime Data Area에서 Method Area, Native Stack(JNI), Java Stack 등에서 Heap 메모리의 Object들을 참조하는 데이터 영역
 
 ![IMAGES](../images/gc3.png)
+
+<br/>
 
 #### Full GC
 
@@ -153,6 +192,8 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 \- Minor GC, Major GC 모두 실패했거나, Young 영역와 Old 영역 모두 가득 찼을때 발생한다.
 
 ![IMAGES](../images/gc4.png)
+
+<br/>
 
 > 대표적으로 Mark & Sweep & Compact 알고리즘 사용
 
@@ -163,6 +204,8 @@ test = null; // 더이상 참조를 하지 않고 아래 코드에서 사용되�
 \- 속도가 매우 느리다.
 
 \- Full GC가 일어나는 도중에는 순간적으로 자바 애플리케이션이 중지되기 때문에 애플리케이션의 성능과 안정성에 큰 영향을 준다.
+
+<br/>
 
 > MinorGC 와 MajorGC로 구분되는 이유는?
 
@@ -175,17 +218,22 @@ JVM은 Heap 영역을 설계할때 알개 2가지 전제조건으로 설계되�
 객체는 일회성인 경우가 많고, 메모리에 오래 남아있는 경우가 드물기 때문에 young, old 영역으로 분리하여 설계하였다. 따라서 자주 발생하는 MinorGC, Old 영역이 가득 찰때 발생하여 비교적 적게 발생하는 Major GC로 나눠져서 발생한다.
 
 <br/>
+<br/>
 
 ## GC 종류
 
 > \- JVM 버전에 따라 여러가지 GC 방식이 추가되고 발전된다.  
 > \- 사용자가 JVM 옵션 설정을 통해 GC 방식을 변경할 수 있다.
 
+<br/>
+
 #### 1) Serial Garbage Collector
 
 \- 가장 단순한 방식의 GC로 싱글 스레드(스레드 1개)로 동작한다.
 
 \- 싱글 스레드로 동작하여 느리고, 그만큼 Stop The World 시간이 다른 GC에 비해 길다.
+
+<br/>
 
 \- **Mark & Sweep & Compact** 알고리즘을 사용한다.
 
@@ -199,6 +247,8 @@ JVM은 Heap 영역을 설계할때 알개 2가지 전제조건으로 설계되�
 
 ![IMAGES](../images/gc6.png)
 
+<br/>
+
 #### 2) Parallel Collector(=Throughput Collector)
 
 \- Java 8의 default GC 이다.
@@ -211,15 +261,20 @@ JVM은 Heap 영역을 설계할때 알개 2가지 전제조건으로 설계되�
 
 ![IMAGES](../images/gc7.png)
 
+<br/>
+
 #### 3) Parallel Old GC
 
 \- 위 2) Parallel GC 에서 조금 더 업그레이드된 버전이다. Old GC도 병렬로 수행할 수 있도록 한다.
 
 \- Mark & Summary & Compaction 알고리즘을 사용한다.
 
+<br/>
+
 > Mark & Summary & Compaction 알고리즘
 
 ![IMAGES](../images/gc8.png)
+
 
 > 1) Mark : Old Generation을 Region이라는 논리적인 단위로 균일하게 나누고, 각 스레드들을 Region 별로 사용되는 객체를 표시한다.
 >
@@ -231,6 +286,8 @@ JVM은 Heap 영역을 설계할때 알개 2가지 전제조건으로 설계되�
 
 \- Old GC 처리량을 늘려주기위한 Summary 작업을 추가적으로 진행한다.
 
+<br/>
+
 #### 4) CMS Collector (Concurrent Mark-Sweep)
 
 \- Stop The World로 Java Application이 멈추는 현상을 줄이고자 만든 GC 이다.
@@ -238,6 +295,8 @@ JVM은 Heap 영역을 설계할때 알개 2가지 전제조건으로 설계되�
 \- Young 영역은 위 3) Parallel GC 와 동일하다.
 
 \- Old 영역은 Reacable 한 객체를 한번에 찾지 않고 나눠서 찾는 아래 1)~4)단계의 방식을 사용한다.
+
+<br/>
 
 Old 영역의 GC 과정
 
@@ -255,6 +314,8 @@ Old 영역의 GC 과정
 \- Compacting 하지 않는다.
 
 ![IMAGES](../images/gc11.png)
+
+<br/>
 
 #### 5) G1 Collector (Garbage First)
 
@@ -278,6 +339,7 @@ Old 영역의 GC 과정
 
 ![IMAGES](../images/gc12_2.png)
 
+<br/>
 <br/>
 
 ## GC의 동작 방식
@@ -313,6 +375,8 @@ Old 영역의 GC 과정
 ### Major GC와 Full GC를 헷갈렸던 이유는?
 - 블로그 글을 보다보면 Major GC (Full GC) 이런식으로 동일하게 써놓은 글이 많은데, 생각해봤을때 이유는 모두 Old 영역에서 발생하는 GC 설명시에 보여지는데, 두개 GC 모두 Old 영역에서 발생할 수 있기 때문인것 같다. 각 특징은 위에 다시 정리한 내용을 참고하면 될것같다.
 
+<br/>
+
 ### Survivor 영역이 2개인 이유?
 - 메모리의 외부 단편화 발생을 방지한다. 외부 단편화란, 메모리가 할당되고 해제되기를 반복하다보면 메모리 공간은 남지만 파편화되어있어 메모리를 할당할 수 없는 문제가 발생한다. 그래서 두개의 Survivor 끼리 번갈아가며 메모리를 할당하며 이를 방지한다.
 
@@ -326,6 +390,7 @@ Old 영역의 GC 과정
 
 객체는 일회성인 경우가 많고, 메모리에 오래 남아있는 경우가 드물기 때문에 young, old 영역으로 분리하여 설계하였다. 따라서 자주 발생하는 MinorGC, Old 영역이 가득 찰때 발생하여 비교적 적게 발생하는 Major GC로 나눠져서 발생한다.
 
+<br/>
 <br/>
 
 #### Reference
