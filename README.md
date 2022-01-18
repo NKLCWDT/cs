@@ -222,3 +222,14 @@
   - 가상 머신과 가상머신을 사용하는 이유
   - 가상 메모리 이점, 원리
   - 요구 페이징
+
+## ✔️ Java
+
+- [다양한 자바 플랫폼](https://github.com/NKLCWDT/cs/blob/main/Java/%EB%8B%A4%EC%96%91%ED%95%9C%20%EC%9E%90%EB%B0%94%20%ED%94%8C%EB%9E%AB%ED%8F%BC.md)
+- [자바 역사와 버전별 특징](https://github.com/NKLCWDT/cs/blob/main/Java/%EC%9E%90%EB%B0%94%20%EC%97%AD%EC%82%AC%EC%99%80%20%EB%B2%84%EC%A0%84%EB%B3%84%20%ED%8A%B9%EC%A7%95.md)
+- [자바 언어의 특징](https://github.com/NKLCWDT/cs/blob/main/Java/%EC%9E%90%EB%B0%94%20%EC%96%B8%EC%96%B4%EC%9D%98%20%ED%8A%B9%EC%A7%95.md)
+- [프로그램 실행 과정](https://github.com/NKLCWDT/cs/blob/main/Java/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%8B%A4%ED%96%89%20%EA%B3%BC%EC%A0%95.md)
+- [JVM 아키텍처와 JMM](https://github.com/NKLCWDT/cs/blob/main/Java/JVM%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%99%80%20JMM.md)
+- [Garbage Collection](https://github.com/NKLCWDT/cs/blob/main/Java/GarbageCollection.md)
+- [객체지향 언어의 특징](https://github.com/NKLCWDT/cs/blob/main/Java/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
+  - 캡슐화, 상속, 다형성
