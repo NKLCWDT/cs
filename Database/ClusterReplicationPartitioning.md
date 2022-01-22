@@ -119,8 +119,26 @@ __언제 테이블을 파티션 해야할까?__ <br>
 <br>
 
 #### Shard key(샤드키)
-어떤 샤드에 저장되어야 할지 결정하는 키이다. 
+어떤 샤드에 저장되어야 할지 결정하는 키이다.
+샤드키 결정방식에 따라 여러 샤딩으로 나눠진다.  
 <br>
+
+#### Hash Sharding
+샤드키를 결정하는데 hash 알고리즘을 사용한것이다. 
+Hash크기는 몇개의 샤드로 나누는지에 따라 결정된다.
+
+구현이 간단하다. 하지만, 샤드가 늘어나면 해쉬함수가 바뀌어야 하므로 기존에 저장되어있던 데이터들의 정합성이 깨지게 된다. 확장성이 좋지 않다.<br>
+<img src="/images/hashShading.png" width="350" height="300"/><br>
+
+#### Dynamic Sharding
+위에 확장성을 해결하기 위해 나온것이 Dynamic Sharding이다. locator service로 shard key를 얻는다. locator service는 테이블 형식의 데이터를 바탕으로 샤드를 결정해서 적절히 저장 하는 방식을 말합니다. 해쉬 샤딩과 달리 단순히 키만 추가해주면 되므로 확장 또한 쉽습니다.<br>
+<img src="/images/dynamicShading.png" width="350" height="300"/><br>
+
+#### Entity Group
+위에 나온 hash sharding과 dynamic sharding은 key/value형식에 더 적합하다. 하지만, Entity Group은 관계가 있는 Entity를 같은 샤드내에 가지도록 한다. 
+
+장점은, 하나의 물리적인 샤드에 쿼리를 진행한다면 효율적입니다. 사용자가 늘어남에 따라 확장성이 좋은 샤딩이다. 하지만, 다른 샤드에 query를 날릴 일이 있다면 성능이 낮아진다. <br>
+<img src="/images/entityShading.png" width="350" height="300"/><br>
 
 #### 언제 테이블을 샤드해야할까?
 1. 인덱스 사이즈가 너무큰 경우 (인덱스 사이즈를 줄여준다.) 줄여주면 데이터베이스에 접근시 시간이 줄어든다.
@@ -138,6 +156,10 @@ __언제 테이블을 파티션 해야할까?__ <br>
 <br>
 <br>
 <br>
+
+
+<!-- #### Q. Active-Standby 서버를 사용하는 이유가 무엇인가? Standby 서버를 두는 대신 Active 서버를 되살리면 되지 않을까?
+우선, A -->
 
 > 참고자료
 - https://www.youtube.com/watch?v=y42TXZKFfqQ
