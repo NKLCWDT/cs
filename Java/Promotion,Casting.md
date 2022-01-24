@@ -17,9 +17,11 @@
 
 ![IMAGES](../images/자동형변환.png)
 
-예를 들어 short 타입은 16비트 정수이고, int 타입은 32bit 정수이므로 short 타입의 값으로 취급해도 값이 변하는 문제는 발생하지 않는다.
+예를 들어 short 타입은 16비트 정수이고, int 타입은 32bit 정수이므로 값이 변하는 문제는 발생하지 않는다.
 
 그렇다면 long 데이터 타입의 메모리 크기는 8byte이고, float 데이터 타입의 메모리 크기는 4byte인데, long 데이터 타입에서 float 데이터 타입으로 자동 형변환이 가능하다. 그 이유는 표현할 수 있는 값의 범위가 float가 더 크기 때문이다.
+
+참고 : [java 데이터타입](https://github.com/NKLCWDT/cs/blob/main/Java/java%20%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%83%80%EC%9E%85.md)
 
 ```java
 short shortNum = 100;
@@ -120,8 +122,10 @@ parent 변수는 Parent 클래스 형태의 변수지만, 태생이 Child 인스
 
 ### Call by value
 
-메소드 호출 시에 사용되는 인자의 메모리에 저장되어 있는 값(value)을 복사하여 보낸다.
+메소드 호출 시에 사용되는 인자의 메모리에 저장되어 있는 값(value)을 복사하여 보낸다.  
 `int a = 3`이 있으면 메소드에서 인자값을 받을 때 a라는 자체에 주소를 받는게 아니라 a의 값인 3을 받아 처리하는 방식이다.
+
+아래에 예시는 call by value에 대한 설명이다.
 
 ```java
 public class Diffrence {
@@ -145,12 +149,13 @@ public class Diffrence {
 }
 ```
 
-스왑 메소드를 이용해서 서로를 바꿔준 것 같지만 바뀌지 않는 이유는 call by value 방식이기 때문이다.  
-스왑 메소드가 받는 두 인자는 인자값에 주소 즉 인자 그자체를 받는 것이 아니라 인자의 값을 복사해서 받는다.
+스왑 메소드를 이용해서 서로를 바꿔준 것 같지만 바뀌지 않는다.
 
-즉 String one에는 a에 값인 "안녕"에 값을 복사 마찬가지로 two에도 b의 주소가 아닌 b값에 주소가 복사되어진다.
+왜냐하면 String one에는 a에 주소가 아닌 a값에 주소가 복사되고 마찬가지로 two에도 b의 주소가 아닌 b값에 주소가 복사되어진다.
 
 직접적인 참조를 넘긴 게 아닌, 주소 값을 복사해서 넘기기 때문에 자바에서는 기본형, 참조형 모두 call by value 방식을 사용한다.
+
+아래 예시에서는 참조형을 예로 들겠다.
 
 ![IMAGES](../images/swap전.png)
 
@@ -158,7 +163,7 @@ public class Diffrence {
 
 ![IMAGES](../images/swap후.png)
 
-그러므로 main값에 영향을 주지 못하고 자바는 항상 call by value 방식을 사용한다.
+그러므로 swap메소드를 실행해도 main값에 영향을 주지 못한다.
 
 만약 call by reference 방식 이였으면 메소드내에서 one,two가 a,b의 주소값을 받아 서로 값이 바뀌니 메소드 수행을 하고나서도 a,b가 바뀌어 있을 것이다.
 
@@ -189,7 +194,7 @@ public class Diffrence {
 }
 ```
 결과값은  
-swap() 호출 전 : a = 10, b = 20
+swap() 호출 전 : a = 10, b = 20  
 swap() 호출 후 : a = 20, b = 10
 
 이렇게 값이 바뀌는 걸 볼 수 있다.
@@ -200,7 +205,7 @@ swap() 호출 후 : a = 20, b = 10
 
 ![IMAGES](../images/swap후2.png)
 
-이렇게 참조 되어지는 값을 바꾸어 주어 마치 call by reference가 이루어진 것 처럼 보인다.
+이렇게 참조 되어지는 값을  마치 call by reference가 이루어진 것 처럼 보인다.
 
 <br>
 
