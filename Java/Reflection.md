@@ -23,7 +23,7 @@
 
 > 1) Parent.java
 
-```
+```java
 public class Parent {
     private String str1 = "1";
     public String str2 = "2";
@@ -49,7 +49,7 @@ public class Parent {
 
 > 2) Child.java
 
-```
+```java
 public class Child extends Parent {
     public String cstr1 = "1";
     private String cstr2 = "2";
@@ -79,7 +79,7 @@ public class Child extends Parent {
 
 > 1) 클래스명 조회
 
-```
+```java
 Class clazz = Child.class;
 System.out.println("Class name: " + clazz.getName()); // Class name: test.Child
 ```
@@ -92,7 +92,7 @@ Class 객체는 Class 또는 Interface 를 가리킨다.
 
 \- package 포함 필수
 
-```
+```java
 Class clazz2 = Class.forName("test.Child");
 System.out.println("Class name: " + clazz2.getName()); // Class name: test.Child
 ```
@@ -103,7 +103,7 @@ System.out.println("Class name: " + clazz2.getName()); // Class name: test.Child
 
 > 1) 인자 없는 생성자 조회
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Constructor constructor = clazz.getDeclaredConstructor();
 System.out.println("Constructor: " + constructor.getName()); // Constructor: test.Child
@@ -115,7 +115,7 @@ System.out.println("Constructor: " + constructor.getName()); // Constructor: tes
 
 \- getDeclaredConstructor(Param) : Param의 타입과 일치하는 생성자를 조회한다.
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Constructor constructor2 = clazz.getDeclaredConstructor(String.class);
 System.out.println("Constructor(String): " + constructor2.getName()); // Constructor(String): test.Child
@@ -125,7 +125,7 @@ System.out.println("Constructor(String): " + constructor2.getName()); // Constru
 
 > 3) 모든 생성자 조회
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Constructor constructors[] = clazz.getDeclaredConstructors();
 for (Constructor cons : constructors) {
@@ -139,7 +139,7 @@ for (Constructor cons : constructors) {
 
 > 4) public 생성자만 조회
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Constructor constructors2[] = clazz.getConstructors();
 for (Constructor cons : constructors2) {
@@ -158,7 +158,7 @@ for (Constructor cons : constructors2) {
 
 > 1) 이름으로 메서드 조회
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Method method1 = clazz.getDeclaredMethod("method4", int.class);
 System.out.println("Find out method4 method in Child: " + method1);
@@ -169,7 +169,7 @@ System.out.println("Find out method4 method in Child: " + method1);
 
 \- 인자가 없는 경우는 null로 전달
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Method method1 = clazz.getDeclaredMethod("method4", null);
 ```
@@ -178,7 +178,7 @@ Method method1 = clazz.getDeclaredMethod("method4", null);
 
 \- 메소드가 존재하지 않을 경우 에러 발생
 
-```
+```java
 NoSuchMethodException
 ```
 
@@ -186,7 +186,7 @@ NoSuchMethodException
 
 > 2) 인자가 2개 이상일 경우 배열로 전달
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Class partypes[] = new Class[1];
 partypes[0] = int.class;
@@ -197,7 +197,7 @@ Method method = clazz.getDeclaredMethod("method4", partypes);
 
 > 3) 모든 메서드 조회
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Method methods[] = clazz.getDeclaredMethods();
 for (Method method : methods) {
@@ -211,7 +211,7 @@ for (Method method : methods) {
 
 > 4) public 메서드 조회 (상속받은 메서드 포함)
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Method methods2[] = clazz.getMethods();
 for (Method method : methods2) {
@@ -238,7 +238,7 @@ for (Method method : methods2) {
 
 > 1) 이름으로 필드 조회
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Field field = clazz.getDeclaredField("cstr1");
 System.out.println("Find out cstr1 field in Child: " + field);
@@ -249,7 +249,7 @@ System.out.println("Find out cstr1 field in Child: " + field);
 
 > 2) 모든 필드 조회
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Field fields[] = clazz.getDeclaredFields();
 for (Field field : fields) {
@@ -263,7 +263,7 @@ for (Field field : fields) {
 
 > 3) public 필드 조회 (상속받은 클래스 포함)
 
-```
+```java
 Class clazz = Class.forName("test.Child");
 Field fields2[] = clazz.getFields();
 for (Field field : fields2) {
@@ -279,7 +279,7 @@ for (Field field : fields2) {
 
 > 1) Method.invoke() 로 메서드 호출 
 
-```
+```java
 Child child = new Child();
 Class clazz = Class.forName("test.Child");
 Method method = clazz.getDeclaredMethod("method4", int.class);
@@ -301,7 +301,7 @@ System.out.println("return value: " + returnValue);
 
 \- getDeclaredMethod는 상속받은 클래스의 정보를 가져오지 않기 때문에 Parent에 대한 클래스 정보를 가져와야 한다.
 
-```
+```java
 Child child = new Child();
 Class clazz = Class.forName("test.Parent");
 Method method = clazz.getDeclaredMethod("method1");
@@ -312,7 +312,7 @@ method.invoke(child);
 
 \- 에러가 발생한다. 이유는 호출하려는 method1()이 private 이기 때문이다.
 
-```
+```java
 Exception in thread "main" java.lang.IllegalAccessException: Class test.Test can not access a member of class test.Parent with modifiers "private"
 	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
 	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
@@ -325,7 +325,7 @@ Exception in thread "main" java.lang.IllegalAccessException: Class test.Test can
 
 \- 해결방법 : setAccessible(true)로 설정하여 private 메서드에 접근가능하도록 한다.
 
-```
+```java
 Child child = new Child();
 Class clazz = Class.forName("test.Parent");
 Method method = clazz.getDeclaredMethod("method1");
@@ -339,7 +339,7 @@ method.invoke(child);
 
 > 1) 객체의 변수를 변경
 
-```
+```java
 Child child = new Child();
 Class clazz = Class.forName("test.Child");
 Field fld = clazz.getField("cstr1");
@@ -359,7 +359,7 @@ System.out.println("child.cstr1: " + fld.get(child));
 
 > 예제 파일 생성
 
-```
+```java
 public class StaticExample {
     public static String EXAMPLE = "Example";
 
@@ -374,7 +374,7 @@ public class StaticExample {
 
 > 1) static 메서드 호출
 
-```
+```java
 Class clazz = Class.forName("test.StaticExample");
 Method method = clazz.getDeclaredMethod("getSquare", int.class);
 method.invoke(null, 10); //  객체를 전달하는 인자에 null
@@ -384,7 +384,7 @@ method.invoke(null, 10); //  객체를 전달하는 인자에 null
 
 > 2) static 필드 조회
 
-```
+```java
 Class clazz = Class.forName("test.StaticExample");
 Field fld = clazz.getDeclaredField("EXAMPLE");
 fld.set(null, "Hello, World"); // 객체로 전달되는 인자에 null
