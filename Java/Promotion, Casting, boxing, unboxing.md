@@ -118,131 +118,43 @@ parent 변수는 Parent 클래스 형태의 변수지만, 태생이 Child 인스
 
 <br>
 
-## call by value vs call by reference
 
-### Call by value
+## boxing, unboxing
 
-메소드 호출 시에 사용되는 인자의 메모리에 저장되어 있는 값(value)을 복사하여 보낸다.  
-`int a = 3`이 있으면 메소드에서 인자값을 받을 때 a라는 자체에 주소를 받는게 아니라 a의 값인 3을 받아 처리하는 방식이다.
+![IMAGES](../images/포장클래스.png)
 
-아래에 예시는 call by value에 대한 설명이다.
+박싱(boxing)이란 기본형을 참조형으로 변환하는 것이고 언박싱(unboxing)이란 반대로 참조형을 기본형으로 바꾸는 것이다.
 
-```java
-public class Diffrence {
-    
-    static void swapS(String one, String two) {
-        String temp = one;
-        one = two;
-        two = temp;
-    }
-    
-    public static void main(String args[]) {
-        String a = new String("안녕");
-        String b = new String("잘가");
-
-        System.out.println("Before");
-        System.out.println(a+b); // 안녕잘가
-        swapS(a,b);
-        System.out.println("After");
-        System.out.println(a+b); // 안녕잘가
-    }
-}
-```
-
-스왑 메소드를 이용해서 서로를 바꿔준 것 같지만 바뀌지 않는다.
-
-왜냐하면 String one에는 a에 주소가 아닌 a값에 주소가 복사되고 마찬가지로 two에도 b의 주소가 아닌 b값에 주소가 복사되어진다.
-
-직접적인 참조를 넘긴 게 아닌, 주소 값을 복사해서 넘기기 때문에 자바에서는 기본형, 참조형 모두 call by value 방식을 사용한다.
-
-아래 예시에서는 참조형을 예로 들겠다.
-
-![IMAGES](../images/swap전.png)
-
-이렇게 메인 메소드의 a,b와 swapS 메소드의 one, two는 서로 같은 값을 참조할 뿐이다.
-
-![IMAGES](../images/swap후.png)
-
-그러므로 swap메소드를 실행해도 main값에 영향을 주지 못한다.
-
-만약 call by reference 방식 이였으면 메소드내에서 one,two가 a,b의 주소값을 받아 서로 값이 바뀌니 메소드 수행을 하고나서도 a,b가 바뀌어 있을 것이다.
-
-이러한 효과를 내는 방법은 있다.
+그리고 JDK 1.5 부터는 이것을 자동으로 해주는 기능이 추가되었다.
 
 ```java
-public class Diffrence {
-    int value;
-    
-    Diffrence(int value) {
-        this.value = value;
-    }
-    
-    public static void swap(Diffrence one, Diffrence two) {
-        int temp = one.value;
-        one.value = two.value;
-        two.value = temp;
-    }
-    
+public class Test {
     public static void main(String[] args) {
-        Diffrence a = new Diffrence(10);
-        Diffrence b = new Diffrence(20);
-
-        System.out.println("swap() 호출 전 : a = " + a.value + ", b = " + b.value);
-        swap(a,b);
-        System.out.println("swap() 호출 후 : a = " + a.value + ", b = " + b.value);
+        Integer testInteger = new Integer(123);
+        int testInt = 123;
+        
+        int a = (int)testInteger; // 언박싱(unboxing)
+        int b = testInteger; // 오토언박싱(auto unboxing)
+        int c = (Integer)testInt; // 박싱(boxing)
+        int d = testInt; // 오토박싱(auto boxing)
     }
 }
 ```
-결과값은  
-swap() 호출 전 : a = 10, b = 20  
-swap() 호출 후 : a = 20, b = 10
 
-이렇게 값이 바뀌는 걸 볼 수 있다.
+__왜 Boxing을 지양해야 할까?__
 
-![IMAGES](../images/swap전2.png)
+Boxing을 지양해야 하는 이유는 비용이 추가적으로 발생하기 때문이다.
 
-마찬가지로 one과 two는 값의 주소를(call by value) 복사 받아 같은 인스턴스를 참조하는 것 이지만
+Boxing한 값(Wrapper class)은 reference Type 이므로 Heap영역에 저장된다.
 
-![IMAGES](../images/swap후2.png)
-
-이렇게 참조 되어지는 값을  마치 call by reference가 이루어진 것 처럼 보인다.
-
-<br>
-
-## Autoboxing vs Unboxing
-
-### Autoboxing
-
-자바 컴파일러가 primitive data type을 그에 상응하는 wrapper class로 자동 변환 시켜주는 것을 의미한다. 예를 들어 int를 Integer로, double을 Double로 변환 시키는 것을 의미한다.
+그렇기 때문에, primitive Type을 가져오려고 할 때도 Wrpper class로 인해 메모리를 추가적으로 탐색 해야하는 과정이 필요하기 때문이다.
 
 ```java
-public static void main(String[] args) {
-    int i = 7;
-    autoBoxing(i);
-}
-
-public static void autoBoxing(Integer I) {
-    System.out.println(I);
-}
-```
-위 코드는 int를 Integer로 변환시키는 예제이다.
-
-### Unboxing
-
-자바 컴파일러가 wrapper class를 primitive data type 으로 자동 변환 시켜주는 것을 말한다.
-
-```java
-public static void main(String[] args) {
-    Integer i = new Integer(7);
-    unBoxing(i);
-}
-
-public static void unBoxing(int i) {
-    System.out.println(i);
-}
+primitive Type = Stack에서 바로 조회
+boxing된 reference Type = Stack에서 조회 + Heap 영역까지 조회
 ```
 
-위 코드는 Integer를 int로 변환 시키는 예제이다.
+위와 같은 이유로 원시타입(Primitive Type)이 성능상 이점을 가져가게 된다.
 
 <br>
 
@@ -258,4 +170,4 @@ https://mommoo.tistory.com/51
 
 https://jamesdreaming.tistory.com/154
 
-https://sleepyeyes.tistory.com/11
+https://n1tjrgns.tistory.com/290
