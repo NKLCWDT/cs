@@ -621,6 +621,22 @@ Pluggable Annotation Processing API 의 핵심은 Annotation Processor 로, 일�
 
 > [Annotation Processor 를 활용한 @BuilderProperty 만들기 예제](https://www.baeldung.com/java-annotation-processing-builder)
 
+## QNA
+
+### RetentionPolicy CLASS 정책이 필요한 이유
+
+- 사용 예
+  - `Lombok 의 @NonNull`
+- CLASS 정책이 필요한 이유
+  - Maven/Gradle로 다운받은 라이브러리와 같이 jar 파일에는 소스가 포함되어있지 않다는 점이다. class 파일만 포함되어있다 (Download Sources 옵션은 논외)
+  - 즉, class 파일만 존재하는 라이브러리 같은 경우에도 타입체커, IDE 부가기능 등을 사용할수 있으려면 CLASS 정책이 필요하게 된다. SOURCE 정책으로 사용한다면 컴파일된 라이브러리의 jar 파일에는 어노테이션 정보가 남아있지 않기 때문이다.
+  - 그외에도 클래스 로딩 시 무언가를 하고 싶은 경우에도 사용될 수도 있다.
+
+### @Inherited 가 적용된 어노테이션
+
+- Ex. @SpringBootTest 등
+- 상위 클래스에서 @SpringBootTest 적용하고, setup, teardown 등을 각 테스트에서 공통으로 처리해야할 기능으로 분류해둔다음, 하위 클래스에서는 상위 클래스를 상속 받아서 사용하기만 하면 된다.
+
 ## Referneces
 
 - https://www.nextree.co.kr/p5864/
@@ -633,3 +649,4 @@ Pluggable Annotation Processing API 의 핵심은 Annotation Processor 로, 일�
 - http://hannesdorfmann.com/annotation-processing/annotationprocessing101/
 - https://pluu.github.io/blog/android/2015/12/24/annotation-processing-api/
 - https://programmer.group/pluggable-annotation-processing-api.html
+- https://jeong-pro.tistory.com/234
