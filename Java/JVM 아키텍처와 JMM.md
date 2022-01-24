@@ -71,7 +71,7 @@ __1) Loading__
 클래스 로더의 종류는 세가지가 있다.
 
 - Bootstrap ClassLoader
-  - `JAVA_HOME\lib` 에 있는 코어 자바 API를 제공한다. 최상위 우선순위를 가진 클래스 로더
+  - `JAVA_HOME\lib` 에 있는 코어 자바 API를 제공한다.
 - Extension Class Loader
   - `JAVA_HOME\lib\ext` 폴더 또는 java.ext.dirs 시스템 변수에 해당하는 위치에 있는 클래스를 읽는다.
 - Application Class Loader (System Class Loader 라도고 부른다.)
@@ -90,7 +90,7 @@ public class App {
 }
 ```
 
-가장 부모 클래스로더부터 필요한 클래스를 읽어들이는데, Application ClassLoader에서도 읽어들이지 못하면 ClassNotFoundException이 발생한다.
+클래스를 찾을 때 Application 부터 Bootstrap 순서로 위임하듯이 클래스를 찾게된다.
 
 
 __2) Linking__  
@@ -197,7 +197,30 @@ Non - Heap 영역은 Permanent Generation를 포함하고 있다. JRE에 포함�
 
 ![IMAGES](../images/java8JVM.png)
 
-Java8 이전에는 Metaspace 영역이 아닌 Permanent 영역이 존재하였다. Permanent영역은 Class의 Meta정보나 Method의 Meta정보, Static 변수와 상수 정보들이 저장되는 공간으로 활용되었다. 하지만 Java8 버전부터는 기존의 Permanent 영역이 Native 영역으로 이동하여 Metaspace 영역으로 변경되었다.
+JVM 벤더마다 다르지만, HotSpot에선 Method Area를 Permanent Generation이라고 부른다. Java8 부터는 HotSpot에서 JRockit과 일치시키는 과정으로 Perm 영역이 Native 영역으로 이동하여 Metaspace로 변경되었다. 기존 Perm 영역에 존재하던 Static Object는 Heap 영역으로 옮겨져서 GC의 대상이 최대한 될 수 있도록 하였다.
+
+변경된 사항을 표로 정리하면
+
+| | Java7 | Java8 |
+| --- | --- | --- |
+| Class 메타 데이터 | 저장 | 저장 |
+| Method 메타 데이터 | 저장 | 저장 |
+| Static Object 변수, 상수 | 저장 | Heap 영역으로 이동 |
+| 메모리 튜닝 | Heap, Perm 영역 튜닝 | Heap 튜닝, Native 영역은 OS가 동적 조정 |
+
+__Perm이 제거됐고 Metaspace 영역이 추가된 이유?__
+
+Heap영역은 JVM에 의해 관리된 영역이며, Native 메모리는 OS레벨에서 관리하는 영역이므로 개발자는 영역 확보의 상한을 크게 의식할 필요가 없어지게 되는 장점이 있어 변경되었다.
+
+__Native Memory 구조?__
+
+> Native Memory는 Native Method Stack + C heap 으로 이루어진 것 같습니다.   
+> (정확한 내용을 못 찾아 개인적인 생각이 들어있습니다.)  
+> c heap 이란? : https://www.thegeekdiary.com/difference-between-the-java-heap-and-native-c-heap/  
+> native memory 또는 c heap 이란? : https://stackoverflow.com/questions/32667299/what-is-native-memory-or-c-heap
+
+
+
 
 __3. Cache Memory__
 
