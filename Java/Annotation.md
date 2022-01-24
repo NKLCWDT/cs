@@ -440,11 +440,11 @@ class AnnotationTest {
 
         Class<Team> teamClass = Team.class;
 
-        // User Dto Annotation = @reflection.study.annotation.code.Dto()
-        log.info("User Dto Annotation = {}", teamClass.getAnnotation(Dto.class));
+        // Team Dto Annotation = @reflection.study.annotation.code.Dto()
+        log.info("Team Dto Annotation = {}", teamClass.getAnnotation(Dto.class));
 
-        // User Dto Annotation = null
-        log.info("User Dto Annotation = {}", teamClass.getAnnotation(Dao.class));
+        // Team Dao Annotation = null
+        log.info("Team Dao Annotation = {}", teamClass.getAnnotation(Dao.class));
     }
 }
 ```
