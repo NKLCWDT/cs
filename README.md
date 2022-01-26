@@ -233,3 +233,11 @@
 - [Garbage Collection](https://github.com/NKLCWDT/cs/blob/main/Java/GarbageCollection.md)
 - [객체지향 언어의 특징](https://github.com/NKLCWDT/cs/blob/main/Java/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
   - 캡슐화, 상속, 다형성
+- [클래스](https://github.com/NKLCWDT/cs/blob/main/Java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3.md)
+- [인터페이스](https://github.com/NKLCWDT/cs/blob/main/Java/%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
+- [데이터 타입](https://github.com/NKLCWDT/cs/blob/main/Java/java%20%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%83%80%EC%9E%85.md)
+- [Call by value vs Call by reference](https://github.com/NKLCWDT/cs/blob/main/Java/call%20by%20value%2C%20call%20by%20reference.md)
+- [Promotion, Casting](https://github.com/NKLCWDT/cs/blob/main/Java/Promotion%2C%20Casting%2C%20boxing%2C%20unboxing.md)
+  - Boxing, Unboxing
+- [Reflection](https://github.com/NKLCWDT/cs/blob/main/Java/Reflection.md)
+- [Annotation](https://github.com/NKLCWDT/cs/blob/main/Java/Annotation.md)
