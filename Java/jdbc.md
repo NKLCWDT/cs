@@ -179,6 +179,20 @@ Spring Framework는 여러가지 Spring JDBC접근 방법을 제공한다.
 
 이 중에서 JDBC Template class가 전형적인 Spring JDBC 접근 방법이며 가장 인기가 좋다. 
 
+Q. Spring JDBC 에서 사용하는 JDBC Driver는 무엇인가요?
+Spring JDBC에서도 datasource설정시에 무슨 driver를 사용할 것인지 정할 수 있어요.
+
+```java
+<context:property-placeholder location="com/spring/props/jdbc.properties"/>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+  </bean>
+```
+
 
 <br><br><br>
 > 참고자료
