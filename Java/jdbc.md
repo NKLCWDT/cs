@@ -21,7 +21,7 @@ Java프로그램에서 데이터베이스에 접근할 수 있도록 제공하�
 Java 어플리케이션이 데이터베이스와 연결할 수 있게 해준다. 총 4가지 종류의 JDBC driver가 있다. 
 
 ### JDBC-ODBC bridge driver
-<img src="/images/jdbcodbcDriver.png" width="350" height="350"/><br> 
+<img src="/images/jdbcodbcDriver.png" width="550" height="350"/><br> 
 
 - 이 드라이버는 ODBC드라이버를 사용해서 데이터베이스에 연결한다. 
 - JDBC 메서드들을 ODBC의 함수 들로 바뀌는 과정을 거쳐야 하기 때문에 성능이 저하된다.
@@ -32,7 +32,7 @@ Java 어플리케이션이 데이터베이스와 연결할 수 있게 해준다.
 <br>
 
 ### Native API driver
-<img src="/images/nativeDriver.png" width="350" height="350"/><br> 
+<img src="/images/nativeDriver.png" width="550" height="350"/><br> 
 - JDBC-ODBC bridge driver에서 ODBC 부분이 Native API로 대처되었다. 
 - Native API는 특정 데이터베이스를 대상으로 하며 데이터베이스의 client측 라이브러리를 사용한다. 
 - JDBC에 들어온 호출 내용은 oracle과 같이 각 DBMS시스템에 맞춰 변환해서 전달한다. 
@@ -47,7 +47,7 @@ Java 어플리케이션이 데이터베이스와 연결할 수 있게 해준다.
 <br>
 
 ### Network Protocol Driver
-<img src="/images/networkProtocolDriver.png" width="350" height="350"/><br> 
+<img src="/images/networkProtocolDriver.png" width="550" height="350"/><br> 
 
 - JDBC driver에 들어온 호출 내용을 middleware(중간 서버)에 보낸다. 
 - 여기서 middle ware(중간 서버)가 각자 맞는 DB에 명령어를 변환해 전송한다. 
@@ -63,7 +63,7 @@ Java 어플리케이션이 데이터베이스와 연결할 수 있게 해준다.
 <br>
 
 ### Thin Driver
-<img src="/images/thinDriver.png" width="350" height="350"/><br> 
+<img src="/images/thinDriver.png" width="550" height="350"/><br> 
 - 100% 자바로 작성되었다.
 - JDBC driver에 들어온 호출 내용을 바로 각 데이터베이스로 전송하는 방식이다.
 - 요즘 가장 많이 사용되는 방식
@@ -151,7 +151,7 @@ GFG.executeUpdate();
 기존에 제공하던 JDBC API에서는 error handling, database연결 및 연결 닫기 등을 직접해줘야 하는 번거러움이 있었다. 
 
 Spring JDBC 프레임워크는 이런 요소들을 신경 쓸 필요 없게 해준다.<br>
-<img src="/images/springJdbc2.png" width="350" height="350"/><br> 
+<img src="/images/springJdbc2.png" width="550" height="350"/><br> 
 
 
 __Spring JDBC가 하는일__  
@@ -163,7 +163,7 @@ __Spring JDBC가 하는일__
 - Transaction 처리
 
 __그렇다면, 개발자는 어떤일을 해야할까?__  
-<img src="/images/springJdbc.png" width="350" height="350"/><br> 
+<img src="/images/springJdbc.png" width="550" height="350"/><br> 
 
 1. datasource설정  
 데이터베이스와 연결하기 위해 DB server에 관한 property를 설정해준다. 
@@ -180,6 +180,7 @@ Spring Framework는 여러가지 Spring JDBC접근 방법을 제공한다.
 이 중에서 JDBC Template class가 전형적인 Spring JDBC 접근 방법이며 가장 인기가 좋다. 
 
 
+<br><br><br>
 > 참고자료
 - https://m.blog.daum.net/bigdown/112
 - https://ko.myservername.com/java-substring-method-tutorial-with-examples
