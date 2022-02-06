@@ -134,6 +134,7 @@ GFG.executeUpdate("CREATE TABLE STUDENT(ID NUMBER NOT NULL, NAME VARCHAR)");
 
 ```java
 //PreparedStatement 객체 생성
+//데이터베이스로 쿼리문이 보내지며 이때 데이터베이스 엔진이 compile한다.
 PreparedStatement GFG = con.prepareStatement("update STUDENT set NAME = ? where ID = ?");
   
 //첫번째 ?에 대한 값을 넣는다.
@@ -142,7 +143,7 @@ GFG.setString(1, "RAM");
 //두번째 ?에 대한 값을 넣는다.
 GFG.setInt(2, 512);     
  
-//PreparedStatement를 실행한다.
+//PreparedStatement를 실행한다. 이때는 실행만 되지 compile되지 않음.
 GFG.executeUpdate(); 
 ```
 <br>
