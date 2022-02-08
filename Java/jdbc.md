@@ -134,6 +134,7 @@ GFG.executeUpdate("CREATE TABLE STUDENT(ID NUMBER NOT NULL, NAME VARCHAR)");
 
 ```java
 //PreparedStatement 객체 생성
+//데이터베이스로 쿼리문이 보내지며 이때 데이터베이스 엔진이 compile한다.
 PreparedStatement GFG = con.prepareStatement("update STUDENT set NAME = ? where ID = ?");
   
 //첫번째 ?에 대한 값을 넣는다.
@@ -142,7 +143,7 @@ GFG.setString(1, "RAM");
 //두번째 ?에 대한 값을 넣는다.
 GFG.setInt(2, 512);     
  
-//PreparedStatement를 실행한다.
+//PreparedStatement를 실행한다. 이때는 실행만 되지 compile되지 않음.
 GFG.executeUpdate(); 
 ```
 <br>
@@ -178,6 +179,20 @@ Spring Framework는 여러가지 Spring JDBC접근 방법을 제공한다.
 4. SimpleJdbcInsert 및 SimpleJdbcCall
 
 이 중에서 JDBC Template class가 전형적인 Spring JDBC 접근 방법이며 가장 인기가 좋다. 
+
+Q. Spring JDBC 에서 사용하는 JDBC Driver는 무엇인가요?
+Spring JDBC에서도 datasource설정시에 무슨 driver를 사용할 것인지 정할 수 있어요.
+
+```java
+<context:property-placeholder location="com/spring/props/jdbc.properties"/>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+  </bean>
+```
 
 
 <br><br><br>
