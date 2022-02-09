@@ -99,7 +99,7 @@ void deepCopy() throws CloneNotSupportedException{
 }
 ```
 
-clone() 재정의는 조심해서 해야한다. 그리고, cloneable을 재정의해 clone()을 구현하는것 보다 복사 생성자나 복사 팩토리를 이용해 Deep Copy를 하는것이 좋다고 한다. [자세한 내용](https://jackjeong.tistory.com/30)
+clone() 재정의는 조심해서 해야한다. 그리고, cloneable을 재정의해 clone()을 구현하는것 보다 복사 생성자나 복사 팩토리를 이용해 Deep Copy를 하는것이 좋다고 한다. [자세한 내용](https://jackjeong.tistory.com/30)
 
 <img src="/images/deepCopy.png" width="550" height="350"/><br>   
 
@@ -114,7 +114,7 @@ clone() 재정의는 조심해서 해야한다. 그리고, cloneable을 재정�
 Shallow Copy 와 Deep Copy둘다 섞어서 쓰는 방법이다. 처음에는 shallow Copy를 사용해서 객체를 복사한다. 이후에 기존에 있던 객체가 바뀔때 해당 객체가 공유되고 있는지 확인 후에 필요시에는 Deep Copy를 한다.  -->
 
 ## equals메서드
-두 객체가 동일한지 검사해 그 결과를 boolean값으로 알려주는 역할을 한다. 모든 클래스의 부모인 objet class의 메서드이다. 
+두 객체가 동일한지 검사해 그 결과를 boolean값으로 알려주는 역할을 한다. 모든 클래스의 부모인 object class의 메서드이다. 
 
 ```java
 public static void main(String[] args){
@@ -138,7 +138,20 @@ public static void main(String[] args){
 이렇게 두 객체의 주소값이 같은지 확인한다. 여기서 equals 메서드를 이용해서 두 사람의 이름이 같으면 true를 결과로 나오게 하기 위해서는 Student class에서 equals메서드를 오버라이딩 하면 된다.
 
 String클래스 또한 equals메서드를 오버라이딩해서 equals로 String 값이 같은지 비교할 수 있다.
+
+> 이처럼 equals메서드를 필요에 따라 오버라이딩해서 사용할 수 있다.
+
 <br>
+
+
+> __Object 클래스에 정의되어 있는 equals__  
+```java
+public boolean equals(Object obj){
+    return(this == obj);
+}
+```
+이렇게 Object클래스 내부에 있는 equals메서드를 보면 객체의 참조값을 서로 비교한 후 결과를 return 한다.
+
 
 ## hashCode메서드
 heap에 저장된 객체의 메모리 주소값을 해싱기법을 사용해서 변환해 생성한 객체의 고유값이다. 일반적으로는 다른 두 객체가 같은 해쉬코드를 가질 수 있지만, Object클래스에 정의된 hashCode메서드는 객체의 주소값을 이용해서 해시코드를 만들어 반환하기 때문에 한번의 실행에서 서로 다른 두 객체는 같은 해시 코드를 가질 수 없다.
