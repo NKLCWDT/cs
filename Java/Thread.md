@@ -138,6 +138,22 @@ public interface Callable<V> {
 
 Future 를 사용하려면 시간이 오래 걸리는 작업을 `Callable` 객체 내부로 감싼 다음에 `ExecutorService` 에 제출해야 한다.
 
+## ExecutorService
+
+ExecutorService 는 병렬작업 시 여러개의 작업을 효율적으로 처리하기 위해 제공되는 JAVA 라이브러리이다.
+통상적으로 작업을 분리하고 수행하는 작업을 직접 구현하고자 하면 Thread 를 생성해서 작업을 처리하고, 처리가 완료되면 해당 Thread 를 직접 ThreadPool 이 있다면 반환해주거나, 혹은 Thread 를 제거하는 작업을 진행해야한다.
+
+ExecutorService 는 쉽게 ThreadPool 을 구현할 수 있어서 이러한 불편함을 개선해준다. 
+
+- __newFixedThreadPool(int)__
+    - 인자 개수만큼 고정된 쓰레드풀을 만든다.
+- __newCachedThreadPool()__
+    - 필요할 때, 필요한 만큼 쓰레드풀을 생성한다. 이미 생성된 쓰레드를 재활용할 수 있기 때문에 성능상의 이점이 있을 수 있다.
+- __newScheduledThreadPool(int)__
+    - 일정 시간 뒤에 실행되는 작업이나, 주기적으로 수행되는 작업이 있다면 ScheduledThreadPool 을 고려해볼 수 있다.
+- __newSingleThreadExecutor()__
+    - 쓰레드 1개인 ExecutorService 를 리턴한다. 싱글 쓰레드에서 동작해야 하는 작업을 처리할 때 사용한다.
+
 ### 자바 8 이전의 코드
 
 ```java
@@ -216,6 +232,15 @@ System.out.println("Price returned after " + retrievalTime + " msecs");
 
 > [Future vs CompletableFuture](https://www.linkedin.com/pulse/java-8-future-vs-completablefuture-saral-saxena)
 
+## ExecutorService vs  CompletableFuture
+
+- 서로 제공하는 API 가 다르다.
+- 비동기를 지원한다는 점은 동일하다.
+- 메서드 체이닝을 지원한다는 점에서 CompletableFuture 가 가독성이 더 좋다.
+    - [CompletableFuture Method Chaining Source](https://github.com/kwon37xi/research-java-9-10-11/blob/main/src/main/java/kr/pe/kwonnam/research/java/completablefuture/CompletableFutureCollector.java)
+
+> https://stackoverflow.com/questions/52303472/executorservice-vs-completablefuture
+
 # Sync, Async, Blocking, Non-Blocking
 
 - __async__
@@ -238,13 +263,6 @@ System.out.println("Price returned after " + retrievalTime + " msecs");
     - 비동기 API 에서는 메서드가 즉시 반환되며 끝내지 못한 나머지 작업을 호출자 스레드와 동기적으로 실행될 수 있도록 다른 스레드에 할당한다. 이와 같은 비동기 API 를 사용하는 상황을 `비블록 호출(non-blocking call)` 이라고 한다.
 
 ## Blocking I/O vs Non-Blocking I/O
-
-웹 애플리케이션에서 외부 API 를 호출하여 사용하는 경우 `RestTemplate` 혹은 `WebClient` 를 사용할 것이다. RestTemplate 은 동기 방식으로 동작하며, WebClient 는 비동기 방식으로 동작한다.
-
-- __Blocking__
-    - 다른 메서드를 실행하고 종료를 기다림 (Block)
-- __Non-Blocking__
-    - 다른 메서드를 실행하고 종료를 기다리지 않음 (Non-block)
 
 ### non-blocking API는 요청 처리가 완료된것을 어떻게 통지할까?
 
@@ -271,7 +289,6 @@ System.out.println("Price returned after " + retrievalTime + " msecs");
     - 즉, 이벤트 루프를 통해서 socket 에서 읽을 데이터가 있는지 계속 확인한다.
 - 리눅스 epoll, io_uring (자바 NIO에서 윈도우는 select, 맥은 kqueue, 리눅스는 epoll을 지원)
 
-
 ## References
 
 - [이것이 자바다](http://www.yes24.com/Product/Goods/15651484)
@@ -284,3 +301,5 @@ System.out.println("Price returned after " + retrievalTime + " msecs");
 - https://stackoverflow.com/questions/1241429/blocking-io-vs-non-blocking-io-looking-for-good-articles
 - https://alwayspr.tistory.com/44
 - https://github-wiki-see.page/m/GANGNAM-JAVA/JAVA-STUDY/wiki/Blocking,Non-Blocking,-Synchronous,-Asynchronous
+- https://stackify.dev/222347-executorservice-vs-completablefuture
+- https://kwonnam.pe.kr/wiki/java/8/completable_future
