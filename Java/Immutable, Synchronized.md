@@ -2,8 +2,6 @@
 
 자바의 객체의 타입에는 Immutable(불변) 타입과 mutable(가변) 타입이 있다.
 
-객체들은 기본적으로 heap영역에 할당되고 stack영역에 래퍼런스 값을 갖는 참조변수들로 접근 가능하다,.
-
 new 연산자로 객체를 생성하면 heap 영역에 객체가 생기고 래퍼런스 값을 가지는 변수가 stack에 생길 것이다. 불변 객체라는 것은 이 객체의 값을 heap영역에서 바꿀 수 없다는 뜻이다.
 
 오직 새 객체를 만들어 래퍼런스 값을 주는 재할당만이 가능하다.
@@ -33,6 +31,8 @@ fianl을 선언해줌으로써 변경 불가능하게 만들어져 있다.
 ### 불변객체의 단점
 
 - 객체의 값이 할당될 때 마다 새로운 객체가 필요하다. 따라서 메모리 누수와 성능저하를 발생시킬 수 있다.
+
+<br>
 
 ## Synchronized
 
@@ -83,6 +83,8 @@ public void withDraw(int money) {
 }
 ```
 
+<br>
+
 ## Java의 Stack 클래스
 
 ```java
@@ -122,6 +124,8 @@ ArrayDeque 공식문서에 보면 스택구조로 사용하면 Stack 클래스�
 
 따라서 LIFO 구조를 만들기 위해 적합한 클래스는 Deque 인터페이스를 구현하는 ArrayDeque 클래스이다.
 
+<br>
+
 ## String, StringBuffer, StringBuilder
 
 ### String
@@ -157,7 +161,7 @@ __StringBuffer StringBuilder 차이점__
 
 <img width="456" alt="image" src="https://user-images.githubusercontent.com/70622731/153701580-f6305d0f-d64d-4714-9bbd-ab432c3b3e72.png">
 
-> String pool, String 생성시 new를 안쓰는이유  
+> String pool이란?, String 생성시 new를 안쓰는이유  
 > 참고 : https://dololak.tistory.com/718  
 > 참고 : https://starkying.tistory.com/entry/what-is-java-string-pool
 
