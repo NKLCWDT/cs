@@ -9,6 +9,8 @@
 
 ✔️ 오타 및 상한 기술은 Issue 를 통해 알려주세요.
 
+🚩 [QNA 형식의 질의 응답 연습](https://github.com/NKLCWDT/cs/tree/main/QNA)은 해당 링크를 통해 가능합니다.
+
 ⭐ Star나 Watching를 통한 많은 관심 부탁드립니다. :)
 
 ## 📢 Info
