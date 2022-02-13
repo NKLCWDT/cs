@@ -216,6 +216,19 @@ System.out.println("Price returned after " + retrievalTime + " msecs");
 
 > [Future vs CompletableFuture](https://www.linkedin.com/pulse/java-8-future-vs-completablefuture-saral-saxena)
 
+# Sync, Async, Blocking, Non-Blocking
+
+- __async__
+    - 작업을 실행하고 요청 스레드는 다른 작업을 실행
+    - 실행 결과를 신경쓰지 않음
+- __sync__
+    - 이벤트를 자신이 직접 처리(확인의 주체가 유저 프로세스이며, 다 될때까지 기다리거나 스스로 확인)
+    - 메소드,작업등을 실행하고 해당 메소드의 결과를 얻어올 때 까지 기다리는 방식
+- __block__
+    - 완료까지 대기(리턴되기 전까지 멈춤)
+- __non-block__
+    - 미완료라도 즉시 리턴
+
 ## 동기 API vs 비동기 API
 
 - __동기 API__
@@ -223,6 +236,41 @@ System.out.println("Price returned after " + retrievalTime + " msecs");
 이처럼 호출자는 피호출자의 `작업 완료`를 기다리며, 동기 API 를 사용하는 상황을 `블록 호출(blocking call)`이라고 한다.
 - __비동기 API__
     - 비동기 API 에서는 메서드가 즉시 반환되며 끝내지 못한 나머지 작업을 호출자 스레드와 동기적으로 실행될 수 있도록 다른 스레드에 할당한다. 이와 같은 비동기 API 를 사용하는 상황을 `비블록 호출(non-blocking call)` 이라고 한다.
+
+## Blocking I/O vs Non-Blocking I/O
+
+웹 애플리케이션에서 외부 API 를 호출하여 사용하는 경우 `RestTemplate` 혹은 `WebClient` 를 사용할 것이다. RestTemplate 은 동기 방식으로 동작하며, WebClient 는 비동기 방식으로 동작한다.
+
+- __Blocking__
+    - 다른 메서드를 실행하고 종료를 기다림 (Block)
+- __Non-Blocking__
+    - 다른 메서드를 실행하고 종료를 기다리지 않음 (Non-block)
+
+### non-blocking API는 요청 처리가 완료된것을 어떻게 통지할까?
+
+- non-blocking API 를 호출하면 호출측은 처리가 완료되었다는것을 반드시 알아야한다.
+- 호출측은 어떻게 알게될까?
+- CPU 는 인스트럭션(명령어)을 순차적으로 처리한다. 어떻게 처리가 완료되었다는것을 통지할까?
+- 운영체제 ready queue 에 들어가지 않고 바로 응답을 한다. 바로 응답하기 힘든경우 에러를 반환하는데 정상데이터를 받을 때까지 계속해서 요청을 다시 보낸다.
+- blocking 방식의 비효율적인 부분을 해결하기 위해서 non-blocking 을 사용하는데 계속해서 요청을 다시 보내면서 자원을 낭비하게 된다(시스템 호출이 빈번하게 발생)
+
+### 이벤트 통지 모델
+
+매번 호출측에서 데이터가 준비되었는지 확인하는것을 비효율적이다. 수신 버퍼나 출력 버퍼측에서 이벤트롤 통지하면 어떨까? I/O 작업 결과 반환 방식에 따라 동기,비동기 모델로 구분할 수 있다.
+
+- __Synchronous Model__
+    - I/O 작업이 진행되는 동안 유저 프로세스는 결과를 기다렸다가 이벤트를 직접 처리하는 방식
+    - notify 를 유저 프로세스(호출측)이 담당하여 주체적으로 진행하면 커널은 유저 프로세스의 요청에 수동적을 응답한다.
+- __Asynchronous Model__
+    - I/O 작업이 진행되는 동안 유저 프로세스 는 자신의 일을 하다가 이벤트 핸들러에 의해 알림이 오면 처리하는 방식이다.
+    - notify 를 커널이 담당하여 주체적으로 진행(콜백을 넘겨주는 형태)하고 호출측은 수동적인 입장에서 통지가 오면 그때 I/O 결과를 반환 받는다.
+
+### Non-Blocking I/O 는 내부에서 어떻게 처리될까?
+
+- 대부분의 non-blocking 프레임워크들은 무한루프를 통해 응답데이터가 존재하는지 지속적으로 확인한다.(poll) 이를 `이벤트 루프`라고 부른다.
+    - 즉, 이벤트 루프를 통해서 socket 에서 읽을 데이터가 있는지 계속 확인한다.
+- 리눅스 epoll, io_uring (자바 NIO에서 윈도우는 select, 맥은 kqueue, 리눅스는 epoll을 지원)
+
 
 ## References
 
@@ -233,3 +281,6 @@ System.out.println("Price returned after " + retrievalTime + " msecs");
 - https://stackoverflow.com/questions/34689709/java-threads-and-number-of-cores/34689857#34689857
 - https://javacan.tistory.com/entry/134
 - https://pjh3749.tistory.com/280
+- https://stackoverflow.com/questions/1241429/blocking-io-vs-non-blocking-io-looking-for-good-articles
+- https://alwayspr.tistory.com/44
+- https://github-wiki-see.page/m/GANGNAM-JAVA/JAVA-STUDY/wiki/Blocking,Non-Blocking,-Synchronous,-Asynchronous
