@@ -249,3 +249,8 @@
 - [Stream](#)
   - [스트림 기초](https://github.com/NKLCWDT/cs/blob/main/Java/%EC%8A%A4%ED%8A%B8%EB%A6%BC_%EA%B8%B0%EC%B4%88.md)
   - [스트림 활용](https://github.com/NKLCWDT/cs/blob/main/Java/%EC%8A%A4%ED%8A%B8%EB%A6%BC_%ED%99%9C%EC%9A%A9.md)
+- [마샬링과 직렬화](https://github.com/NKLCWDT/cs/blob/main/Java/%EB%A7%88%EC%83%AC%EB%A7%81%EA%B3%BC%20%EC%A7%81%EB%A0%AC%ED%99%94.md)
+- [제네릭](https://github.com/NKLCWDT/cs/blob/main/Java/Generic.md)
+- [POJO, JavaBeans, Entity, VO, DTO](https://github.com/NKLCWDT/cs/blob/main/Java/POJO%2C%20JavaBeans%2C%20Entity%2C%20VO%2C%20DTO.md)
+- [깊은 복사와 얕은 복사](https://github.com/NKLCWDT/cs/blob/main/Java/copy.md)
+  - equals and hashCode
