@@ -16,3 +16,7 @@
 ## Infra
 
 - [도커를 사용하는 이유](https://github.com/NKLCWDT/cs/blob/main/QNA/contents/Infra_%EB%8F%84%EC%BB%A4%EB%A5%BC%20%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%20%EC%9D%B4%EC%9C%A0_%EC%A0%95%ED%98%B8.md)
+
+## Domain
+
+- [블록체인에 대해서 설명해 주세요](https://github.com/NKLCWDT/cs/blob/main/QNA/contents/Domain_Blockchain_%EC%A0%95%ED%98%B8.md)
