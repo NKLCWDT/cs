@@ -7,6 +7,7 @@
 ## Java
 
 - [hashCode 가 모두 같다면 어떤 일이 벌어질까요?](https://github.com/NKLCWDT/cs/blob/main/QNA/contents/Java_hashCode%20%EA%B0%92%EC%9D%B4%20%EB%AA%A8%EB%91%90%20%EA%B0%99%EB%8B%A4%EB%A9%B4%3F_%EC%A0%95%ED%98%B8.md)
+- [자바의 메모리 구조에 대해서 설명해 주세요](https://github.com/NKLCWDT/cs/blob/main/QNA/contents/Java_%EB%A9%94%EB%AA%A8%EB%A6%AC%EA%B5%AC%EC%A1%B0_%EC%A0%95%ED%98%B8.md)
 
 ## Spring
 
