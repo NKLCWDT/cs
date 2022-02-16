@@ -20,3 +20,7 @@
 ## Domain
 
 - [블록체인에 대해서 설명해 주세요](https://github.com/NKLCWDT/cs/blob/main/QNA/contents/Domain_Blockchain_%EC%A0%95%ED%98%B8.md)
+
+## Git
+
+- [git merge vs git rebase](https://github.com/NKLCWDT/cs/blob/main/QNA/contents/Git_merge%20vs%20rebase_%EC%A0%95%ED%98%B8.md)
