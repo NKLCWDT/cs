@@ -8,13 +8,13 @@
 
 ### Q. 자바의 HashMap 도 메모리에 저장하는건데, 왜 Redis 를 사용하는 것일까요?
 
-- 서버가 여러대인 경우 서버마다 다른 값을 저장하기 때문에 `Consistency` 문제가 발생할 수 있습니다.
+- 서버가 여러대인 경우 서버마다 다른 값을 저장하기 때문에 Consistency 문제가 발생할 수 있습니다.
 - 또한 멀티 쓰레드 환경에서 경쟁 상태(race condition)가 발생할 수도 있습니다.
 
-이러한 Consistency 문제와 Race Condition 문제를 Redis 는 해결해 주는 것으로 알고 있습니다.
+이러한 `Consistency` 문제와 `Race Condition` 문제를 Redis 는 해결해 주는 것으로 알고 있습니다.
 
-- Redis 는 기본적으로 Single Thread 이며
-- Redis 자료 구조는 Atomic Critical Section 에 대한 동기화를 제공합니다.
+- Redis 는 기본적으로 `Single Thread` 이며
+- Redis 자료 구조는 `Atomic Critical Section` 에 대한 동기화를 제공합니다.
 - 또한 서로 다른 Transcation 의 read/write 동기화를 제공하여 원치 않은 결과가 조회되지 않도록 막아줍니다.
 
 ### Q. 레디스는 그럼 언제 사용하나요?
