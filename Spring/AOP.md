@@ -190,6 +190,25 @@ public class LogTraceAspect {
 - AOP 는 OOP 를 대체하기 위한 것이 아니라 횡단 관심사를 깔끔하게 처리하기 어려운 OOP 의 부족한 부분을 보조하는 목적으로 개발되었다.
 - 실무에서는 AOP 를 구현하기 위해 `AspectJ 프레임워크`를 주로 사용한다.
 
+## @ControllerAdvice
+
+- __@ControllerAdvice 는 특정 컨트롤러에서 발생하는 예외 처리와 같은 작업을 전역적으로 처리할 수 있게 해준다.__
+  - 즉, @ControllerAdvice 와 @ExceptionHandler 를 통해서, 기존 컨트롤러에서 처리되어야하는 `API 예외` 를 `Advice(부가 기능 로직)` 로 판단하여, 별도의 클래스에서 관리할 수 있다.
+- __Advice 에서 알 수 있듯이, AOP 를 사용한다.__
+- __Controller 에서 알 수 있듯이, Controller 를 대상으로 한다.__
+
+> Why is it called "Controller Advice"?
+> 
+> The term `Advice` comes from `Aspect-Oriented Programming (AOP)` which allows us to inject cross-cutting code (called "advice") around existing methods. A controller advice allows us to intercept and modify the return values of controller methods, in our case to handle exceptions.
+
+- __특정 경로나 어노테이션등을 @ControllerAdvice 속성에 지정할 수 있다.__
+  - @ControllerAdvice("com.reflectoring.controller")
+  - @ControllerAdvice(annotations = Advised.class)
+
+- __동작 과정__
+  - 실제로 Exception 이 발생하면 DispatcherServlet 의 processHandlerException 메서드에서 예외가 처리된다.
+  - 메서드를 쭉 타고 들어가보면 `InvocationHandlerMethod` 까지 도달하게 될 것이다. 
+
 ## References
 
 - [인프런. 스프링 핵심 원리 고급](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B3%A0%EA%B8%89%ED%8E%B8/dashboard)
