@@ -6,6 +6,8 @@ AOP 는 `위빙(Weaving)` 이라는 방법을 사용하여 부가 기능 로직(
 
 ## Compile Time Weaving(CTW)
 
+![ctw](https://user-images.githubusercontent.com/47518272/156509762-977806e8-fe56-4b1c-bd91-360f01117808.png)
+
 - __`.java` 소스 코드를 컴파일러를 사용해서 `.class` 를 만드는 시점에 부가 기능 로직을 추가할 수 있다.__
   - AspectJ 가 제공하는 특별한 컴파일러를 사용해야 한다.
   - 컴파일 된 `.class` 를 디컴파일 해보면 Aspect 관련 호출 코드가 들어간다.
@@ -16,11 +18,13 @@ AOP 는 `위빙(Weaving)` 이라는 방법을 사용하여 부가 기능 로직(
 
 ## Load Time Weaving(LTW)
 
+![ltw](https://user-images.githubusercontent.com/47518272/156509368-89dc8f98-8deb-47b9-8d09-8ff63515cd9f.png)
+
 - 자바를 실행하면 자바 언어는 .class 파일을 JVM 내부의 클래스 로더에 보관한다.
-- 이때 중간에서 .class 파일을 조작한 다음 JVM 에 올릴 수 있다.
+- 이때 중간에서 .class 파일을 조작한 다음 JVM 에 올릴 수 있다. 이 시점에 Aspect 를 적용하는 것을 LTW 라고 한다.
 - __자바 언어는 .class 를 JVM 에 저장하기 전에 조작할 수 있는 기능을 제공한다.__
   - JVM 이 제공하는 [Java Instrumentation API](https://www.baeldung.com/java-instrumentation) 를 활용하여 JVM 에 로드된 기존 바이트 코드를 변경한다.
-- 이 시점에 Aspect 를 적용하는 것을 LTW 라고 한다.
+- [참고. Spring Boot LTW Example with AspectJ](https://github.com/indrabasak/spring-loadtime-weaving-example)
 
 > 수 많은 모니터링 툴들이 이 방식을 사용한다.
 
@@ -46,6 +50,15 @@ AOP 는 `위빙(Weaving)` 이라는 방법을 사용하여 부가 기능 로직(
 > 스프링 AOP는 AspectJ의 문법을 차용하고, 프록시 방식의 AOP를 제공한다. AspectJ를 직접 사용하는 것이 아니다.
 > 
 > 스프링 AOP를 사용할 때는 @Aspect 어노테이션을 주로 사용하는데, 이 어노테이션도 AspectJ가 제공하는 어노테이션이다.
+
+### 과정
+
+![rtw](https://user-images.githubusercontent.com/47518272/156512586-0a8d16cd-2f65-419e-921d-66a93f4b45bd.png)
+
+1. `생성`: 스프링 빈 대상이 되는 객체를 생성한다. ( @Bean , 컴포넌트 스캔 모두 포함)
+2. `전달`: 생성된 객체를 빈 저장소에 등록하기 직전에 빈 후처리기에 전달한다.
+3. `후 처리 작업`: 빈 후처리기는 전달된 스프링 빈 객체를 조작하거나 다른 객체로 바뀌치기 할 수 있다.
+4. `등록`: 빈 후처리기는 빈을 반환한다. 전달 된 빈을 그대로 반환하면 해당 빈이 등록되고, 바꿔치기 하면 다른 객체가 빈 저장소에 등록된다.
 
 ## AspectJ
 
@@ -80,11 +93,18 @@ AOP 는 `위빙(Weaving)` 이라는 방법을 사용하여 부가 기능 로직(
 
 > 더 자세한 내용이 궁금하다면 [토비의 스프링3 2편, 5장. AOP 와 LTW](http://www.yes24.com/Product/Goods/4020006) 를 참고하자.
 
+## 프록시 기반 스프링 AOP vs AspectJ AOP
+
+![aopaspectj](https://user-images.githubusercontent.com/47518272/156510948-553c1a6d-3a46-4ba0-b3cf-b65a041daba5.png)
+
 ## References 
 
 - https://github.com/spring-projects/spring-boot/issues/739
 - https://martinfowler.com/eaaCatalog/
 - https://groups.google.com/g/ksug/c/s7h0ONB8tcI
 - https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/aop.html
+- https://docs.spring.io/spring-framework/docs/3.2.0.RC1/reference/html/aop.html
+- https://livebook.manning.com/book/aspectj-in-action-second-edition/chapter-8/69
+- https://www.geeksforgeeks.org/spring-boot-difference-between-aop-and-aspectj/
 - [인프런. 스프링 핵심원리 고급](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B3%A0%EA%B8%89%ED%8E%B8/dashboard)
 - [토비의 스프링 3](http://www.yes24.com/Product/Goods/4020006)
