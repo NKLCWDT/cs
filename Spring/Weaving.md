@@ -34,6 +34,9 @@ AOP 는 `위빙(Weaving)` 이라는 방법을 사용하여 부가 기능 로직(
 - 이렇게 하면 최종적으로 프록시를 통해 스프링 빈에 부가 기능을 적용할 수 있다.
 - __이것이, `스프링`에서 차용하고 있는 방식이며 `프록시 방식의 AOP` 이다.__
 - 스프링만 있으면 얼마든지 AOP 를 적용할 수 있으며, 프록시를 통해 부가 기능을 사용하는 것이다.
+- __프록시 방식을 사용하는 스프링 AOP는 스프링 컨테이너가 관리할 수 있는 `스프링 빈에만 AOP` 를 적용할 수 있다.__
+  - @Aspect 어노테이션을 붙인다고 빈으로 등록되는 것은 아니다. @Aspect 는 스프링에서 AOP 를 가능하게 해주며, 해당 어노테이션을 통해서 Proxy 객체를 만들어준다.
+  - 추가적으로 `ComponentScan`이 일어나도록 어노테이션을 추가해야한다.
 
 > [Spring AOP Docs](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/aop.html#aop-introduction-defn). Spring AOP, like other pure Java AOP frameworks, performs weaving at runtime.
 
