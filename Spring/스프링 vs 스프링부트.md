@@ -31,29 +31,29 @@ spring-boot-starter는 프로젝트에 설정해야 할 다수의 의존성들�
 - 해당 모듈들 설정에 필요한 properties 설정을 제공한다.
 
 
-<img width="729" alt="image" src="https://user-images.githubusercontent.com/70622731/156871620-45bbc495-d399-4453-b90a-79377fec524e.png">
+<img width="729" alt="image" src="https://user-images.githubusercontent.com/70622731/156871620-45bbc495-d399-4453-b90a-79377fec524e.png" width="100" height="100">
 
 spring-boot-starter-jpa 안으로 들어가 보면 이미 여러 의존성들이 정의되어 있다.
 
-<img width="689" alt="image" src="https://user-images.githubusercontent.com/70622731/156871566-091dd031-b332-4f74-a390-3c82d3591256.png">
+<img width="689" alt="image" src="https://user-images.githubusercontent.com/70622731/156871566-091dd031-b332-4f74-a390-3c82d3591256.png" width="100" height="500">
 
 maven인 경우 의존성들을 부모 자식관계로 관리하기 때문에 Spring-boot-stater-parent를 통해 각 모듈의 현재 스프링부트 버전에 가장 적합한 버전을 제공해준다.
 
-<img width="751" alt="image" src="https://user-images.githubusercontent.com/70622731/156871732-abd5a8e2-b47e-4ebf-8bb4-bec3b6b177ef.png">
+<img width="751" alt="image" src="https://user-images.githubusercontent.com/70622731/156871732-abd5a8e2-b47e-4ebf-8bb4-bec3b6b177ef.png" width="100" height="150">
 
 gradle인 경우는 io.spring.dependency-management 플러그인을 통해 각 모듈의 현재 스프링부트 버전에 가장 적합한 버전을 제공해준다.
 
-<img width="834" alt="image" src="https://user-images.githubusercontent.com/70622731/156871454-ff5ffb7c-4761-4670-9173-2d4ca7e27aa0.png">
+<img width="834" alt="image" src="https://user-images.githubusercontent.com/70622731/156871454-ff5ffb7c-4761-4670-9173-2d4ca7e27aa0.png" width="100" height="100">
 
 ### 2. 자동설정
 
 기존의 스프링은 환경설정이 복잡하고 많은 설정을 했어야 했는데(db연결할때 datasource 설정을 매번 직접했어야 했다.) 스프링부트에서는 이러한 환경설정을 @SpringBootApplication을 통해 자동설정을 해준다.
 
-<img width="879" alt="image" src="https://user-images.githubusercontent.com/70622731/156871833-67330d59-6f1d-4a85-abea-1ba2aa662263.png">
+<img width="879" alt="image" src="https://user-images.githubusercontent.com/70622731/156871833-67330d59-6f1d-4a85-abea-1ba2aa662263.png" width="100" height="200">
 
 @SpringBootApplication이 어떠한 역할을 하는지 알아보기 위해서 안으로 들어가보면
 
-<img width="1193" alt="image" src="https://user-images.githubusercontent.com/70622731/156871862-9f1b9f09-1445-431d-a21c-a2c84f2f7461.png">
+<img width="1193" alt="image" src="https://user-images.githubusercontent.com/70622731/156871862-9f1b9f09-1445-431d-a21c-a2c84f2f7461.png" width="100" height="200">
 
 위 그림과 같이 여러 어노테이션이 붙어있다.
 
@@ -101,7 +101,7 @@ war파일을 실행시킬 was를 직접 설정해주어야 한다.
 
 ### 언제 무엇을 사용해야 할까?
 
-<img width="851" alt="image" src="https://user-images.githubusercontent.com/70622731/156873087-f656cc32-a2ae-417c-b4fa-e7d3a660e92e.png">
+<img width="851" alt="image" src="https://user-images.githubusercontent.com/70622731/156873087-f656cc32-a2ae-417c-b4fa-e7d3a660e92e.png" width="100" height="400">
 
 2017년까지만 해도 SpringBoot보다 Spring MVC의 비중이 더 높았지만 시간이 흐를수록 SpringBoot 사용 비중이 커지고 있음을 확인할 수 있다.
 
