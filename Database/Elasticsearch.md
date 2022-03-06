@@ -30,7 +30,7 @@
 <br>
 
 ## 검색시스템 구성요소
-![IMAGES](../images/elasticsearch.png)
+<img width="1107" alt="image" src="https://user-images.githubusercontent.com/70622731/156922387-07cd2f0c-8a17-410f-81b2-ee85280832d4.png">
 
 - 수집기  
     수집기는 웹사이트, 블로그, 카페 등 웹에서 필요한 정보를 수집하는 프로그램이다.  
@@ -234,7 +234,7 @@ MongoDB, 카산드라 같은 일반적인 NoSQL은 역색인을 지원하지 않
 
 ## 엘라스틱서치 주요 용어
 
-![IMAGES](../images/Elasticsearch2.png)
+<img width="650" alt="image" src="https://user-images.githubusercontent.com/70622731/156922422-4d6b5e8b-3a77-429b-84c8-cb28bc46fe6f.png">
 
 ### Cluster
 클러스터란 Elasticsearch에서 가장 큰 단위이다. 하나 이상의 노드로 이루어진 노드들의 집합이다.
@@ -254,17 +254,17 @@ MongoDB, 카산드라 같은 일반적인 NoSQL은 역색인을 지원하지 않
 
 - 데이터 노드 (Data Node)  
   실제 데이터가 저장되는 노드 CRUD, 검색, 집계 연산등이 진행되기 때문에 자원을 많이사용한다.
-  ![IMAGES](../images/데이터노드.png)
+  <img width="989" alt="image" src="https://user-images.githubusercontent.com/70622731/156922440-b914ae76-f688-4ee3-9168-49dc726a017b.png">
 
 
 - 코디네이팅 노드 (Coordinating Node)  
   검색시 데이터 노드에서는 search만 하고 Aggregation 작업은 코디네이팅 노드에서 한다.
-  ![IMAGES](../images/코디네이팅노드.png)
+  <img width="997" alt="image" src="https://user-images.githubusercontent.com/70622731/156922449-f68611c7-c52c-41b9-9803-a2f2dd2cc7ba.png">
   
 
 - 인제스트 노드 (Ingest Node)  
   들어오는 데이터를 전처리를 통해 원하는 방식으로 변환하는 노드, 데이터가 많다면 성능향상에 도움
-  ![IMAGES](../images/인제스트노드.png)
+  <img width="1012" alt="image" src="https://user-images.githubusercontent.com/70622731/156922462-7b895f53-5bfe-4416-b3ed-abb7092b7ae4.png">
   
 > 노드 설정 및 이해  
 > 참고 : https://esbook.kimjmin.net/03-cluster/3.3-master-and-data-nodes
@@ -280,7 +280,7 @@ MongoDB, 카산드라 같은 일반적인 NoSQL은 역색인을 지원하지 않
 물리적 공간에 여러개의 부분들로 존재한다. 이 부분들을 샤드라고 한다.  
 프라이머리 샤드와 레플리카 샤드로 구분되는데, 프라이머리 샤드는 말 그대로 데이터의 원본과 같이 보면되고, 레플리카 샤드는 프라이머리 샤드의 복제본으로 보면된다.
 
-![IMAGES](../images/샤드.png)
+<img width="556" alt="image" src="https://user-images.githubusercontent.com/70622731/156922481-9bb7ad8c-1405-4827-a88f-a34bb7d31872.png">
 
 2개 노드, 4개 프라이머리 샤드, 1개 Replica 샤드
 
@@ -323,13 +323,13 @@ __인덱스 생성__
 
 인덱스 생성은 아래와 같이 PUT 메소드를 이용한다.
 
-![IMAGES](../images/indices.png)
+<img width="788" alt="image" src="https://user-images.githubusercontent.com/70622731/156922521-edc85bd7-2055-486f-83f5-2d2d49aa692d.png">
 
 __인덱스 삭제__  
 
 인덱스 삭제는 DELETE 메소드를 이용하고 취소가 불가능하다.
 
-![IMAGES](../images/indicesdelete.png)
+<img width="776" alt="image" src="https://user-images.githubusercontent.com/70622731/156922540-778d1602-0cef-4d9e-8c2d-6dadbc1564df.png">
 
 ### 문서 관리 API
 __문서 생성__  
@@ -337,19 +337,19 @@ __문서 생성__
 POST 메소드를 이용하고, `/인덱스이름/_doc/문서id` 순으로 입력하면 된다.  
 뒤에 문서id 부분을 입력하지 않을 경우에는 무작위 값이 들어간다.
 
-![IMAGES](../images/문서생성.png)
+<img width="802" alt="image" src="https://user-images.githubusercontent.com/70622731/156922552-725d32e4-6095-4908-b2b3-ebb4515a4674.png">
 
 __문서 조회__  
 
 문서 조회는 GET 메소드를 이용하고 문서 생성 형식과 동일하다.
 
-![IMAGES](../images/문서조회.png)
+<img width="956" alt="image" src="https://user-images.githubusercontent.com/70622731/156922568-b7c534e1-6fbf-437e-a902-99365981dc78.png">
 
 __문서 삭제__  
 
 문서 삭제는 DELETE 메소드를 이용하고 문서 생성 형식과 동일하다.
 
-![IMAGES](../images/문서삭제.png)
+<img width="803" alt="image" src="https://user-images.githubusercontent.com/70622731/156922580-c526ce3a-48be-47b1-9e81-b9faaa6a950e.png">
 
 ### 검색 API
 검색 API의 작동에는 두 가지 방식이 존재한다.
@@ -359,7 +359,7 @@ __문서 삭제__
 
 일반적으로 2번 방식을 더 많이 사용하는데, 둘을 섞어서 사용할 수도 있다.
 
-![IMAGES](../images/검색API.png)
+<img width="907" alt="image" src="https://user-images.githubusercontent.com/70622731/156922604-ceb11d71-a010-4de3-b295-c978c44cd190.png">
 
 > QueryDSL  
 > 참고 : https://victorydntmd.tistory.com/314
