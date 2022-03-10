@@ -36,7 +36,6 @@ Strategy interface for resolving method parameters into argument values in the c
 ## 장점
 
 - 여러 메서드에 공통적으로 수행해야 하는 작업을 수행함으로써 코드의 반복을 줄일 수 있다.
-- 사용자 정보를 가져오는 로직에 대한 역할과 책임을 분리시켜, 명확하게 코드를 작성할 수 있다.
 
 ## 실습
 
