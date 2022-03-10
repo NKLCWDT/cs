@@ -157,7 +157,7 @@ public class HttpEntity<T> {
 
 위와 같이 HttpHeaders를 필드타입으로 가지고 있어 @ResponseBody와 다르게 객체 안에서 Header를 설정해 줄 수 있다.
 
-ResponseEntity를 사용할 때, Constructor를 사용하기 보다는 Builder를 활용하는 것을 권장하고 있다. 그 이유는 숫자로 된 상태 코드를 넣을 때, 잘못된 숫자를 넣을 수 있는 실수 때문이다.
+ResponseEntity를 사용할 때, Constructor를 사용하기 보다는 Builder를 활용하는 것을 권장하고 있다. 그 이유는 빌더를 사용하면 유연성을 확보할 수 있으며 가독성을 높일 수 있다.
 
 ```java
 // 생성자
