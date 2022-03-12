@@ -167,11 +167,11 @@ __@Async 의 동작은 AOP 가 적용되어__ Spring Context 에서 등록된 Be
 
 # @SessionAttributes
 
-- 모델 정보를 HTTP 세션에 저장해준다.
-- 이거대신 HttpSession을 이용해서 setAttribute로 HTTP 세션에 저장할 수 도 있다.
-- @SessionAttributes를 사용하면 이 어노테이션을 설정한 이름에 해당하는 모델 정보를 자동으로 세션에 넣어준다.
+- __모델 정보를 HTTP 세션에 저장해준다.__
+- 이거대신 HttpSession 을 이용해서 setAttribute 로 HTTP 세션에 저장할 수 도 있다.
+- __@SessionAttributes 를 사용하면 이 어노테이션을 설정한 이름에 해당하는 모델 정보를 자동으로 세션에 넣어준다.__
   - 즉, @ModelAttribute를 HTTP Session에 담는다고 생각하면 된다. (단, 키값이 같은경우)
-- @ModelAttribute는 세션에 있는 데이터도 바인딩한다.
+- @ModelAttribute 는 세션에 있는 데이터도 바인딩한다.
 - 여러 화면에서 사용해야하는 객체를 공유할 때 사용한다.
   - ex) 장바구니
   - ex) 폼에서 입력하는 값이 많은경우 화면을 나누기도하는데, 그때 A화면에서 input 값 a, b를 받고 그 다음 화면 B에서 c, d를 받아서 조합할 수 있다.
@@ -226,13 +226,13 @@ Object event = request.getSession().getAttribute("event");
 
 # @SessionAttribute 
 
-- HTTP 세션에 들어있는 값을 참조할 때 사용
-- HttpSession 을 사용할 때 비해 타입 컨버전을 자동으로 지원하기 때문에 편리함
-- HTTP 세션에 값을 넣고 빼고싶은 경우는 HttpSession을 사용
+- __HTTP 세션에 들어있는 값을 참조할 때 사용___
+- HttpSession 을 사용할 때 비해 __타입 컨버전을 자동으로 지원__ 하기 때문에 편리함
+- HTTP 세션에 값을 넣고 빼고싶은 경우는 HttpSession 을 사용
 - @SessionAttributes 와는 다르다
-  - @SessionAttributes는 해당 컨트롤러 내에서만 작동
+  - @SessionAttributes 는 해당 컨트롤러 내에서만 작동
     - 즉, 해당 컨트롤러 안에서 다루는 특정 모델 객체를 세션에 넣고 공유할 때 사용
-  - __@SessionAttribute는 컨트롤러밖(인터셉터, 필터 등)에서 만들어준 세션 데이터에 접근할 때 사용__
+  - __@SessionAttribute 는 컨트롤러밖(인터셉터, 필터 등)에서 만들어준 세션 데이터에 접근할 때 사용__
   
 사실 @SessionAttribute 를 이용해서 @SessionAttributes 로 HTTP Session 에 넣어준 값에 접근할 수 있지만 사실 그런 용도는 아니고, 컨트롤러 내에서는 @SessionAttributes, SessionStatus, @ModelAttribute 를 이용해서 다룬다.
   
