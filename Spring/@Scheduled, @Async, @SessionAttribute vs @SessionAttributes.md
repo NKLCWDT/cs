@@ -226,7 +226,7 @@ Object event = request.getSession().getAttribute("event");
 
 # @SessionAttribute 
 
-- __HTTP 세션에 들어있는 값을 참조할 때 사용___
+- __HTTP 세션에 들어있는 값을 참조할 때 사용__
 - HttpSession 을 사용할 때 비해 __타입 컨버전을 자동으로 지원__ 하기 때문에 편리함
 - HTTP 세션에 값을 넣고 빼고싶은 경우는 HttpSession 을 사용
 - @SessionAttributes 와는 다르다
