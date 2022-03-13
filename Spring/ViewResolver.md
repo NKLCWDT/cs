@@ -95,6 +95,16 @@ jsp를 사용할 수 있도록 만들어줘야한다.
 
 스프링부트에서 spring-starter-thymeleaf 의존성을 주입하고 프로젝트 생성 시 만들어져있는 template 폴더안에 html만 만들어주면된다.
 
+<img width="185" alt="image" src="https://user-images.githubusercontent.com/70622731/158051837-71593f34-34f2-4795-936a-9b825a926360.png">
+
+```java
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+}
+```
+
+컨터롤러 예시
+
 ```java
 @Controller
 public class TestController {
@@ -111,7 +121,7 @@ public class TestController {
 > 여기서 만약 @ResponseBody가 붙어있다면 리턴값은 view를 통해 출력되지 않고 HTTP Response Body에 직접 쓰여진다.
 > 이때, 해당 메소드 리턴값의 데이터 타입에 따라 MessageConverter에서 변환이 이뤄진 후 쓰여진다.
 
-AbstractCachingViewResolver를 상속받아 thymeleaf viewResolver가 구현되어있다.
+spring-starter-thymeleaf 안에 AbstractCachingViewResolver를 상속받아 thymeleaf viewResolver가 구현되어 있어 SpringBoot DispatcherServlet에서 viewResolver를 찾을 때 thymeleaf viewResolver를 찾게된다.
 
 ```java
 package org.thymeleaf.spring5.view;
@@ -156,6 +166,12 @@ spring.mvc.view.suffix = .jsp
 
 viewResolver에서 찾을 수 있도록 폴더 구조는 webapp/WEB-INF/ 안에 .jsp 파일들을 넣어주면 된다. 
 
-spring-starter-thymeleaf 의존성이 들어있으면 viewResolver가 선언되어있어서 InternalResourceViewResolver를 viewResolver로 등록하지못해 jsp를 찾지 못한다.
+> spring-starter-thymeleaf 의존성이 들어있으면 viewResolver가 선언되어있어서 InternalResourceViewResolver를 viewResolver로 등록하지못해 jsp를 찾지 못한다.
 
+---
 
+### Reference
+
+- https://galid1.tistory.com/527
+- https://goddaehee.tistory.com/204
+- https://devlog-wjdrbs96.tistory.com/199
