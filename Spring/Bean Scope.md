@@ -108,7 +108,7 @@ public interface ProtoType {
 
 - 각 HTTP 요청마다 스코프들이 관리된다.
 
-![IMAGES](../images/Bean Scope1.png)
+  ![IMAGES](../images/BeanScope1.png)
 
 
 - Request 스코프를 만들어보는 실습은 아래 링크를 통해 참고하여 진행할 수 있다.
