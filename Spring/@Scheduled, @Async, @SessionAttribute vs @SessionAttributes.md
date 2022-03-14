@@ -36,6 +36,17 @@ class TimeScheduler {
   - month
   - day of week
 
+## 스프링 배치 vs 스케줄러
+
+> https://stackoverflow.com/questions/46729567/what-is-the-difference-between-spring-scheduled-tasks-and-spring-batch-jobs
+
+- Spring Scheduler 는 `일정`에 따라 무언가를 오케스트레이션하기 위한 것 
+- Spring Batch 는 복잡한 컴퓨팅 문제를 구축하기 위해 설계된 강력한 `일괄 처리` 프레임워크
+- Spring Batch 는 작업의 오케스트레이션을 처리하지 않고 빌드만 처리
+- 원하는 경우 Spring Scheduler 를 사용하여 Spring Batch 작업을 오케스트레이션 할 수 있다.
+
+> 스프링 배치란 : http://wiki.gurubee.net/pages/viewpage.action?pageId=4949437
+
 # @Async
 
 - @Async 는 비동기 작업을 어노테이션으로 처리할 수 있게끔 지원해주는 녀석이다.
