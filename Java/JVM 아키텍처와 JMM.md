@@ -8,7 +8,7 @@ C/C++ 언어는 CPU 아키텍처, 운영체제 등 플랫폼 환경에 의존성
 
 Java의 경우 이러한 문제를 해결하기 위해 JVM을 만들었다.
 
-![IMAGES](../images/JVM.png)
+![image](https://user-images.githubusercontent.com/70622731/160238400-cac9e118-138a-405d-81ee-feed44c3cb9a.png)
 
 ### JVM의 특징
 __스택 기반의 가상머신__
@@ -172,7 +172,7 @@ __1. Heap Memory__
 
 기본적으로 Heap Memory는 JVM이 시작될 때 공간을 할당받고, 애플리케이션이 작동 중일 때 사이즈에 있어 자유롭다. 즉, new 연산자를 활용해서 객체를 생성할 때 할당된다.
 
-![IMAGES](../images/jvmHeap.png)
+![image](https://user-images.githubusercontent.com/70622731/160238436-ecf28246-1045-4a0f-bd86-8e3e544a0dde.png)
 
 __1) Young Generation__
 
@@ -189,13 +189,13 @@ Old Generation은 Minor GC로 부터 살아남고, 오랫동안 사용될 예정
 
 __2. Non - Heap Memory (힙이 아닌 영역)__
 
-![IMAGES](../images/jvmNonHeap.png)
+![image](https://user-images.githubusercontent.com/70622731/160238448-2730498f-deaa-4df4-8ff5-ee74a06f3479.png)
 
 힙이 아닌 영역으로써, 이는 모든 스레드가 공유하는 메서드 영역이다.
 
 Non - Heap 영역은 Permanent Generation를 포함하고 있다. JRE에 포함되어 있지만, Heap 영역과 별도로 메모리에 존재한다.
 
-![IMAGES](../images/java8JVM.png)
+![image](https://user-images.githubusercontent.com/70622731/160238471-eb6c63b6-c759-4293-839e-ff293cf72b7f.png)
 
 JVM 벤더마다 다르지만, HotSpot에선 Method Area를 Permanent Generation이라고 부른다. Java8 부터는 HotSpot에서 JRockit과 일치시키는 과정으로 Perm 영역이 Native 영역으로 이동하여 Metaspace로 변경되었다. 기존 Perm 영역에 존재하던 Static Object는 Heap 영역으로 옮겨져서 GC의 대상이 최대한 될 수 있도록 하였다.
 
