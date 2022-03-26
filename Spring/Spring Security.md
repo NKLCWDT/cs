@@ -29,6 +29,8 @@
 
 <img width="887" alt="image" src="https://user-images.githubusercontent.com/70622731/160224657-f7ac1d54-1e5d-4ff4-999b-fb6d21f99f82.png">
 
+<br>
+
 ### DelegatingFilterProxy
 
 DelegatingFilterProxy는 Servlet Container 기반의 필터 위에서 동작하기 위해서 중간 역할만 하고 FilterChainProxy에게 요청을 위임한다.
@@ -38,6 +40,8 @@ DelegatingFilterProxy는 Servlet Container 기반의 필터 위에서 동작하�
 FilterChainProxy 역시 처리를 위임하기 위한 SecurityFilterChain을 들고 있다.
 
 <img width="924" alt="image" src="https://user-images.githubusercontent.com/70622731/160224712-3dee81c7-fe04-4ef7-8479-303879521d51.png">
+
+<br>
 
 ### 스프링 시큐리티 동작방식
 
@@ -67,11 +71,15 @@ AuthenticationFilter는 사용자의 세션ID (JSESSIONID)가 Security Context�
 
 Security Context에 세션ID가 없다면 아래 로직을 수행한다.
 
+<br>
+
 __2. 사용자 자격 증명을 기반으로 AuthenticationToken 생성__
 
 인증 요청(request)이 관련 AuthenticationFilter에 의해 수신되면 수신된 요청에서 사용자 이름과 비밀번호를 추출한다.
 
 이 추출된 사용자 자격 증명(credentials)을 기반으로 인증개체를 만들게 되는데, 이를 `UsernamePasswordAuthenticationToken`이라고 한다.
+
+<br>
 
 __3. AuthenticationManager를 위해 생성된 AuthenticationToken 위임__
 
@@ -81,9 +89,13 @@ __3. AuthenticationManager를 위해 생성된 AuthenticationToken 위임__
 
 ProviderManager에는 사용자 요청을 인증에 필요한 AuthenticationProvider 목록이 있다. ProviderManager는 제공된 각 AuthenticationProvider를 살펴보고 전달된 인증 개체(UsernamePasswordAuthenticationToken)를 기반으로 사용자 인증을 시도한다.
 
+<br>
+
 __4. AuthenticationProvider 목록으로 인증시도__
 
 AuthenticationProvider는 제공된 인증 개체로 사용자를 인증한다.
+
+<br>
 
 __5. UserDetailsService / 6. UserDetails / 7. User__
 
@@ -101,6 +113,8 @@ public interface UserDetailService {
 
 즉, 위 코드의 `loadUserByUsername` 메소드를 오버라이딩해 DB와 비교하는 로직을 직접 짜야한다.
 
+<br>
+
 __8. AuthenticationException__
 
 AuthenticationProvider 인터페이스에 의해 사용자가 성공적으로 인증되면, 완전히 채워진 인증객체가 반환된다.
@@ -109,13 +123,19 @@ AuthenticationProvider 인터페이스에 의해 사용자가 성공적으로 �
 
 AuthenticationException이 발생하면 인증 매커니즘을 지원하는 AuthenticationEntryPoint에 의해 처리된다.
 
+<br>
+
 __9. 인증완료__
 
 AuthenticationManager는 획득한 완전히 채워진 인증객체를 관련 인증 필터(AuthenticationFilter)로 다시 반환한다.
 
+<br>
+
 __10. SecurityContext에서 인증 개체 설정__
 
 관련 AuthenticationFilter는 향후 필터 사용을 위해 획득한 인증 개체를 SecurityContext에 저장한다.
+
+<br>
 
 ### Spring Security Filter
 
