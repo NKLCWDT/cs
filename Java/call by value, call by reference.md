@@ -8,6 +8,7 @@
 아래에 예시는 call by value에 대한 설명이다.
 
 ```java
+
 public class Diffrence {
     
     static void swapS(String one, String two) {
@@ -37,11 +38,11 @@ public class Diffrence {
 
 아래 예시에서는 참조형을 예로 들겠다.
 
-![IMAGES](../images/swap전.png)
+![image](https://user-images.githubusercontent.com/70622731/160238975-8c506ac9-c937-4d85-b469-48459f6b8d2a.png)
 
 이렇게 메인 메소드의 a,b와 swapS 메소드의 one, two는 서로 같은 값을 참조할 뿐이다.
 
-![IMAGES](../images/swap후.png)
+![image](https://user-images.githubusercontent.com/70622731/160238983-dd3c8448-fe36-4221-8d0d-37cf854b1da5.png)
 
 그러므로 swap메소드를 실행해도 main값에 영향을 주지 못한다.
 
@@ -50,6 +51,7 @@ public class Diffrence {
 이러한 효과를 내는 방법은 있다.
 
 ```java
+
 public class Diffrence {
     int value;
     
@@ -79,11 +81,11 @@ swap() 호출 후 : a = 20, b = 10
 
 이렇게 값이 바뀌는 걸 볼 수 있다.
 
-![IMAGES](../images/swap전2.png)
+![image](https://user-images.githubusercontent.com/70622731/160238995-862787d3-4a79-4a23-8305-cf91e775e7d4.png)
 
 마찬가지로 one과 two는 값의 주소를(call by value) 복사 받아 같은 인스턴스를 참조하는 것 이지만
 
-![IMAGES](../images/swap후2.png)
+![image](https://user-images.githubusercontent.com/70622731/160239001-96bc5061-0c63-43e2-ad51-a1ae45a45b99.png)
 
 이렇게 참조 되어지는 값을  마치 call by reference가 이루어진 것 처럼 보인다.
 
