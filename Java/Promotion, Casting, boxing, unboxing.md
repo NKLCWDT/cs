@@ -15,7 +15,7 @@
 자바는 타입이 서로 일치하지 않는 경우에도 타입끼리 서로 호환성이 있으면 자동으로 변환을 실시한다.  
 자동 변환이 가능한 방향
 
-![IMAGES](../images/자동형변환.png)
+![image](https://user-images.githubusercontent.com/70622731/163184308-9e81352a-0a8a-4bf0-949a-bd09bf36e949.png)
 
 예를 들어 short 타입은 16비트 정수이고, int 타입은 32bit 정수이므로 값이 변하는 문제는 발생하지 않는다.
 
@@ -74,7 +74,7 @@ new Child라는 인스턴스는 변수가 원하는 데이터를 모두 가지�
 
 위와 같은 캐스팅을 업캐스팅 이라 부른다.
 
-![IMAGES](../images/업캐스팅.png)
+![image](https://user-images.githubusercontent.com/70622731/163184380-53db73c1-74f8-44c1-95d7-c9560f3fd5cb.png)
 
 Parent에 Child 데이터를 넣으므로 화살표 방향이 위로 가게 되어 업캐스팅이라 부른다.
 
@@ -97,7 +97,7 @@ Child child = (Child) new Parent();
 
 프로그램이 실제로 동작할 때, new Parent() 인스턴스는 Child형 데이터로 바꾸지 못한다는 것을 깨닫고, 런타임 오류를 내며 종료된다.
 
-![IMAGES](../images/다운캐스팅.png)
+![image](https://user-images.githubusercontent.com/70622731/163184422-2c6afee7-4fab-4ff1-b6bc-886e2a247813.png)
 
 Child 데이터에 Parent 데이터를 넣는 경우는 화살표가 아래로 향하므로 다운캐스팅 이라 부른다.
 
@@ -121,7 +121,7 @@ parent 변수는 Parent 클래스 형태의 변수지만, 태생이 Child 인스
 
 ## boxing, unboxing
 
-![IMAGES](../images/포장클래스.png)
+![image](https://user-images.githubusercontent.com/70622731/163184466-27ae9f2a-89ea-4e3e-a871-517d815d0bb9.png)
 
 박싱(boxing)이란 기본형을 참조형으로 변환하는 것이고 언박싱(unboxing)이란 반대로 참조형을 기본형으로 바꾸는 것이다.
 
