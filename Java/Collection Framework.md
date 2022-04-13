@@ -9,7 +9,7 @@ JDK 1.2 이전까지는 컬렉션 클래스들을 서로 각자 다른 방식으
 > 컬렉션 (Collection) : 여러 객체(데이터)를 담을 수 있는 자료구조, 다수의 데이터 그룹  
 > 프레임워크 (Framework) : 표준화, 정형화된 체계적인 프로그래밍 방식
 
-![IMAGES](../images/collection%20framework.png)
+![image](https://user-images.githubusercontent.com/70622731/163185221-f7a6f9b2-a53a-413a-924f-927661d63343.png)
 
 ### 컬렉션 프레임워크의 구성요소
 
@@ -41,7 +41,7 @@ Collection 인터페이스 그룹 / Map 인터페이스 그룹 / 기타 인터�
 
   `ArrayList class`, `LinkedList class`는 List 인터페이스로 구현되었다.
 
-  ![IMAGES](../images/List%20Interface.png)
+![image](https://user-images.githubusercontent.com/70622731/163185278-4cb9ec57-a407-48ff-a84c-1e6070340c57.png)
 
 - Set Interface (순서 X, 중복 X)
 
@@ -49,7 +49,7 @@ Collection 인터페이스 그룹 / Map 인터페이스 그룹 / 기타 인터�
 
   `HashSet class`, `TreeSet class`, `LinkedHashSet class`는 Set 인터페이스로 구현되었다.
 
-  ![IMAGES](../images/Set%20Interface.png)
+![image](https://user-images.githubusercontent.com/70622731/163185324-8b33956d-7634-4500-b1a4-71f829c01d69.png)
 
 - SortedSet Interface
 
@@ -79,7 +79,7 @@ Collection 인터페이스 그룹 / Map 인터페이스 그룹 / 기타 인터�
 
   `HashMap class`, `TreeMap class`, `LinkedHashMap class`는 Map 인터페이스로 구현되었다.
 
-  ![IMAGES](../images/Map%20Interface.png)
+![image](https://user-images.githubusercontent.com/70622731/163185360-072c86ce-f2a4-49dd-acff-918dad0f7fc7.png)
 
 - SortedMap Interface
 
