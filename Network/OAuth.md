@@ -69,7 +69,9 @@ Client : 모르는 사람이 만든 사이트
 
 ### Authorization Code
 권한 부여 승인을 위해 자체 생성한 Authorization Code를 전달하는 방식으로 많이 쓰이고 기본이 되는 방식이다.
-![IMAGES](../images/AuthorizationCode.png)
+
+![image](https://user-images.githubusercontent.com/70622731/166139288-61b86220-5cd8-4ee3-b577-4d437abdfa5c.png)
+
 1. Client에서 Authrization Server로 권한 부여 요청을 보낸다.
 2. 로그인 팝업창이 전달되면 사용자는 로그인을 합니다.
 3. 로그인 정보가 맞다면 권한 부여 승인 코드를 Client에 전달한다.
@@ -96,7 +98,7 @@ Access Token을 획득하기 위한 절차가 간소화되기에 응답성과 �
 
 > ex) {Redirect_URL}#token={ACCESS_TOKEN}
 
-![IMAGES](../images/Implicit.png)
+![image](https://user-images.githubusercontent.com/70622731/166139293-179ea6ff-edd4-4467-9485-f63784fbe98d.png)
 
 1. Client가 인증서버에게 사용자 로그인 및 권한 동의 웹 페이지를 요청한다.
 2. 로그인 팝업창이 전달되면 사용자는 로그인을 합니다.
@@ -107,7 +109,7 @@ Access Token을 획득하기 위한 절차가 간소화되기에 응답성과 �
 간단하게 username, password로 access token을 받는 방식이다.
 refresh Token의 사용도 가능하다.
 
-![IMAGES](../images/ResourceOwnerPasswordCredentials.png)
+![image](https://user-images.githubusercontent.com/70622731/166139301-43bce09e-fc8b-4d28-b85b-2a5028eec7ca.png)
 
 1. Resource Owner는 인증정보(아이디, 패스워드)를 Client에게 직접 전달한다.
 2. Client 앞서 받은 인증 정보를 Authorization Server로 전송하여 Access token을 발급받는다.
@@ -118,7 +120,7 @@ refresh Token의 사용도 가능하다.
 ### Client Credentials
 클라이언트의 자격증면만으로 Access token을 획득하는 방식이다.
 
-![IMAGES](../images/ClientCredentials.png)
+![image](https://user-images.githubusercontent.com/70622731/166139317-4a927d9b-eaa3-42f5-a3fc-ab00134d5dbb.png)
 
 이 방식은 Client 자신이 애플리케이션을 사용할 목적으로 사용하는 것이 일반적이다.
 OAuth2의 권한 부여 방식 중 가장 간단하고 자격증명을 안전하게 보관할 수 있는 Client에서만 사용되며, Refresh token은 사용할 수 없다.
